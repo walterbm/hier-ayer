@@ -1,0 +1,6 @@
+<h1>This is map <%= @map.name %></h1>
+
+<% @map.moments.each do |moment| %>
+  <p><%= moment.latitude %></p>
+  <p><%= moment.longitude %></p>
+<% end %>

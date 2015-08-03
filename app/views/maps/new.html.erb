@@ -8,8 +8,8 @@
     <%= f.fields_for :moments do |moment_field| %>
       <%= moment_field.label :memo %>
       <%= moment_field.text_field :memo %>
-      <%= moment_field.hidden_field :latitude %>
-      <%= moment_field.hidden_field :longitude %>
+      <%= moment_field.text_field :latitude %>
+      <%= moment_field.text_field :longitude %>
     <% end %>
   </p>
 
