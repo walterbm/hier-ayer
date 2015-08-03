@@ -8,10 +8,23 @@
     <%= f.fields_for :moments do |moment_field| %>
       <%= moment_field.label :memo %>
       <%= moment_field.text_field :memo %>
-      <%= moment_field.text_field :latitude %>
-      <%= moment_field.text_field :longitude %>
+      <%= moment_field.hidden_field :latitude %>
+      <%= moment_field.hidden_field :longitude %>
     <% end %>
   </p>
 
-  <%= f.submit %>
+  <%= f.submit "create a new moment", :id => "submit" %>
+  
 <% end %>
+
+<script> 
+$(function() {
+  $("#submit").hide();
+  getCoords(function(latitude,longitude){
+    $("#map_moments_latitude").val(latitude);
+    $("#map_moments_longitude").val(longitude);
+    $("#submit").show();
+  });
+
+});
+</script>
