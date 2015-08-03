@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   resources :moments
-
   resources :maps
-
   resources :users
 
   get '/login' => 'sessions#new'
