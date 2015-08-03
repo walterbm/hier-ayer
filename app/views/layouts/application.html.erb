@@ -11,7 +11,6 @@
   
 <nav>
   <% if logged_in? %>
-    Logged in as: <%= current_user.name %>
     <%= link_to "Logout", logout_path %>
   <% else %>
     <%= link_to "Login", login_path %>
