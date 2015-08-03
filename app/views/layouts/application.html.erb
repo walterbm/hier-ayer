@@ -8,7 +8,23 @@
   <%= analytics_init if Rails.env.production? %>
 </head>
 <body>
+  
+<nav>
+  <% if logged_in? %>
+    Logged in as: <%= current_user.name %>
+    <%= link_to "Logout", logout_path %>
+  <% else %>
+    <%= link_to "Login", login_path %>
+    <%= link_to "Sign Up", new_user_path %>
+  <% end %>
+</nav>
 
+<p class="notice">
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
+</p>
+  
 <%= yield %>
 
 </body>
