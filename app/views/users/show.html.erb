@@ -3,7 +3,7 @@
 <h3>Maps:</h3>
 <ul>
   <% current_user.maps.each do |map| %>
-   <li><%= link_to map.name, map_path(map) %><li>
+    <li><%= link_to map.name, map_path(map) %></li>
   <% end %>
 </ul>
 

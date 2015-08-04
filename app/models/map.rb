@@ -4,7 +4,7 @@ class Map < ActiveRecord::Base
 
   def update_all(map_params)
     if map_params[:name]
-      self.update(map_params[:name])
+      self.update(map_params)
     elsif map_params[:moment]
       self.moments.build(map_params[:moment])
       self.save
