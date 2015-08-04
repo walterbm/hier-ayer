@@ -33,6 +33,6 @@ class MapsController < ApplicationController
   
   private
     def map_params
-      params.require(:map).permit(:name, moment: [:memo, :latitude, :longitude])
+      params.require(:map).permit(:name, moment: [:memo, :latitude, :longitude, :image])
     end
 end

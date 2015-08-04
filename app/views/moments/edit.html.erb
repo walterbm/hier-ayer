@@ -3,5 +3,13 @@
   <%= f.text_field :memo %>
   <%= f.text_field :latitude %>
   <%= f.text_field :longitude %>
+  <% if @moment.image.exists? %> 
+    <%= link_to image_tag(@moment.image.url(:med)), @moment.image.url %>
+    <%= f.check_box(:delete_image) %>
+    <%= f.label :image, "Delete your image" %>
+  <% end %> 
+  <br>
+  <%= f.label :image, "Choose a file for your image!" %>
+  <%= f.file_field :image %>
   <%= f.submit %>
 <% end %>

@@ -22,6 +22,6 @@ class MomentsController < ApplicationController
   private
 
     def moment_params
-      params.require(:moment).permit(:memo, :latitude, :longitude)
+      params.require(:moment).permit(:memo, :latitude, :longitude, :image, :delete_image)
     end
 end

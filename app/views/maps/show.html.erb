@@ -4,9 +4,10 @@
 <h2>add a moment to this map:</h2>
   <%= form_for(@map) do |f| %>
     <p>
-      <%= f.fields_for @map.moments.build do |moment_f| %>
+      <%= f.fields_for @map.moments.build, html: { multipart: true } do |moment_f| %>
         <%= moment_f.label :memo %>
         <%= moment_f.text_field :memo %>
+        <%= moment_f.file_field :image %>
         <%= moment_f.hidden_field :latitude %>
         <%= moment_f.hidden_field :longitude %>
       <% end %>
@@ -23,6 +24,9 @@
     <ul>
       <li>Latitude: <%= moment.latitude %></li>
       <li>Longitude: <%= moment.longitude %></li>
+      <% if moment.image.exists? %> 
+        <%= link_to image_tag(moment.image.url(:med)), moment.image.url %>
+      <% end %> 
       <li><%= link_to "Edit Moment", edit_moment_path(moment) %></li>
       <li><%= link_to "Delete Moment", moment_path(moment), method: :delete %></li>
     </ul>

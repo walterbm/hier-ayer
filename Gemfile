@@ -19,14 +19,17 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# Used to vizualize the schema
 gem 'erd'
-gem 'geocoder'
 
 # Use ActiveModel has_secure_password
- gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
-#allows us to hide keys
- gem 'figaro'
+# Allows us to hide keys
+gem 'figaro'
+
+# Use Paperclip to upload media files
+gem 'paperclip'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
