@@ -9,6 +9,10 @@ class MapsController < ApplicationController
     redirect_to map_path(map, params)
   end
 
+  def show
+    @map = Map.find(params[:id])
+  end
+
   def edit
     @map = current_user.maps.find(params[:id])
   end
@@ -48,16 +52,10 @@ class MapsController < ApplicationController
       format.html
       format.json { render json: 'yippidy fuckin doo dah' }  # respond with the created JSON object
     end
-  end
-  
-  def show
-    @map = Map.find(params[:id])
-  end
-
-  
+  end 
   
   private
     def map_params
-      params.require(:map).permit(:name)
+      params.require(:map).permit(:name, moment: [:memo, :latitude, :longitude, :image])
     end
 end
