@@ -3,5 +3,10 @@
   <%= f.text_field :memo %>
   <%= f.text_field :latitude %>
   <%= f.text_field :longitude %>
+  <% if @moment.image.exists? %> 
+    <%= link_to image_tag(@moment.image.url(:med)), @moment.image.url %>
+  <% end %> 
+  <%= f.label :image, "Choose a file for your image!" %>
+  <%= f.file_field :image %>
   <%= f.submit %>
 <% end %>
