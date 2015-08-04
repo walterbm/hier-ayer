@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :users
 
   #creating a post request with the JSON object from maps controller
-  post '/create_json' => 'maps#create_json'
+  get '/create_json/:map_id' => 'maps#create_json'
   
   get '/login' => 'sessions#new'
   post '/sessions' => 'sessions#create'

@@ -31,27 +31,26 @@ class MapsController < ApplicationController
   end
   
   def create_json
-    # @geojson = Array.new
-    #   @map.moments.each do |moment|
-    #     @geojson << {
-    #       type: 'Feature',
-    #       geometry: {
-    #         type: 'Point',
-    #         coordinates: [moment.longitude, moment.latitude]
-    #       },
-    #       properties: {
-    #         name: moment.memo,
-    #         :'marker-color' => '#00607d',
-    #         :'marker-symbol' => 'circle',
-    #         :'marker-size' => 'medium'
-    #       }
-    #     }
-    #   end
+    @map = current_user.maps.find(params[:map_id])
 
-    respond_to do |format|
-      format.html
-      format.json { render json: 'yippidy fuckin doo dah' }  # respond with the created JSON object
-    end
+     @geojson = Array.new
+      @map.moments.each do |moment|
+        @geojson << {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [moment.longitude, moment.latitude]
+          },
+          properties: {
+            name: moment.memo,
+            :'marker-color' => '#00607d',
+            :'marker-symbol' => 'circle',
+            :'marker-size' => 'medium'
+          }
+        }
+      end
+
+     render json: 'yippidy fuckin doo dah'  # respond with the created JSON object
   end 
   
   private
