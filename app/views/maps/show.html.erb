@@ -1,6 +1,48 @@
-<h1>This is map <%= @map.name %></h1>
+<h1>Map Name:<%= @map.name %></h1>
+<%= link_to "Edit Map Name", edit_map_path(@map) %> | <%= link_to "Delete Map", map_path(@map), method: :delete %>
 
+<h2>add a moment to this map:</h2>
+  <%= form_for(@map) do |f| %>
+    <p>
+      <%= f.fields_for @map.moments.build do |moment_f| %>
+        <%= moment_f.label :memo %>
+        <%= moment_f.text_field :memo %>
+        <%= moment_f.hidden_field :latitude %>
+        <%= moment_f.hidden_field :longitude %>
+      <% end %>
+    </p>
+
+    <%= f.submit "Create a New Moment", :id => "submit" %>
+  <% end %>
+
+<h2>Current Moments:</h2>
+<ol>
 <% @map.moments.each do |moment| %>
-  <p><%= moment.latitude %></p>
-  <p><%= moment.longitude %></p>
+  <li>Content: <%= moment.memo %> </li>
+    <ul>
+      <li>Latitude: <%= moment.latitude %></li>
+      <li>Longitude: <%= moment.longitude %></li>
+      <% if moment.id %>
+        <li><%= link_to "Edit Moment", edit_moment_path(moment) %></li>
+        <li><%= link_to "Delete Moment", moment_path(moment), method: :delete %></li>
+      <% end %>
+    </ul>
 <% end %>
+</ol>
+
+
+<script> 
+$(function() {
+  $("#submit").val("Fetching Coordinates ...").prop('disabled', true);
+  getCoordinates(function(latitude,longitude){
+    $("#map_moment_latitude").val(latitude);
+    $("#map_moment_longitude").val(longitude);
+    $("#submit").val("Create a New Moment").prop('disabled', false);
+  });
+
+});
+</script>
+
+
+
+

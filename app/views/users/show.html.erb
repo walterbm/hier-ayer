@@ -1,7 +1,10 @@
 <h1>Hi <%= current_user.name %></h1>
 
-<% current_user.maps.each do |map| %>
- <h3><%= map.name %></h3>
-<% end %>
+<h3>Maps:</h3>
+<ul>
+  <% current_user.maps.each do |map| %>
+   <li><%= link_to map.name, map_path(map) %><li>
+  <% end %>
+</ul>
 
 <%= link_to "Create Map", new_map_path %>

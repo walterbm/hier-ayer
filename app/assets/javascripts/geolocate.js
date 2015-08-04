@@ -1,4 +1,4 @@
-function getCoords(callback){
+function getCoordinates(callback){
   var latitude, longitude;
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position){
