@@ -2,10 +2,13 @@
 <html>
 <head>
   <title>Nostalgeo</title>
+  <script src="https://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.js"></script>
+  <link href="https://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.css" rel="stylesheet" />
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <%= analytics_init if Rails.env.production? %>
+
 </head>
 <body>
   
