@@ -17,7 +17,14 @@
 
     <%= f.submit "Create a New Moment", :id => "submit" %>
   <% end %>
-<div id= 'map'></div>
+
+  <div id= 'map' style= 'position:absolute; top:0; bottom:0; height: 25%; width:25%;'>
+    <script>
+    makeMap(<%= params['lat'] %>, <%= params['long'] %>);
+    </script>
+  </div>
+
+
 <h2>Current Moments:</h2>
 <ol>
 <% @map.moments.each do |moment| %>
@@ -46,7 +53,6 @@ $(function() {
     $("#submit").val("Create a New Moment").prop('disabled', false);
   });
 
-  makeMap(-74, 40);
 });
 </script>
 
