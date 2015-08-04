@@ -2,6 +2,13 @@
 <%= link_to "Edit Map Name", edit_map_path(@map) %> | <%= link_to "Delete Map", map_path(@map), method: :delete %>
 
 <p>Lat: <%= params['lat'] %> | Long: <%= params['long'] %></p>
+<div id="map-wrapper">
+  <div id= 'map'>
+    <script>
+    makeMap(<%= params['lat'] %>, <%= params['long'] %>);
+    </script>
+  </div>
+</div>
 
 <h2>add a moment to this map:</h2>
   <%= form_for(@map) do |f| %>
@@ -17,13 +24,6 @@
 
     <%= f.submit "Create a New Moment", :id => "submit" %>
   <% end %>
-
-  <div id= 'map' style= 'position:absolute; top:0; bottom:0; height: 25%; width:25%;'>
-    <script>
-    makeMap(<%= params['lat'] %>, <%= params['long'] %>);
-    </script>
-  </div>
-
 
 <h2>Current Moments:</h2>
 <ol>
