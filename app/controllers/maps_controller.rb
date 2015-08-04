@@ -6,8 +6,7 @@ class MapsController < ApplicationController
   def create
     map = current_user.new_map(map_params)
     map.save
-    
-    redirect_to map_path(map)
+    redirect_to map_path(map, params)
   end
 
   def edit
@@ -53,13 +52,12 @@ class MapsController < ApplicationController
   
   def show
     @map = Map.find(params[:id])
-    
   end
 
   
   
   private
     def map_params
-      params.require(:map).permit(:name, moment: [:memo, :latitude, :longitude, :image])
+      params.require(:map).permit(:name)
     end
 end

@@ -1,6 +1,8 @@
 <h1>Map Name:<%= @map.name %></h1>
 <%= link_to "Edit Map Name", edit_map_path(@map) %> | <%= link_to "Delete Map", map_path(@map), method: :delete %>
 
+<p>Lat: <%= params['lat'] %> | Long: <%= params['long'] %></p>
+
 <h2>add a moment to this map:</h2>
   <%= form_for(@map) do |f| %>
     <p>
