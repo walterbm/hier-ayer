@@ -18,15 +18,15 @@
 <h2>Current Moments:</h2>
 <ol>
 <% @map.moments.each do |moment| %>
+  <% if moment.persisted? %>
   <li>Content: <%= moment.memo %> </li>
     <ul>
       <li>Latitude: <%= moment.latitude %></li>
       <li>Longitude: <%= moment.longitude %></li>
-      <% if moment.id %>
-        <li><%= link_to "Edit Moment", edit_moment_path(moment) %></li>
-        <li><%= link_to "Delete Moment", moment_path(moment), method: :delete %></li>
-      <% end %>
+      <li><%= link_to "Edit Moment", edit_moment_path(moment) %></li>
+      <li><%= link_to "Delete Moment", moment_path(moment), method: :delete %></li>
     </ul>
+    <% end %>
 <% end %>
 </ol>
 
