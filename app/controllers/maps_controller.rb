@@ -4,16 +4,27 @@ class MapsController < ApplicationController
   end
   
   def create
-    @map = Map.create(map_params)
-    @map.user = current_user
-    @moment = Moment.create(moment_params)
-    @map.moments << @moment
-    @map.save
-    redirect_to map_path(@map)
+    map = current_user.new_map(map_params)
+    map.save
+    
+    redirect_to map_path(map)
+  end
+
+  def edit
+    @map = current_user.maps.find(params[:id])
+  end
+
+  def update
+    map = current_user.maps.find(params[:id])
+    map.update_all(map_params)
+    
+    redirect_to map_path(map)
   end
   
   def destroy
-    
+    current_user.delete_map(params[:id])
+
+    redirect_to user_path(current_user)
   end
   
   def show
@@ -22,10 +33,6 @@ class MapsController < ApplicationController
   
   private
     def map_params
-      params.require(:map).permit(:name)
-    end
-  
-    def moment_params
-      params.require(:map).permit(moments: [:memo, :latitude, :longitude])[:moments]
+      params.require(:map).permit(:name, moment: [:memo, :latitude, :longitude])
     end
 end

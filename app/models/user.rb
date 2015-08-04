@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :friends, :through => :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+  
   has_secure_password
 
   def new_map(map_hash)
@@ -12,7 +13,7 @@ class User < ActiveRecord::Base
   end
 
   def delete_map(map_id)
-    map = self.maps.find_by(map_id)
+    map = self.maps.find(map_id)
     map.destroy
   end
 
