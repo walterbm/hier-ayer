@@ -1,20 +1,3 @@
-<style>
-pre.ui-coordinates {
-  background:rgba(0,0,0,0.5);
-  position:absolute;
-  bottom:10px;
-  left:10px;
-  padding:5px 10px;
-  color:#fff;
-  font-size:11px;
-  line-height:18px;
-  border-radius:3px;
-  max-height:240px;
-  overflow:auto;
-  width:100px;
-  }
-</style>
-
 <h1>Map Name:<%= @map.name %></h1>
 <%= link_to "Edit Map Name", edit_map_path(@map) %> | <%= link_to "Delete Map", map_path(@map), method: :delete %>
 
@@ -33,14 +16,14 @@ pre.ui-coordinates {
             if($('#moments').find('li').length === 0){
               makeCurrentMap(latitude, longitude);
             }else{
-              makeMomentMap(arr);
+              makeMomentMap(arr, latitude, longitude);
             };
             $("#submit").val("Create a New Moment").prop('disabled', false);
           });
       });
     </script>
   </div>
-  <pre id='coordinates' class='ui-coordinates'></pre>
+<!--  <pre id='coordinates' class='ui-coordinates'></pre>-->
 </div>
 
 <h2>add a moment to this map:</h2>
