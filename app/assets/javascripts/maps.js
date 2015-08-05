@@ -16,13 +16,12 @@ function makeCurrentMap(latitude, longitude){
         ]
     },
     properties: {
-        title: 'Flatiron School',
-        description: '11 Broadway, New York',
+        title: 'Current Location',
         // one can customize markers by adding simplestyle properties
         // https://www.mapbox.com/guides/an-open-platform/#simplestyle
         'marker-size': 'large',
         'marker-color': '#15b3d9',
-        'marker-symbol': 'danger'
+        'marker-symbol': 'star-stroked'
     }
   }).addTo(map);
 }
@@ -43,7 +42,7 @@ function makeMomentMap(arr){
       properties: {
           'marker-color': '#15b3d9',
           'marker-symbol': 'star-stroked',
-          title: marker[2]
+          description: marker[2]
       }
     });
   })

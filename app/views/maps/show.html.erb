@@ -7,6 +7,7 @@
       $(function() {
         var arr = [];
         $('#moments ul').toArray().forEach(function(moment){
+          debugger;
           arr.push([moment.getElementsByClassName('lat')[0].innerHTML.split(": ")[1], moment.getElementsByClassName('long')[0].innerHTML.split(": ")[1], moment.getElementsByClassName('memo')[0].innerHTML.replace("<h3>Content: ", "").replace("</h3>", "")])
         });
         $("#submit").val("Automagical ...").prop('disabled', true);
