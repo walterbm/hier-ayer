@@ -17,13 +17,18 @@ class User < ActiveRecord::Base
     map.destroy
   end
 
-  def add_friend(friend_id)
-    self.friends.build(friend_id)
+  def add_friend(friend)
+    self.friends << friend
   end
 
-  def unfriend(friend_id)
-    friend = self.friends.find_by(friend_id)
-    friend.destroy
+  def unfriend(friend)
+    friendships = self.friendships.find_by(friend_id: friend.id)
+    friendships.destroy
+    self.reload
+  end
+
+  def followers
+    self.inverse_friends
   end
 
 end
