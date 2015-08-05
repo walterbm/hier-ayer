@@ -5,7 +5,7 @@
   <div id= 'map'>
     <script>
       $(function() {
-        makeMomentMap("<%= map_geojson_path(@map) %>");
+        makeMap("<%= map_geojson_path(@map) %>");
 
         $("#submit").val("Automagical ...").prop('disabled', true);
           getCoordinates(function(latitude,longitude){

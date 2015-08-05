@@ -1,4 +1,4 @@
-function makeMomentMap(url){
+function makeMap(url){
   L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
   var map = L.mapbox.map('map', 'mapbox.run-bike-hike');
   var myLayer = L.mapbox.featureLayer().addTo(map);
