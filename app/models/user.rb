@@ -24,8 +24,8 @@ class User < ActiveRecord::Base
       self.friends << friend
   end
 
-  def unfriend(friend)
-    friendships = self.friendships.find_by(friend_id: friend.id)
+  def unfriend(friend_id)
+    friendships = self.friendships.find_by(friend_id: friend_id)
     friendships.destroy
     self.reload
   end

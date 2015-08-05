@@ -1,8 +1,8 @@
-<h1>Hi <%= current_user.name %></h1>
+<h1>Hi <%= @user.name %></h1>
 
 <h3>Maps:</h3>
 <ul>
-  <% current_user.maps.each do |map| %>
+  <% @user.maps.each do |map| %>
     <li><%= link_to map.name, map_path(map) %></li>
   <% end %>
 </ul>
@@ -14,4 +14,4 @@
 <%= submit_tag "Create Map", :id => "createmap" %>
 <% end %>
 
-<%= link_to "Add a Friend", user_friends_path(@user.id) %>
+<%= link_to "Add a Friend", user_friends_path(@user) %>
