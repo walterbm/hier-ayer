@@ -1,6 +1,6 @@
 
 function makeMap(latitude, longitude){
-  L.mapbox.accessToken = 'pk.eyJ1IjoiYmVjY2FhZGVzMTciLCJhIjoiYzQ5MDJkNDViNTMxNDljZTZhZDJiYWNmNDBjMGFlMTQifQ.gahZGpjkoGvNTbFE1tEaGg';
+  L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
   var map = L.mapbox.map('map', 'mapbox.run-bike-hike')
    .setView([latitude, longitude], 16);
   L.mapbox.featureLayer({
