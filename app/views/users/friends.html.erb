@@ -1,0 +1,14 @@
+<p>Follow your Friends!</p>
+<%= form_tag(user_friends_path(@user.id)) do %>
+  <%= label_tag "Add a Friend" %>
+  <%= text_field_tag :friends %>
+  <%= submit_tag "Add Friend" %>
+<% end %>
+
+<ul>
+<% @user.friends.each do |friend| %>
+<li><%= link_to friend.name user_path(friend) %></li>
+<li><%= link_to friend.name, user_friends(@user), method: 'delete' %></li>
+<% end %>
+</ul>
+
