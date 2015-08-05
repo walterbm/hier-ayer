@@ -54,24 +54,8 @@ function makeMomentMap(arr){
     features: features
   });
   
+  // leaflet bug hacked
   setTimeout(function () {
     map.fitBounds(myLayer.getBounds());
   }, 0);
-//  map.on('move', function() {
-//    // Construct an empty list to fill with onscreen markers.
-//    var inBounds = [],
-//    // Get the map bounds - the top-left and bottom-right locations.
-//    bounds = map.getBounds();
-//
-//    // For each marker, consider whether it is currently visible by comparing
-//    // with the current map bounds.
-//    myLayer.eachLayer(function(marker) {
-//      if (bounds.contains(marker.getLatLng())) {
-//          inBounds.push(marker.options.title);
-//      }
-//    })
-//
-//    // Display a list of markers.
-////    document.getElementById('coordinates').innerHTML = inBounds.join('\n');
-//  })
 }
