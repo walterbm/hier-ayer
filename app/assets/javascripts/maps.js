@@ -16,11 +16,10 @@ function makeMap(url){
         type: 'FeatureCollection',
         features: data
       });
+      // leaflet bug hacked
+      setTimeout(function () {
+        map.fitBounds(myLayer.getBounds());
+      }, 0);
     } 
   });  
-  
-  // leaflet bug hacked
-  setTimeout(function () {
-    map.fitBounds(myLayer.getBounds());
-  }, 0);
 }
