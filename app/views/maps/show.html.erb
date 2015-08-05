@@ -1,11 +1,22 @@
 <h1>Map Name:<%= @map.name %></h1>
 <%= link_to "Edit Map Name", edit_map_path(@map) %> | <%= link_to "Delete Map", map_path(@map), method: :delete %>
 
-<p>Lat: <%= params['lat'] %> | Long: <%= params['long'] %></p>
 <div id="map-wrapper">
   <div id= 'map'>
     <script>
-    makeMap(<%= params['lat'] %>, <%= params['long'] %>);
+      $(function() {
+        $("#submit").val("Automagical ...").prop('disabled', true);
+          getCoordinates(function(latitude,longitude){
+            $("#map_moment_latitude").val(latitude);
+            $("#map_moment_longitude").val(longitude);
+            if($('#moments').find('li').length === 0){
+              makeMap(latitude, longitude);
+            }else{
+              debugger;
+            };
+            $("#submit").val("Create a New Moment").prop('disabled', false);
+          });
+      });
     </script>
   </div>
 </div>
@@ -26,7 +37,7 @@
   <% end %>
 
 <h2>Current Moments:</h2>
-<ol>
+<ol id="moments">
 <% @map.moments.each do |moment| %>
   <% if moment.persisted? %>
   <li>Content: <%= moment.memo %> </li>
@@ -42,22 +53,3 @@
     <% end %>
 <% end %>
 </ol>
-
-
-<script> 
-$(function() {
-  $("#submit").val("Automagical ...").prop('disabled', true);
-  getCoordinates(function(latitude,longitude){
-    $("#map_moment_latitude").val(latitude);
-    $("#map_moment_longitude").val(longitude);
-    $("#submit").val("Create a New Moment").prop('disabled', false);
-  });
-
-});
-</script>
-
-
-
-
-
-

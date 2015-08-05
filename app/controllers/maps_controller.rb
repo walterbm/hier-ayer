@@ -6,7 +6,7 @@ class MapsController < ApplicationController
   def create
     map = current_user.new_map(map_params)
     map.save
-    redirect_to map_path(map, params)
+    redirect_to map_path(map)
   end
 
   def show

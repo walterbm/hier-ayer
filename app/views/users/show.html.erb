@@ -11,18 +11,5 @@
 <%= form_tag("/maps") do %>
   <%= label_tag('map[name]', "Name") %>
   <%= text_field_tag('map[name]') %>
-  <%= hidden_field_tag('lat') %>
-  <%= hidden_field_tag('long') %>
 <%= submit_tag "Create Map", :id => "createmap" %>
 <% end %>
-
-<script> 
-$(function() {
-  $("#createmap").val("Automagical").prop('disabled', true);
-  getCoordinates(function(latitude,longitude){
-    $("#lat").val(latitude);
-    $("#long").val(longitude);
-    $("#createmap").val("Create Map").prop('disabled', false);
-  });
-});
-</script>
