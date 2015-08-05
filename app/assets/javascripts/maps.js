@@ -33,7 +33,6 @@ function makeMomentMap(arr){
     .setView([parseFloat(arr[arr.length-1][0]), parseFloat(arr[arr.length-1][1])], 13);
   var myLayer = L.mapbox.featureLayer().addTo(map);
   var features = [];
-  
   arr.forEach(function(marker){
     features.push({
       type: 'Feature',
@@ -44,7 +43,7 @@ function makeMomentMap(arr){
       properties: {
           'marker-color': '#15b3d9',
           'marker-symbol': 'star-stroked',
-          title: [marker[0], marker[1]].join(',')
+          title: marker[2]
       }
     });
   })
