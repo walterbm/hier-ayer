@@ -5,20 +5,25 @@
   <div id= 'map'>
     <script>
       $(function() {
+        var arr = [];
+        $('#moments ul').toArray().forEach(function(moment){
+          arr.push([moment.getElementsByClassName('lat')[0].innerHTML.split(": ")[1], moment.getElementsByClassName('long')[0].innerHTML.split(": ")[1]])
+        });
         $("#submit").val("Automagical ...").prop('disabled', true);
           getCoordinates(function(latitude,longitude){
             $("#map_moment_latitude").val(latitude);
             $("#map_moment_longitude").val(longitude);
             if($('#moments').find('li').length === 0){
-              makeMap(latitude, longitude);
+              makeCurrentMap(latitude, longitude);
             }else{
-              debugger;
+              makeMomentMap(arr, latitude, longitude);
             };
             $("#submit").val("Create a New Moment").prop('disabled', false);
           });
       });
     </script>
   </div>
+<!--  <pre id='coordinates' class='ui-coordinates'></pre>-->
 </div>
 
 <h2>add a moment to this map:</h2>
@@ -42,8 +47,8 @@
   <% if moment.persisted? %>
   <li>Content: <%= moment.memo %> </li>
     <ul>
-      <li>Latitude: <%= moment.latitude %></li>
-      <li>Longitude: <%= moment.longitude %></li>
+      <li class="lat">Latitude: <%= moment.latitude %></li>
+      <li class="long">Longitude: <%= moment.longitude %></li>
       <% if moment.image.exists? %> 
         <%= link_to image_tag(moment.image.url(:med)), moment.image.url %>
       <% end %> 
