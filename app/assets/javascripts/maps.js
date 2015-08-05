@@ -21,7 +21,7 @@ function makeCurrentMap(latitude, longitude){
         // one can customize markers by adding simplestyle properties
         // https://www.mapbox.com/guides/an-open-platform/#simplestyle
         'marker-size': 'large',
-        'marker-color': '#FF0066',
+        'marker-color': '#15b3d9',
         'marker-symbol': 'danger'
     }
   }).addTo(map);
@@ -41,7 +41,7 @@ function makeMomentMap(arr, lat, long){
           coordinates: [parseFloat(marker[1]), parseFloat(marker[0])]
       },
       properties: {
-          'marker-color': '#000',
+          'marker-color': '#15b3d9',
           'marker-symbol': 'star-stroked',
           title: [marker[0], marker[1]].join(',')
       }
