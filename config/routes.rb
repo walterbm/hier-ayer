@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :moments
-  resources :maps
+  resources :maps do 
+    get '/geojson' => 'maps#geojson'
+  end
   resources :users do
     get '/friends' => 'users#friends'
     post '/friends' => 'users#add_friend'

@@ -30,9 +30,8 @@ class MapsController < ApplicationController
     redirect_to user_path(current_user)
   end
   
-  def create_json
+  def geojson
     @map = current_user.maps.find(params[:map_id])
-
      @geojson = Array.new
       @map.moments.each do |moment|
         @geojson << {
@@ -42,15 +41,15 @@ class MapsController < ApplicationController
             coordinates: [moment.longitude, moment.latitude]
           },
           properties: {
-            name: moment.memo,
-            :'marker-color' => '#00607d',
-            :'marker-symbol' => 'circle',
+            description: moment.memo,
+            :'marker-color' => '#15b3d9',
+            :'marker-symbol' => 'star-stroked',
             :'marker-size' => 'medium'
           }
         }
       end
 
-     render json: 'yippidy fuckin doo dah'  # respond with the created JSON object
+     render json: @geojson
   end 
   
   private
