@@ -16,9 +16,12 @@ class User < ActiveRecord::Base
     map = self.maps.find(map_id)
     map.destroy
   end
-
+  def user_exists?(user)
+    !!User.find_by(name: user)
+  end
   def add_friend(friend)
-    self.friends << friend
+      friend = User.find_by(name: friend)
+      self.friends << friend
   end
 
   def unfriend(friend)

@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   resources :moments
   resources :maps
-  resources :users
-
+  resources :users do
+    get '/friends' => 'users#friends'
+    post '/friends' => 'users#add_friend'
+    delete '/friends' => 'users#delete_friend'
+  end
   #creating a post request with the JSON object from maps controller
   get '/create_json/:map_id' => 'maps#create_json'
   
