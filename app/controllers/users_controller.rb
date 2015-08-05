@@ -15,11 +15,11 @@ class UsersController < ApplicationController
  end
 
  def show
-  @user = User.find_by(params[:id])
+  @user = User.find(params[:id])
  end 
 
  def friends
-  @user = User.find_by(params[:user_id])
+  @user = User.find(params[:user_id])
  end
 
  def add_friend
@@ -32,9 +32,11 @@ class UsersController < ApplicationController
   redirect_to user_friends_path(user)
  end
 
- def unfriend
-  user = User.find_by(params[:user_id])
-  user.unfriend(params[:friends])
+ def remove_friend
+  user = User.find(params[:user_id])
+  user.unfriend(params[:friend_id])
+
+  redirect_to user_friends_path(user)
  end
 
  private

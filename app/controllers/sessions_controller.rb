@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
 
    if @user && @user.authenticate(params[:password])
      login(@user)
-     flash[:notice] = "Logged in successfully!!!"
-     redirect_to user_path(current_user)
+      flash[:notice] = "Hello, #{@user.name}!"
+      redirect_to user_path(current_user)
    else
      flash.now[:notice] = "Can't find that user."
      render :new
