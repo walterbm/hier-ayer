@@ -27,7 +27,7 @@ function makeCurrentMap(latitude, longitude){
   }).addTo(map);
 }
 
-function makeMomentMap(arr, lat, long){
+function makeMomentMap(arr){
   L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
   var map = L.mapbox.map('map', 'mapbox.run-bike-hike');
   var myLayer = L.mapbox.featureLayer().addTo(map);
@@ -71,5 +71,5 @@ function makeMomentMap(arr, lat, long){
 //    document.getElementById('coordinates').innerHTML = inBounds.join('\n');
   });
 
-  map.setView([lat, long], 15);
+  map.setView([parseFloat(arr[arr.length-1][0]), parseFloat(arr[arr.length-1][1])], 15);
 }
