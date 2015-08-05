@@ -1,4 +1,4 @@
-<h1>Map Name:<%= @map.name %></h1>
+<h1>Map Name: <%= @map.name %></h1>
 <%= link_to "Edit Map Name", edit_map_path(@map) %> | <%= link_to "Delete Map", map_path(@map), method: :delete %>
 
 <div id="map-wrapper">
@@ -16,7 +16,7 @@
             if($('#moments').find('li').length === 0){
               makeCurrentMap(latitude, longitude);
             }else{
-              makeMomentMap(arr, latitude, longitude);
+              makeMomentMap(arr);
             };
             $("#submit").val("Create a New Moment").prop('disabled', false);
           });
