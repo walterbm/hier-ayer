@@ -26,6 +26,11 @@ function makeMap(url){
         map.fitBounds(myLayer.getBounds());
       }, 0);
       
+      myLayer.eachLayer(function(layer) {
+          var content = '<h2>'+ layer.feature.properties.description+'<\/h2>' + '<img src="'+ layer.feature.properties.image+'" alt="" style="width:100%;height:100%">';
+          layer.bindPopup(content);
+      });
+      
       // ANIMATED LINE
       var polyline_options = {color: '#000'};
       var polyline = L.polyline([], polyline_options).addTo(map);
