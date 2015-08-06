@@ -1,6 +1,6 @@
-function makeMap(url){
+function makeMap(url,mapId){
   L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
-  var map = L.mapbox.map('map', 'mapbox.run-bike-hike',{
+  var map = L.mapbox.map('map-'+mapId, 'mapbox.run-bike-hike',{
     scrollWheelZoom: false,
     compact: true,
     animate: true
@@ -27,7 +27,6 @@ function makeMap(url){
       }, 0);
       
       myLayer.eachLayer(function(layer) {
-        debugger;
         if(layer.feature.properties.image == "/images/original/missing.png"){
           var content = '<h2>'+ layer.feature.properties.description +'<\/h2>';
         }else{
