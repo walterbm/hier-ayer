@@ -22,8 +22,8 @@ function makeMap(url){
       }, 0);
       
       // ANIMATED LINE
-      var polyline = L.polyline([], polyline_options).addTo(map);
       var polyline_options = {color: '#000'};
+      var polyline = L.polyline([], polyline_options).addTo(map);
       var line = [];
       myLayer.eachLayer(function(marker) {line.push(marker.getLatLng())});
       var i = 0;
