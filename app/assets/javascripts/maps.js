@@ -27,7 +27,6 @@ function makeMap(url){
       }, 0);
       
       myLayer.eachLayer(function(layer) {
-        debugger;
         if(layer.feature.properties.image == "/images/original/missing.png"){
           var content = '<h2>'+ layer.feature.properties.description +'<\/h2>';
         }else{
@@ -36,14 +35,15 @@ function makeMap(url){
         layer.bindPopup(content,{
           maxWidth: 250
         });
+        layer.on('click', function(e){
+          layer.openPopup();
+          map.setView(e.latlng, 15);
+        });
       });
       
-      myLayer.on('mouseover', function(e) {
-        e.layer.openPopup();
-      });
-      myLayer.on('mouseout', function(e) {
-        e.layer.closePopup();
-      });
+      map.on('click', function(e) {map.fitBounds(myLayer.getBounds())});
+      myLayer.on('mouseover', function(e) {e.layer.openPopup()});
+      myLayer.on('mouseout', function(e) {e.layer.closePopup()});
       
       // ANIMATED LINE
       var polyline_options = {color: '#000'};
@@ -53,9 +53,9 @@ function makeMap(url){
       var i = 0;
       function add() {
           polyline.addLatLng(L.latLng(line[i]));
-          map.setView(line[i]);
+//          map.setView(line[i]);
           if (++i < line.length) window.setTimeout(add, 1000);
-          // change the second argument in setTimeout to adjust speed of animation
+            // change the second argument in setTimeout to adjust speed of animation
       }
       add();
       
