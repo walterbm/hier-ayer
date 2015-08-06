@@ -23,9 +23,17 @@ class User < ActiveRecord::Base
     !!User.find_by(name: user)
   end
 
-  def add_friend(friend)
-      friend = User.find_by(name: friend)
-      self.friends << friend
+  def add_friend(friend_name)
+    if friend_name == self.name
+      "Sorry, narcissist, you can't follow youself"
+    elsif self.friends.include?(User.find_by(name: friend_name))
+      "Already following #{friend_name}"
+    elsif user_exists?(friend_name)
+      self.friends << User.find_by(name: friend_name)
+      "Now following #{friend_name}!"
+    else
+      "Sorry, no such user"
+    end
   end
 
   def unfriend(friend_id)

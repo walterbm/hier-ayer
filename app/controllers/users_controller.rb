@@ -40,11 +40,9 @@ class UsersController < ApplicationController
 
   def add_friend
     user = User.find(params[:user_id])
-    if user.user_exists?(params[:friends])
-      user.add_friend(params[:friends])
-    else
-      flash[:notice] = "no such user"
-    end
+    message = user.add_friend(params[:friend_name])
+    flash[:notice] = message
+    
     redirect_to user_friends_path(user)
   end
 
@@ -55,8 +53,4 @@ class UsersController < ApplicationController
     redirect_to user_friends_path(user)
   end
 
-  private
-    def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :friends)
-    end
 end

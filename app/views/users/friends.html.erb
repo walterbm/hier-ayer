@@ -1,18 +1,19 @@
-<p>Follow your Friends!</p>
-<%= form_tag(user_friends_path(@user)) do %>
-  <%= label_tag "Add a Friend" %>
-  <%= text_field_tag :friends %>
-  <%= submit_tag "Add Friend" %>
-<% end %>
-
+<p>Following:</p>
 <ul>
-<% @user.friends.each do |friend| %>
-  <li><%= link_to friend.name, user_path(friend) %> | <%= link_to "un-friend", "friends/#{friend.id}", method: 'delete' %></li>
+<% current_user.friends.each do |friend| %>
+  <li><%= link_to friend.name, user_path(friend) %> | <%= link_to "un-follow", "friends/#{friend.id}", method: 'delete' %></li>
 <% end %>
 </ul>
 
+<%= form_tag(user_friends_path(@user)) do %>
+  <%= text_field_tag :friend_name %>
+  <%= submit_tag "Follow!" %>
+<% end %>
 
-<p> ~ Test Code ~ </p>
+
+
+
+<p> ~ Test Code Please Ignore~ </p>
 <ul>
 <% User.all.each do |user| %>
 <li><%= user.name %></li>
