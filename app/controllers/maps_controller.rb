@@ -11,6 +11,7 @@ class MapsController < ApplicationController
 
   def show
     @map = Map.find(params[:id])
+    @user = current_user
   end
 
   def edit

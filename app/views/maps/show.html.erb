@@ -1,5 +1,5 @@
 <h1>Map Name: <%= @map.name %></h1>
-<%= link_to "Edit Map Name", edit_map_path(@map) %> | <%= link_to "Delete Map", map_path(@map), method: :delete %>
+<%= link_to "Edit Map Name", edit_map_path(@map) %> | <%= link_to "Delete Map", map_path(@map), method: :delete %> | <%= link_to "See All My Maps", user_path(@user) %>
 
 <div id="map-wrapper">
   <div id= 'map'>
