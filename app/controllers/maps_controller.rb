@@ -42,10 +42,11 @@ class MapsController < ApplicationController
             coordinates: [moment.longitude, moment.latitude]
           },
           properties: {
-            description: moment.memo,
-            :'marker-color' => '#15b3d9',
-            :'marker-symbol' => 'star-stroked',
-            :'marker-size' => 'medium'
+            'description': moment.memo,
+            'image': moment.image.url,
+            'marker-color': '#15b3d9',
+            'marker-symbol': 'star-stroked',
+            'marker-size': 'medium'
           }
         }
       end
