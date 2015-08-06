@@ -12,21 +12,15 @@
 
 </head>
 <body>
-  
-<nav>
-  <% if logged_in? %>
-    <%= link_to "Profile", user_path(current_user) %> | <%= link_to "Logout", logout_path %>
-  <% else %>
-    <%= link_to "Login", login_path %> | <%= link_to "Sign Up", new_user_path %>
-  <% end %>
-</nav>
 
-<p>
-  <% if flash[:notice] %>
-    <%= flash[:notice] %>
-  <% end %>
-</p>
-  
+<% if user_signed_in? %>
+  <%= link_to "Profile", user_path(current_user) %> | <%= link_to "Edit Info", edit_user_registration_path %> | <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+<% else %>
+  <%= link_to "Log In", new_user_session_path %> | <%= link_to "Sign Up", new_user_registration_path %> 
+<% end %>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 <%= yield %>
 
 </body>

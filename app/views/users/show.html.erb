@@ -1,4 +1,6 @@
-<h1>Hi <%= @user.name %></h1>
+
+
+<h1>Hi <%= current_user.name %></h1>
 
 <div id="map-wrapper">
   <div id= 'map'>
@@ -102,4 +104,5 @@
 <%= submit_tag "Create Map", :id => "createmap" %>
 <% end %>
 
-<%= link_to "Add a Friend", user_friends_path(@user) %>
+<%= link_to "Add a Friend", user_friends_path(current_user) %>
+

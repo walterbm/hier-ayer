@@ -1,5 +1,6 @@
 class MomentsController < ApplicationController
-
+  before_filter :authenticate_user!
+  
   def edit
     @moment = Moment.find(params[:id])
   end
