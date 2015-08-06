@@ -33,7 +33,16 @@ function makeMap(url){
         }else{
           var content = '<img src="'+ layer.feature.properties.image+'" alt="" style="width:100%;height:100%">' + '<p>'+ layer.feature.properties.description +'<\/p>';
         }
-        layer.bindPopup(content);
+        layer.bindPopup(content,{
+          maxWidth: 250
+        });
+      });
+      
+      myLayer.on('mouseover', function(e) {
+        e.layer.openPopup();
+      });
+      myLayer.on('mouseout', function(e) {
+        e.layer.closePopup();
       });
       
       // ANIMATED LINE
