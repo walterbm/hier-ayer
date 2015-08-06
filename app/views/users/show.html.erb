@@ -72,18 +72,12 @@
         });
         
         $('li.mapListItem').mouseleave(function(){
-          var mapId = parseInt(this.id.replace("map-", ""));
-          $.get("/maps/" + mapId + "/geojson" , function(data) {
-            data.forEach(function(moment){
-              map.eachLayer(function (layer) {
-                map.removeLayer(myMomentLayer);
-              });
-            })
-          })
-          var myMomentLayer = L.mapbox.featureLayer().addTo(map);
+          map.removeLayer(myMomentLayer);
+          var myMomentLayer;
         });
         
       });
+      
     </script>
   </div>
 </div>
