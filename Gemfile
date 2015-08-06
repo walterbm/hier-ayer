@@ -25,11 +25,17 @@ gem 'erd'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Use for authentication
+gem 'devise' 
+
 # Allows us to hide keys
 gem 'figaro'
 
 # Use Paperclip to upload media files
 gem 'paperclip'
+
+# Postgres Database
+gem 'pg'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -57,14 +63,12 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'simplecov'
   gem 'database_cleaner'
-  gem 'sqlite3'
   gem 'pry'
   gem 'guard-rspec', require: false
   gem 'thin'
 end
 
 group :production do
-  gem 'pg'
   gem 'google-analytics-rails'
   gem 'rails_12factor'
 end
