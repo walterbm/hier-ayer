@@ -27,8 +27,13 @@ function makeMap(url){
       }, 0);
       
       myLayer.eachLayer(function(layer) {
-          var content = '<h2>'+ layer.feature.properties.description+'<\/h2>' + '<img src="'+ layer.feature.properties.image+'" alt="" style="width:100%;height:100%">';
-          layer.bindPopup(content);
+        debugger;
+        if(layer.feature.properties.image == "/images/original/missing.png"){
+          var content = '<h2>'+ layer.feature.properties.description +'<\/h2>';
+        }else{
+          var content = '<img src="'+ layer.feature.properties.image+'" alt="" style="width:100%;height:100%">' + '<p>'+ layer.feature.properties.description +'<\/p>';
+        }
+        layer.bindPopup(content);
       });
       
       // ANIMATED LINE
