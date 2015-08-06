@@ -22,7 +22,7 @@ function makeMap(url){
       }, 0);
       
       myLayer.eachLayer(function(layer) {
-          var content = '<h2>'+ layer.feature.properties.description+'<\/h2>' + '<img src="'+ layer.feature.properties.image+'" alt="">';
+          var content = '<h2>'+ layer.feature.properties.description+'<\/h2>' + '<img src="'+ layer.feature.properties.image+'" alt="" style="width:100%;height:100%">';
           layer.bindPopup(content);
       });
       
