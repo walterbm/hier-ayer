@@ -20,6 +20,10 @@ function makeMap(url){
       setTimeout(function () {
         map.fitBounds(myLayer.getBounds());
       }, 0);
+      var line = [];
+      myLayer.eachLayer(function(marker) {line.push(marker.getLatLng())});
+      var polyline_options = {color: '#000'};
+      var polyline = L.polyline(line, polyline_options).addTo(map);
     } 
   });  
 }
