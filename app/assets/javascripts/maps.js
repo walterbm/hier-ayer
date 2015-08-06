@@ -16,14 +16,30 @@ function makeMap(url){
         type: 'FeatureCollection',
         features: data
       });
-      // leaflet bug hacked
+      // leaflet bug hacked to fit markers in map
       setTimeout(function () {
         map.fitBounds(myLayer.getBounds());
       }, 0);
+      
+      // ANIMATED LINE
+      var polyline = L.polyline([], polyline_options).addTo(map);
+      var polyline_options = {color: '#000'};
       var line = [];
       myLayer.eachLayer(function(marker) {line.push(marker.getLatLng())});
-      var polyline_options = {color: '#000'};
-      var polyline = L.polyline(line, polyline_options).addTo(map);
+      var i = 0;
+      function add() {
+          polyline.addLatLng(L.latLng(line[i]));
+          map.setView(line[i]);
+          if (++i < line.length) window.setTimeout(add, 1000);
+          // change the second argument in setTimeout to adjust speed of animation
+      }
+      add();
+      
+      // WORKING STATIC LINE
+      // var line = [];
+      // myLayer.eachLayer(function(marker) {line.push(marker.getLatLng())});
+      // var polyline_options = {color: '#000'};
+      // var polyline = L.polyline(line, polyline_options).addTo(map);
     } 
   });  
 }
