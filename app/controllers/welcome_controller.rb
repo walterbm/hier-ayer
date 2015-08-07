@@ -15,11 +15,6 @@ class WelcomeController < ApplicationController
             geometry: {
               type: 'Point',
               coordinates: [moment.longitude, moment.latitude]
-            },
-            properties: {
-              'marker-color': '#15b3d9',
-              'marker-symbol': 'star-stroked',
-              'marker-size': 'medium'
             }
           }
         end
