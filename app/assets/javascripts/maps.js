@@ -28,12 +28,12 @@ function makeMap(url){
       
       myLayer.eachLayer(function(layer) {
         if(layer.feature.properties.image == "/images/original/missing.png"){
-          var content = '<h2>'+ layer.feature.properties.description +'<\/h2>';
+          var content = '<h1>'+ layer.feature.properties.description +'<\/h1>';
         }else{
           var content = '<img src="'+ layer.feature.properties.image+'" alt="" style="width:100%;height:100%">' + '<p>'+ layer.feature.properties.description +'<\/p>';
         }
         layer.bindPopup(content,{
-          maxWidth: 250
+          minWidth: 250
         });
         layer.on('click', function(e){
           layer.openPopup();
