@@ -1,5 +1,5 @@
 class MapsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:show]
   
   def new
     @map = Map.new
@@ -13,6 +13,11 @@ class MapsController < ApplicationController
 
   def show
     @map = Map.find(params[:id])
+    if @map.publicly available? || user_signed_in?
+      render :show
+    else
+      redirect_to root_path
+    end
   end
 
   def send_link_to_friend
