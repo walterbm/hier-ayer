@@ -13,7 +13,6 @@ class MapsController < ApplicationController
 
   def show
     @map = Map.find(params[:id])
-    @user = current_user
   end
 
   def edit
@@ -34,9 +33,9 @@ class MapsController < ApplicationController
   end
   
   def geojson
-    @map = current_user.maps.find(params[:map_id])
+    map = Map.find(params[:map_id])
      @geojson = Array.new
-      @map.moments.each do |moment|
+      map.moments.each do |moment|
         @geojson << {
           type: 'Feature',
           geometry: {

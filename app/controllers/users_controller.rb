@@ -10,9 +10,9 @@ class UsersController < ApplicationController
   end 
 
   def geojson
-    @maps = current_user.maps
+    maps = User.find(params[:user_id]).maps
     @geojson = Array.new
-    @maps.each do |map|
+    maps.each do |map|
       map.moments.each do |moment|
         @geojson << {
           type: 'Feature',
@@ -33,24 +33,18 @@ class UsersController < ApplicationController
 
      render json: @geojson
   end
-  
-  def friends
-    @user = User.find(params[:user_id])
-  end
 
   def add_friend
-    user = User.find(params[:user_id])
-    message = user.add_friend(params[:friend_name])
+    message = current_user.add_friend(params[:friend_name])
     flash[:notice] = message
     
-    redirect_to user_friends_path(user)
+    redirect_to user_path(current_user)
   end
 
   def remove_friend
-    user = User.find(params[:user_id])
-    user.unfriend(params[:friend_id])
+    current_user.unfriend(params[:friend_id])
 
-    redirect_to user_friends_path(user)
+    redirect_to user_path(current_user)
   end
 
 end

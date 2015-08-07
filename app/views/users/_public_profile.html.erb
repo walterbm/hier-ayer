@@ -1,1 +1,105 @@
-Still working on this -W
+<h1><%= @user.name %>'s Profile</h1>
+
+<div id="map-wrapper">
+  <div class="custom-popup" id= 'map'>
+    <script>
+      $(function() {
+        L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
+        var map = L.mapbox.map('map', 'mapbox.run-bike-hike',{
+          scrollWheelZoom: false,
+          compact: true,
+          animate: true
+        }).setView([0,0],1);
+        var myLayer = L.mapbox.featureLayer().addTo(map);
+        var myMomentLayer = L.mapbox.featureLayer().addTo(map);
+
+          $.get("<%= user_geojson_path(@user) %>", function( data ) {
+          if (data.length === 0) {
+            getCoordinates(function(latitude,longitude){
+              map.setView([latitude,longitude],13);
+            });
+          }
+          else{
+            latitude = data[0].geometry.coordinates[1];
+            longitude = data[0].geometry.coordinates[0];
+            map.setView([latitude,longitude],13);
+            myLayer.setGeoJSON({
+              type: 'FeatureCollection',
+              features: data
+            });
+            // leaflet bug hacked to fit markers in map
+            setTimeout(function () {
+              map.fitBounds(myLayer.getBounds());
+            }, 0);
+
+            myLayer.eachLayer(function(layer) {
+              if(layer.feature.properties.image == "/images/original/missing.png"){
+                var content = '<h2>'+ layer.feature.properties.description +'<\/h2>';
+              }else{
+                var content = '<img src="'+ layer.feature.properties.image+'" alt="" style="width:100%;height:100%">' + '<p>'+ layer.feature.properties.description +'<\/p>';
+              }
+              layer.bindPopup(content,{
+                minWidth: 250
+              });
+              layer.on('click', function(e){
+                layer.openPopup();
+                map.setView(e.latlng, 15);
+              });
+            });
+
+            map.on('click', function(e) {map.fitBounds(myLayer.getBounds())});
+            myLayer.on('mouseover', function(e) {e.layer.openPopup()});
+            myLayer.on('mouseout', function(e) {e.layer.closePopup()});
+          } 
+        });
+        
+        $('li.mapListItem').mouseover(function(){
+          var mapId = parseInt(this.id.replace("map-", ""));
+          $.get("/maps/" + mapId + "/geojson" , function(data) {
+            data.forEach(function(moment){
+              myMomentLayer.setGeoJSON({
+                type: 'FeatureCollection',
+                features: data
+              });
+              myMomentLayer.eachLayer(function(layer) {
+                layer.setIcon(L.mapbox.marker.icon({
+                    'marker-color': '#ffc04c',
+                    'marker-symbol': 'star-stroked'
+                }));
+              })
+            })
+          })
+        });
+        
+        $('li.mapListItem').mouseleave(function(){
+          map.removeLayer(myMomentLayer);
+          var myMomentLayer;
+        });
+        
+      });
+      
+    </script>
+  </div>
+</div>
+
+<h3>Maps:</h3>
+<ul id="mapList">
+  <% @user.maps.each do |map| %>
+    <li class="mapListItem" id="map-<%= map.id %>"><%= link_to map.name, map_path(map) %></li>
+  <% end %>
+</ul>
+
+<h3>Following:</h3>
+<ul>
+<% @user.friends.each do |friend| %>
+  <li><%= link_to friend.name, user_path(friend) %></li>
+<% end %>
+</ul>
+
+
+<h3>Followers:</h3>
+<ul>
+<% @user.followers.each do |friend| %>
+  <li><%= link_to friend.name, user_path(friend) %></li>
+<% end %>
+</ul>

@@ -6,8 +6,8 @@ class WelcomeController < ApplicationController
   
   def geojson
     @geojson = Array.new
-    @users = User.all
-    @users.each do |user|
+    users = User.all
+    users.each do |user|
       user.maps.each do |map|
         map.moments.each do |moment|
           @geojson << {
