@@ -15,6 +15,11 @@ class MapsController < ApplicationController
     @map = Map.find(params[:id])
   end
 
+  def send_link_to_friend
+    SendLink.share_link(current_user, params[:friend_email]).deliver_now
+    redirect_to map_path(params[:map_id])
+  end
+
   def edit
     @map = current_user.maps.find(params[:id])
   end

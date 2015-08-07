@@ -52,3 +52,12 @@
   <% end %>
 <% end %>
 </ol>
+
+<h3>Share Your Map with A Friend</h3>
+  <%= form_tag(map_send_link_to_friend_path(@map)) do %>
+    <p>
+
+    <%= text_field_tag :friend_email %>
+    </p>
+  <%= submit_tag "Send Email" %>
+  <% end %>

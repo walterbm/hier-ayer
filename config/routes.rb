@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :moments
   resources :maps do 
     get '/geojson' => 'maps#geojson'
+    post '/send_link_to_friend' => 'maps#send_link_to_friend'
   end
   resources :users do
     get '/friends' => 'users#friends'
