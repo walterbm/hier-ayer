@@ -1,1 +1,40 @@
 <h1>Welcome to Moments!</h1>
+
+<div id="map-wrapper">
+  <div id= 'map'>
+    <script>
+      $(function() {
+        L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
+        var map = L.mapbox.map('map', 'mapbox.run-bike-hike',{
+          scrollWheelZoom: false,
+          compact: true,
+          animate: true
+        }).setView([0,0],1);
+        var myLayer = L.mapbox.featureLayer().addTo(map);
+        var myMomentLayer = L.mapbox.featureLayer().addTo(map);
+          $.get("<%= geojson_path(@users) %>", function( data ) {
+          if (data.length === 0) {
+            getCoordinates(function(latitude,longitude){
+              map.setView([latitude,longitude],13);
+            });
+          }
+          else{
+            latitude = data[0].geometry.coordinates[1];
+            longitude = data[0].geometry.coordinates[0];
+            map.setView([latitude,longitude],13);
+            myLayer.setGeoJSON({
+              type: 'FeatureCollection',
+              features: data
+            });
+            // leaflet bug hacked to fit markers in map
+            setTimeout(function () {
+              map.fitBounds(myLayer.getBounds());
+            }, 0);
+          }
+        });
+        
+      });
+      
+    </script>
+  </div>
+</div>
