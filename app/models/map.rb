@@ -1,6 +1,6 @@
 class Map < ActiveRecord::Base
   belongs_to :user
-  has_many :moments
+  has_many :moments, -> { order(:created_at) } 
 
   def update_all(map_params)
     if map_params[:name]
