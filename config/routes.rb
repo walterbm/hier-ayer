@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   end
   resources :users do
     get '/friends' => 'users#friends'
-    get '/geojson' => 'users#geojson'
     post '/friends' => 'users#add_friend'
-    delete '/friends/:friend_id' => 'users#remove_friend'
+    delete '/friends' => 'users#remove_friend'
+    get '/geojson' => 'users#geojson'
   end
   
   get '/geojson' => 'welcome#geojson'

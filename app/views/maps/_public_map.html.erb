@@ -1,0 +1,13 @@
+<h1>Map Name: <%= @map.name %></h1>
+
+<%= link_to "See All My Maps", user_path(@map.user) %>
+
+<div id="map-wrapper">
+  <div class='custom-popup' id= 'map'>
+    <script>
+      $(function() {
+        makeMap("<%= map_geojson_path(@map) %>");
+      });
+    </script>
+  </div>
+</div>
