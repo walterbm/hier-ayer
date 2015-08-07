@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     delete '/friends/:friend_id' => 'users#remove_friend'
   end
   
+  get '/geojson' => 'welcome#geojson'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
