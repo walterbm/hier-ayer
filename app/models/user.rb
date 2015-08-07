@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :maps
+  has_many :maps, -> { order(:created_at) } 
   has_many :moments, through: :maps
   has_many :friendships
   has_many :friends, :through => :friendships
