@@ -49,6 +49,8 @@
             map.on('click', function(e) {map.fitBounds(myLayer.getBounds())});
             myLayer.on('mouseover', function(e) {e.layer.openPopup()});
             myLayer.on('mouseout', function(e) {e.layer.closePopup()});
+            myMomentLayer.on('mouseover', function(e) {e.layer.openPopup()});
+            myMomentLayer.on('mouseout', function(e) {e.layer.closePopup()});
           } 
         });
         
@@ -66,6 +68,20 @@
                     'marker-symbol': 'star-stroked'
                 }));
               })
+              myMomentLayer.eachLayer(function(layer) {
+                if(layer.feature.properties.image == "/images/original/missing.png"){
+                  var content = '<h2>'+ layer.feature.properties.description +'<\/h2>';
+                }else{
+                  var content = '<img src="'+ layer.feature.properties.image+'" alt="" style="width:100%;height:100%">' + '<p>'+ layer.feature.properties.description +'<\/p>';
+                }
+                layer.bindPopup(content,{
+                  minWidth: 250
+                });
+                layer.on('click', function(e){
+                  layer.openPopup();
+                  map.setView(e.latlng, 15);
+                });
+              });
             })
           })
         });
