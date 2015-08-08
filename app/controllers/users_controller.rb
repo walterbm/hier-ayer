@@ -21,6 +21,7 @@ class UsersController < ApplicationController
             coordinates: [moment.longitude, moment.latitude]
           },
           properties: {
+            'title': map.name,
             'description': moment.memo,
             'image': moment.image.url,
             'marker-color': '#15b3d9',
