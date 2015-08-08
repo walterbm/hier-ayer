@@ -13,7 +13,7 @@ class MapsController < ApplicationController
 
   def show
     @map = Map.find(params[:id])
-    if @map.publicly available? || user_signed_in?
+    if @map.publicly_available? || user_signed_in?
       render :show
     else
       redirect_to root_path
