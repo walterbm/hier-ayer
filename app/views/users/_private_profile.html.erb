@@ -33,9 +33,9 @@
 
             myLayer.eachLayer(function(layer) {
               if(layer.feature.properties.image == "/images/original/missing.png"){
-                var content = '<h2>'+ layer.feature.properties.description +'<\/h2>';
+                var content = '<h1><b>' + layer.feature.properties.title + '</b></h1>' + '<p>'+ layer.feature.properties.description +'</p>';
               }else{
-                var content = '<img src="'+ layer.feature.properties.image+'" alt="" style="width:100%;height:100%">' + '<p>'+ layer.feature.properties.description +'<\/p>';
+                var content = '<h1><b>' + layer.feature.properties.title + '</b></h1>' + '<img src="'+ layer.feature.properties.image+'" alt="" style="width:100%;height:100%">' + '<p>'+ layer.feature.properties.description +'</p>';
               }
               layer.bindPopup(content,{
                 minWidth: 250
