@@ -1,0 +1,43 @@
+<!-- Sidebar starts -->
+<div class="sidebar">
+
+  <div class="sidey">
+
+    <!-- Logo -->
+    <div class="logo">
+      <h1><a href="/"><i class="fa fa-desktop br-red"></i> Ayer <span>Map Nostalgia</span></a></h1>
+    </div>
+    
+    <!-- Sidebar navigation starts -->
+    
+    <!-- Responsive dropdown -->
+    <div class="sidebar-dropdown"><a href="#" class="br-red"><i class="fa fa-bars"></i></a></div>
+    
+    <div class="side-nav">
+    
+      <div class="side-nav-block">
+        <!-- Sidebar heading -->
+        <h4>Menu</h4>
+        <!-- Sidebar links -->
+        <ul class="list-unstyled">
+          <li><a href="index.html"><i class="fa fa-desktop"></i> Home </a></li>
+          <li><a href="widgets.html"><i class="fa fa-bullseye"></i> Maps <span class="badge badge-danger pull-right">6</span></a></li>
+          <li><a href="charts.html"><i class="fa fa-signal"></i> Following <span class="badge badge-info pull-right">5</span></a></li>
+          <li><a href="ui.html"><i class="fa fa-wrench"></i> Followers </a></li>
+          <!-- Mainmenu with submenu -->
+          <li class="has_submenu">
+            <a href="#"><i class="fa fa-file"></i> Maps <span class="badge badge-danger pull-right"> <%= user.maps.count %></span><span class="nav-caret fa fa-caret-down"></span></a>
+            <!-- Submenu -->
+            <ul class="list-unstyled">
+              <% user.maps.each do |map| %>
+                <li class="mapListItem" id="map-<%= map.id %>"><%= link_to map.name, map_path(map) %></li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Sidebar navigation ends -->
+  </div>
+</div>
+<!-- Sidebar ends -->
