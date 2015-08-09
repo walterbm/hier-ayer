@@ -34,6 +34,9 @@ gem 'figaro'
 # Use Paperclip to upload media files
 gem 'paperclip'
 
+# Use Font Awesome for web-icons
+gem "font-awesome-rails"
+
 # Postgres Database
 gem 'pg'
 

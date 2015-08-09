@@ -23,5 +23,8 @@ class WelcomeController < ApplicationController
 
      render json: @geojson
   end
+
+  def theme_test
+  end
   
 end
