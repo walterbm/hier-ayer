@@ -1,69 +1,127 @@
-function makeMap(url){
+function MakeMap(url,page){
+  var self = this;
+  self.page = page;
+  self.url = url;
+
+  pageFunctions = {
+    'map#show' : self.mapShowPage,
+    'welcome#index' : self.welcomeIndexPage
+  };
+  pageFunctions[page](self);
+}
+
+MakeMap.prototype.mapShowPage = function(self){
   L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
-  var map = L.mapbox.map('map', 'mapbox.run-bike-hike',{
+  self.map = L.mapbox.map('map', 'mapbox.run-bike-hike',{
     scrollWheelZoom: false,
     compact: true,
     animate: true
   }).setView([0,0],1);
-  var myLayer = L.mapbox.featureLayer().addTo(map);
 
-  $.get(url, function( data ) {
+  self.myLayer = L.mapbox.featureLayer().addTo(self.map);
+
+  self.getData(self.url, function(){
+    self.addContent();
+    self.animateLine();
+    self.attachListeners();
+  });
+  
+};
+
+MakeMap.prototype.welcomeIndexPage = function(self){
+  L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
+  self.map = L.mapbox.map('map', 'mapbox.light',{
+    scrollWheelZoom: false,
+    compact: true,
+    animate: true
+  }).setView([0,0],1);
+
+  self.myLayer = L.mapbox.featureLayer();
+  self.heat = L.heatLayer([], { maxZoom: 12 }).addTo(self.map);
+
+  self.getData(self.url, function(){
+    self.heatMap();
+  });
+};
+
+MakeMap.prototype.getData = function(url,callback){
+  var self = this;
+  $.get(url, function(data) {
     if (data.length === 0) {
       getCoordinates(function(latitude,longitude){
-        map.setView([latitude,longitude],13);
+        self.map.setView([latitude,longitude],13);
       });
     }
     else{
-      latitude = data[0].geometry.coordinates[1];
-      longitude = data[0].geometry.coordinates[0];
-      map.setView([latitude,longitude],13);
-      myLayer.setGeoJSON({
+      self.myLayer.setGeoJSON({
         type: 'FeatureCollection',
         features: data
       });
-      // leaflet bug hacked to fit markers in map
-      setTimeout(function () {
-        map.fitBounds(myLayer.getBounds());
-      }, 0);
-      
-      myLayer.eachLayer(function(layer) {
-        if(layer.feature.properties.image == "/images/original/missing.png"){
-          var content = '<h1>'+ layer.feature.properties.description +'<\/h1>';
-        }else{
-          var content = '<img src="'+ layer.feature.properties.image+'" alt="" style="width:100%;height:100%">' + '<p>'+ layer.feature.properties.description +'<\/p>';
-        }
-        layer.bindPopup(content,{
-          minWidth: 250
-        });
-        layer.on('click', function(e){
-          layer.openPopup();
-          map.setView(e.latlng, 15);
-        });
-      });
-      
-      map.on('click', function(e) {map.fitBounds(myLayer.getBounds())});
-      myLayer.on('mouseover', function(e) {e.layer.openPopup()});
-      myLayer.on('mouseout', function(e) {e.layer.closePopup()});
-      
-      // ANIMATED LINE
-      var polyline_options = {color: '#000'};
-      var polyline = L.polyline([], polyline_options).addTo(map);
-      var line = [];
-      myLayer.eachLayer(function(marker) {line.push(marker.getLatLng())});
-      var i = 0;
-      function add() {
-          polyline.addLatLng(L.latLng(line[i]));
-//          map.setView(line[i]);
-          if (++i < line.length) window.setTimeout(add, 1000);
-            // change the second argument in setTimeout to adjust speed of animation
-      }
-      add();
-      
-      // WORKING STATIC LINE
-      // var line = [];
-      // myLayer.eachLayer(function(marker) {line.push(marker.getLatLng())});
-      // var polyline_options = {color: '#000'};
-      // var polyline = L.polyline(line, polyline_options).addTo(map);
-    } 
-  });  
-}
+      self.fitView();
+      callback();
+    }
+  });
+};
+
+MakeMap.prototype.fitView = function(){
+  var self = this;
+  setTimeout(function () { self.map.fitBounds(self.myLayer.getBounds()); }, 0);
+};
+
+MakeMap.prototype.animateLine = function(){
+  var self = this;
+  var polyline_options = {color: '#000'};
+  var polyline = L.polyline([], polyline_options).addTo(self.map);
+  var line = [];
+  self.myLayer.eachLayer(function(marker){
+    line.push(marker.getLatLng());
+  });
+  var i = 0;
+  function add() {
+      polyline.addLatLng(L.latLng(line[i]));
+      // change the second argument in setTimeout to adjust speed of animation
+      if (++i < line.length) window.setTimeout(add, 1000);
+  }
+  add();
+};
+
+MakeMap.prototype.addContent = function(){
+  var self = this;
+  self.myLayer.eachLayer(function(layer) {
+    var content;
+    if(layer.feature.properties.image == "/images/original/missing.png"){
+      content = '<h1>'+ layer.feature.properties.description +'<\/h1>';
+    }
+    else{
+      content = '<img src="'+ layer.feature.properties.image+'" alt="" style="width:100%;height:100%">' + '<p>'+ layer.feature.properties.description +'<\/p>';
+    }
+    layer.bindPopup(content,{
+      minWidth: 250
+    });
+    layer.on('click', function(e){
+      layer.openPopup();
+      self.map.setView(e.latlng, 15);
+    });
+  });
+};
+
+MakeMap.prototype.attachListeners = function(){
+  var self = this;
+  self.map.on('click', function(e) {
+    self.map.fitBounds(self.myLayer.getBounds());
+  });
+  self.myLayer.on('mouseover', function(e) {
+    e.layer.openPopup();
+  });
+  self.myLayer.on('mouseout', function(e) {
+    e.layer.closePopup();
+  });
+};
+
+MakeMap.prototype.heatMap = function(){
+  var self = this;
+  var heat = L.heatLayer([], { maxZoom: 12 }).addTo(self.map);
+  self.myLayer.eachLayer(function(l) {
+    self.heat.addLatLng(l.getLatLng());
+  });
+};

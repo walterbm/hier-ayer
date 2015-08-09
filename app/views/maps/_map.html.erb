@@ -2,9 +2,8 @@
   <div id= 'map'>
     <script>
       $(function() {
-        makeMap("<%= map_geojson_path(map) %>");
+        map = new MakeMap("<%= map_geojson_path(map) %>","map#show");
       });
     </script>
   </div>
-<!--  <pre id='coordinates' class='ui-coordinates'></pre>-->
 </div>

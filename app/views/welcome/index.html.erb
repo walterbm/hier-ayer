@@ -4,35 +4,8 @@
   <div id= 'map'>
     <script>
       $(function() {
-        L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
-        var map = L.mapbox.map('map', 'mapbox.light',{
-          scrollWheelZoom: false,
-          compact: true,
-          animate: true
-        }).setView([0,0],1);
-        var heat = L.heatLayer([], { maxZoom: 12 }).addTo(map);
-        
-        $.get("<%= geojson_path(@users) %>", function( data ) {
-          if (data.length === 0) {
-            getCoordinates(function(latitude,longitude){
-              map.setView([latitude,longitude],13);
-            });
-          }
-          else{
-            var myLayer = L.mapbox.featureLayer();
-            myLayer.setGeoJSON({
-              type: 'FeatureCollection',
-              features: data
-            });
-            map.fitBounds(myLayer.getBounds());
-            myLayer.eachLayer(function(l) {
-              heat.addLatLng(l.getLatLng());
-            });
-          }
-        });
-        
+        map = new MakeMap("<%= geojson_path(@users) %>","welcome#index");
       });
-      
     </script>
   </div>
 </div>

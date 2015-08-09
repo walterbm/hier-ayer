@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
 
   def add_friend(friend_name)
     if friend_name == self.name
-      "Sorry, narcissist, you can't follow youself"
+      "Sorry, narcissist, you can't follow yourself"
     elsif self.friends.include?(User.find_by(name: friend_name))
       "Already following #{friend_name}"
     elsif user_exists?(friend_name)
