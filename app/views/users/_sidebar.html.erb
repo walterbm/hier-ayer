@@ -5,7 +5,7 @@
 
     <!-- Logo -->
     <div class="logo">
-      <h1><a href="/"><i class="fa fa-desktop br-red"></i> Ayer <span>Map Nostalgia</span></a></h1>
+      <h1><a href="/"><i class="fa fa-map-pin br-red"></i> Ayer <span>Map Nostalgia</span></a></h1>
     </div>
     
     <!-- Sidebar navigation starts -->
@@ -20,20 +20,47 @@
         <h4>Menu</h4>
         <!-- Sidebar links -->
         <ul class="list-unstyled">
-          <li><a href="index.html"><i class="fa fa-desktop"></i> Home </a></li>
-          <li><a href="widgets.html"><i class="fa fa-bullseye"></i> Maps <span class="badge badge-danger pull-right">6</span></a></li>
-          <li><a href="charts.html"><i class="fa fa-signal"></i> Following <span class="badge badge-info pull-right">5</span></a></li>
-          <li><a href="ui.html"><i class="fa fa-wrench"></i> Followers </a></li>
+          <li><a href="<%= root_path %>"><i class="fa fa-home"></i> Home </a></li>
           <!-- Mainmenu with submenu -->
           <li class="has_submenu">
-            <a href="#"><i class="fa fa-file"></i> Maps <span class="badge badge-danger pull-right"> <%= user.maps.count %></span><span class="nav-caret fa fa-caret-down"></span></a>
+            <a href="#"><i class="fa fa-user"></i> Profile <span id="submenu" class="nav-caret fa fa-caret-down"></span></a>
             <!-- Submenu -->
             <ul class="list-unstyled">
-              <% user.maps.each do |map| %>
-                <li class="mapListItem" id="map-<%= map.id %>"><%= link_to map.name, map_path(map) %></li>
+              <li><i class="fa fa-angle-double-right"></i>  <%= link_to "View Profile", user_path(current_user) %></li>
+              <li><i class="fa fa-angle-double-right"></i>  <%= link_to "Edit Info", edit_user_registration_path %></li>
+            </ul>
+          </li>
+          <!-- Mainmenu with submenu -->
+          <li class="has_submenu">
+            <a href="#"><i class="fa fa-map-o"></i> Maps <span class="badge badge-danger pull-right"><%= current_user.maps.count %></span><span id="submenu" class="nav-caret fa fa-caret-down"></span></a>
+            <!-- Submenu -->
+            <ul class="list-unstyled">
+              <% current_user.maps.each do |map| %>
+                <li class="mapListItem" ><i class="fa fa-angle-double-right"></i>  <%= link_to map.name, map_path(map) %></li>
               <% end %>
             </ul>
           </li>
+          <!-- Mainmenu with submenu -->
+          <li class="has_submenu">
+            <a href="#"><i class="fa fa-heart"></i> Following <span class="badge badge-danger pull-right"><%= current_user.friends.count %></span><span id="submenu" class="nav-caret fa fa-caret-down"></span></a>
+            <!-- Submenu -->
+            <ul class="list-unstyled">
+              <% current_user.friends.each do |friend| %>
+                <li><i class="fa fa-angle-double-right"></i>  <%= link_to friend.name, user_path(friend) %></li>
+              <% end %>
+            </ul>
+          </li>
+          <!-- Mainmenu with submenu -->
+          <li class="has_submenu">
+            <a href="#"><i class="fa fa-users"></i> Followers <span class="badge badge-danger pull-right"><%= current_user.followers.count %></span><span id="submenu" class="nav-caret fa fa-caret-down"></span></a>
+            <!-- Submenu -->
+            <ul class="list-unstyled">
+              <% current_user.followers.each do |follower| %>
+                <li><i class="fa fa-angle-double-right"></i>  <%= link_to follower.name, user_path(follower) %></li>
+              <% end %>
+            </ul>
+          </li>
+          <li><i class="fa fa-sign-out"></i>  <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
         </ul>
       </div>
     </div>

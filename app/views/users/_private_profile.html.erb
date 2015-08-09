@@ -3,11 +3,8 @@
     <div id="map-<%= map.id %>" style="height:150px;width:100%;">
       <script>
         L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
-        debugger;
         var map<%= map.id %> = L.mapbox.map('map-<%= map.id %>', 'mapbox.run-bike-hike',{scrollWheelZoom: false,compact: true,animate: true}).setView([0,0],1)
-        debugger;
         var myLayer = L.mapbox.featureLayer().addTo(map<%= map.id %>);
-        debugger;
         $.get("<%= map_geojson_path(map) %>", function(data) {
           if (data.length === 0) {
             getCoordinates(function(latitude,longitude){
