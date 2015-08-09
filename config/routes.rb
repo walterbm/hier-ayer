@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   end
   
   get '/geojson' => 'welcome#geojson'
+
+  get '/themetest' => 'welcome#theme_test'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
