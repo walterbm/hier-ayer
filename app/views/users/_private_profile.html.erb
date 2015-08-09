@@ -1,5 +1,34 @@
-<div class="col-md-3">
-MAP FEED
+<div class="col-md-3" style="height:600px;overflow: scroll;">
+  <% current_user.maps.each do |map| %>
+    <div id="map-<%= map.id %>" style="height:150px;width:100%;">
+      <script>
+        L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
+        debugger;
+        var map<%= map.id %> = L.mapbox.map('map-<%= map.id %>', 'mapbox.run-bike-hike',{scrollWheelZoom: false,compact: true,animate: true}).setView([0,0],1)
+        debugger;
+        var myLayer = L.mapbox.featureLayer().addTo(map<%= map.id %>);
+        debugger;
+        $.get("<%= map_geojson_path(map) %>", function(data) {
+          if (data.length === 0) {
+            getCoordinates(function(latitude,longitude){
+              map<%= map.id %>.setView([latitude,longitude],13)
+            });
+          }else{
+            latitude = data[0].geometry.coordinates[1];
+            longitude = data[0].geometry.coordinates[0];
+            map<%= map.id %>.setView([latitude,longitude],13)
+            myLayer.setGeoJSON({
+              type: 'FeatureCollection',
+              features: data
+            });
+            setTimeout(function () {
+              map<%= map.id %>.fitBounds(myLayer.getBounds())
+            }, 0);
+          }
+        });
+      </script>
+    </div>
+  <% end %>
 </div>
 
 <div class="col-md-9">
@@ -7,7 +36,7 @@ MAP FEED
     <div class="custom-popup" id= 'map'>
       <script>
         $(function() {
-          map = new MakeMap("<%= user_geojson_path(current_user) %>","user#show");
+          mainMap = new MakeMap("<%= user_geojson_path(current_user) %>","user#show");
         });
       </script>
     </div>
