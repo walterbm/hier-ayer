@@ -5,7 +5,8 @@ function MakeMap(url,page){
 
   pageFunctions = {
     'map#show' : self.mapShowPage,
-    'welcome#index' : self.welcomeIndexPage
+    'welcome#index' : self.welcomeIndexPage,
+    'user#show' : self.userShowPage
   };
   pageFunctions[page](self);
 }
@@ -21,9 +22,9 @@ MakeMap.prototype.mapShowPage = function(self){
   self.myLayer = L.mapbox.featureLayer().addTo(self.map);
 
   self.getData(self.url, function(){
-    self.addContent();
+    self.addMapShowContent();
     self.animateLine();
-    self.attachListeners();
+    self.attachMapShowListeners();
   });
   
 };
@@ -41,6 +42,24 @@ MakeMap.prototype.welcomeIndexPage = function(self){
 
   self.getData(self.url, function(){
     self.heatMap();
+  });
+};
+
+MakeMap.prototype.userShowPage = function(self){
+  L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
+  self.map = L.mapbox.map('map', 'mapbox.run-bike-hike',{
+    scrollWheelZoom: false,
+    compact: true,
+    animate: true
+  }).setView([0,0],1);
+
+  self.myLayer = L.mapbox.featureLayer().addTo(self.map);
+  self.myMomentLayer = L.mapbox.featureLayer().addTo(self.map);
+
+  self.getData(self.url, function(){
+    self.addUserShowContent();
+    self.attachUserShowListeners();
+    self.attachUserShowJqueryListeners();
   });
 };
 
@@ -85,7 +104,7 @@ MakeMap.prototype.animateLine = function(){
   add();
 };
 
-MakeMap.prototype.addContent = function(){
+MakeMap.prototype.addMapShowContent = function(){
   var self = this;
   self.myLayer.eachLayer(function(layer) {
     var content;
@@ -105,7 +124,27 @@ MakeMap.prototype.addContent = function(){
   });
 };
 
-MakeMap.prototype.attachListeners = function(){
+MakeMap.prototype.addUserShowContent = function(){
+  var self = this;
+  self.myLayer.eachLayer(function(layer) {
+    var content;
+    if(layer.feature.properties.image == "/images/original/missing.png"){
+      content = '<h1><b>' + layer.feature.properties.title + '</b></h1>' + '<p>'+ layer.feature.properties.description +'</p>';
+    }
+    else{
+      content = '<h1><b>' + layer.feature.properties.title + '</b></h1>' + '<img src="'+ layer.feature.properties.image+'" alt="" style="width:100%;height:100%">' + '<p>'+ layer.feature.properties.description +'</p>';
+    }
+    layer.bindPopup(content,{
+      minWidth: 250
+    });
+    layer.on('click', function(e){
+      layer.openPopup();
+      self.map.setView(e.latlng, 15);
+    });
+  });
+};
+
+MakeMap.prototype.attachMapShowListeners = function(){
   var self = this;
   self.map.on('click', function(e) {
     self.map.fitBounds(self.myLayer.getBounds());
@@ -115,6 +154,57 @@ MakeMap.prototype.attachListeners = function(){
   });
   self.myLayer.on('mouseout', function(e) {
     e.layer.closePopup();
+  });
+};
+
+MakeMap.prototype.attachUserShowListeners = function(){
+  var self = this;
+  self.map.on('click', function(e) {self.map.fitBounds(self.myLayer.getBounds());});
+  self.myLayer.on('mouseover', function(e) {e.layer.openPopup();});
+  self.myLayer.on('mouseout', function(e) {e.layer.closePopup();});
+  self.myMomentLayer.on('mouseover', function(e) {e.layer.openPopup();});
+  self.myMomentLayer.on('mouseout', function(e) {e.layer.closePopup();});
+};
+
+MakeMap.prototype.attachUserShowJqueryListeners = function(){
+  var self = this;
+  $('li.mapListItem').mouseover(function(){
+    var mapId = parseInt(this.id.replace("map-", ""));
+    $.get("/maps/" + mapId + "/geojson" , function(data) {
+      data.forEach(function(moment){
+        self.myMomentLayer.setGeoJSON({
+          type: 'FeatureCollection',
+          features: data
+        });
+        self.myMomentLayer.eachLayer(function(layer) {
+          layer.setIcon(L.mapbox.marker.icon({
+              'marker-color': '#ffc04c',
+              'marker-symbol': 'star-stroked'
+          }));
+        });
+        self.myMomentLayer.eachLayer(function(layer) {
+          var content;
+          if(layer.feature.properties.image == "/images/original/missing.png"){
+            content = '<h2>'+ layer.feature.properties.description +'<\/h2>';
+          }
+          else{
+            content = '<img src="'+ layer.feature.properties.image+'" alt="" style="width:100%;height:100%">' + '<p>'+ layer.feature.properties.description +'<\/p>';
+          }
+          layer.bindPopup(content,{
+            minWidth: 250
+          });
+          layer.on('click', function(e){
+            layer.openPopup();
+            self.map.setView(e.latlng, 15);
+          });
+        });
+      });
+    });
+  });
+  
+  $('li.mapListItem').mouseleave(function(){
+    self.map.removeLayer(self.myMomentLayer);
+    self.myMomentLayer = L.mapbox.featureLayer().addTo(self.map);
   });
 };
 

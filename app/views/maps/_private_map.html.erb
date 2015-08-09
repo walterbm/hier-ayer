@@ -2,22 +2,7 @@
 
 <%= link_to "Edit Map Name", edit_map_path(@map) %> | <%= link_to "Delete Map", map_path(@map), method: :delete %> | <%= link_to "See All My Maps", user_path(current_user) %>
 
-<div id="map-wrapper">
-  <div class='custom-popup' id= 'map'>
-    <script>
-      $(function() {
-        map = new MakeMap("<%= map_geojson_path(@map) %>","map#show");
-
-        $("#submit").val("Automagical ...").prop('disabled', true);
-          getCoordinates(function(latitude,longitude){
-            $("#map_moment_latitude").val(latitude);
-            $("#map_moment_longitude").val(longitude);
-            $("#submit").val("Create a New Moment").prop('disabled', false);
-          });
-      });
-    </script>
-  </div>
-</div>
+<%= render partial: "map", locals: {url: map_geojson_path(@map), action: "map#show"} %>
 
 <h2>add a moment to this map:</h2>
   <%= form_for(@map) do |f| %>
@@ -55,7 +40,6 @@
 <h3>Share Your Map with A Friend</h3>
   <%= form_tag(map_send_link_to_friend_path(@map)) do %>
     <p>
-
     <%= text_field_tag :friend_email %>
     </p>
   <%= submit_tag "Send Email" %>

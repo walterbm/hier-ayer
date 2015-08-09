@@ -2,7 +2,7 @@
   <div id= 'map'>
     <script>
       $(function() {
-        map = new MakeMap("<%= map_geojson_path(map) %>","map#show");
+        map = new MakeMap("<%= url %>","<%= action %>");
       });
     </script>
   </div>
