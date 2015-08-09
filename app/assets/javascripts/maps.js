@@ -1,3 +1,5 @@
+L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
+
 function MakeMap(url,page){
   var self = this;
   self.page = page;
@@ -12,7 +14,6 @@ function MakeMap(url,page){
 }
 
 MakeMap.prototype.mapShowPage = function(self){
-  L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
   self.map = L.mapbox.map('map', 'mapbox.run-bike-hike',{
     scrollWheelZoom: false,
     compact: true,
@@ -30,7 +31,6 @@ MakeMap.prototype.mapShowPage = function(self){
 };
 
 MakeMap.prototype.welcomeIndexPage = function(self){
-  L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
   self.map = L.mapbox.map('map', 'mapbox.light',{
     scrollWheelZoom: false,
     compact: true,
@@ -46,7 +46,6 @@ MakeMap.prototype.welcomeIndexPage = function(self){
 };
 
 MakeMap.prototype.userShowPage = function(self){
-  L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
   self.map = L.mapbox.map('map', 'mapbox.run-bike-hike',{
     scrollWheelZoom: false,
     compact: true,
