@@ -3,8 +3,12 @@
     <div id="map-<%= map.id %>" style="height:150px;width:100%;">
       <script>
         L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
-        var map<%= map.id %> = L.mapbox.map('map-<%= map.id %>', 'mapbox.run-bike-hike',{scrollWheelZoom: false,compact: true,animate: true}).setView([0,0],1)
-        var myLayer = L.mapbox.featureLayer().addTo(map<%= map.id %>);
+        var map<%= map.id %> = L.mapbox.map('map-<%= map.id %>', 'mapbox.run-bike-hike',{
+          scrollWheelZoom: false,
+          compact: true,
+          animate: true
+        }).setView([0,0],1)
+        var myLayer<%= map.id %> = L.mapbox.featureLayer().addTo(map<%= map.id %>);
         $.get("<%= map_geojson_path(map) %>", function(data) {
           if (data.length === 0) {
             getCoordinates(function(latitude,longitude){
@@ -14,13 +18,17 @@
             latitude = data[0].geometry.coordinates[1];
             longitude = data[0].geometry.coordinates[0];
             map<%= map.id %>.setView([latitude,longitude],13)
-            myLayer.setGeoJSON({
+            myLayer<%= map.id %>.setGeoJSON({
               type: 'FeatureCollection',
               features: data
             });
             setTimeout(function () {
-              map<%= map.id %>.fitBounds(myLayer.getBounds())
+              map<%= map.id %>.fitBounds(myLayer<%= map.id %>.getBounds())
             }, 0);
+            var line = [];
+            myLayer<%= map.id %>.eachLayer(function(marker) {line.push(marker.getLatLng())});
+            var polyline_options = {color: '#000'};
+            var polyline = L.polyline(line, polyline_options).addTo(map<%= map.id %>);
           }
         });
       </script>
