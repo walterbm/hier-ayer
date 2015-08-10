@@ -46,7 +46,7 @@ MakeMap.prototype.welcomeIndexPage = function(self){
 };
 
 MakeMap.prototype.userShowPage = function(self){
-  self.map = L.mapbox.map('map', 'mapbox.satellite',{
+  self.map = L.mapbox.map('map', 'mapbox.run-bike-hike',{
     scrollWheelZoom: false,
     compact: true,
     animate: true
@@ -168,7 +168,7 @@ MakeMap.prototype.attachUserShowListeners = function(){
 MakeMap.prototype.attachUserShowJqueryListeners = function(){
   var self = this;
   $('.minimap').mouseover(function(){
-    this.style.opacity = "0.75";
+    this.style.opacity = "1";
     var mapId = parseInt(this.id.replace("map-", ""));
     $.get("/maps/" + mapId + "/geojson" , function(data) {
       data.forEach(function(moment){
@@ -203,7 +203,7 @@ MakeMap.prototype.attachUserShowJqueryListeners = function(){
   });
   
   $('.minimap').mouseleave(function(){
-    this.style.opacity = "1";
+    this.style.opacity = "0.5";
     self.map.removeLayer(self.myMomentLayer);
     self.myMomentLayer = L.mapbox.featureLayer().addTo(self.map);
   });

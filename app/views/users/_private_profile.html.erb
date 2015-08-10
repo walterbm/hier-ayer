@@ -1,9 +1,21 @@
-<div class="col-md-3" style="height:600px;overflow: scroll;">
+<div class="col-md-9">
+  <div id="map-wrapper">
+    <div class="custom-popup" id= 'map'>
+      <script>
+        $(function() {
+          mainMap = new MakeMap("<%= user_geojson_path(current_user) %>","user#show");
+        });
+      </script>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-3" style="height:600px;overflow:scroll;background-color:#2c3e50;">
   <% current_user.maps.each do |map| %>
-    <a href="/maps/<%= map.id %>"><div class="minimap" id="map-<%= map.id %>" style="height:150px;width:100%;">
+    <a href="/maps/<%= map.id %>"><div class="minimap" id="map-<%= map.id %>" style="height:150px;width:100%;opacity:0.5;">
       <script>
         L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
-        var map<%= map.id %> = L.mapbox.map('map-<%= map.id %>', 'mapbox.streets-satellite',{
+        var map<%= map.id %> = L.mapbox.map('map-<%= map.id %>', 'mapbox.run-bike-hike',{
           scrollWheelZoom: false,
           zoomControl: false,
           doubleClickZoom: false,
@@ -42,18 +54,6 @@
       </script>
     </div></a>
   <% end %>
-</div>
-
-<div class="col-md-9">
-  <div id="map-wrapper">
-    <div class="custom-popup" id= 'map'>
-      <script>
-        $(function() {
-          mainMap = new MakeMap("<%= user_geojson_path(current_user) %>","user#show");
-        });
-      </script>
-    </div>
-  </div>
 </div>
 
 <h3>Create a New Map</h3>
