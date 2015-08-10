@@ -6,6 +6,7 @@
       <div class="col-md-3 col-sm-4 col-xs-6">
         <% if user == current_user %>
           <h4><i class="fa fa-user lblue"></i> Your Profile</h4>
+          <%=image_tag @user.avatar.url, :class => "img-responsive img-circle"%>
         <% else %>
           <h4><i class="fa fa-user lblue"></i> <%= user.name.capitalize %>'s Profile</h4>
         <% end %>
