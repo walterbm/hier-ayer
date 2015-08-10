@@ -5,6 +5,10 @@
         L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
         var map<%= map.id %> = L.mapbox.map('map-<%= map.id %>', 'mapbox.run-bike-hike',{
           scrollWheelZoom: false,
+          zoomControl: false,
+          doubleClickZoom: false,
+          touchZoom: false,
+          dragging: false,
           compact: true,
           animate: true
         }).setView([0,0],1)
