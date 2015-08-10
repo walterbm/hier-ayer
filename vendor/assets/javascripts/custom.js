@@ -57,14 +57,14 @@ $(document).ready(function(){
     if(menu_li.hasClass("open")){
       menu_ul.slideUp(150);
       menu_li.removeClass("open");
-	  $(this).find("span").removeClass("fa-caret-up").addClass("fa-caret-down");
+	  $(this).find("#submenu").removeClass("fa-caret-up").addClass("fa-caret-down");
     }
     else{
       $(".side-nav > li > ul").slideUp(150);
       $(".side-nav > li").removeClass("open");
       menu_ul.slideDown(150);
       menu_li.addClass("open");
-	  $(this).find("span").removeClass("fa-caret-down").addClass("fa-caret-up");
+	  $(this).find("#submenu").removeClass("fa-caret-down").addClass("fa-caret-up");
     }
   });
   
