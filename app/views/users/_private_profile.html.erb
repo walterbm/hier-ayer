@@ -35,6 +35,10 @@
             var polyline = L.polyline(line, polyline_options).addTo(map<%= map.id %>);
           }
         });
+        myLayer<%= map.id %>.on('click', function(e) {
+          e.layer.closePopup();
+          map<%= map.id %>.fitBounds(myLayer<%= map.id %>.getBounds())
+        });
       </script>
     </div>
   <% end %>
