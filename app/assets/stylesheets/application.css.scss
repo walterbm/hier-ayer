@@ -23,14 +23,16 @@
 @import "bootstrap";
 /* Some Style from the Bootstrap Default Theme */
 
+$main-color: #2c3e50;
 $sidebar-color: #2c3e50;
 $main-head-color: #2c3e50;
 body{
-  background: #2c3e50;
+  background: $main-color;
+  color: white;
 }
 
 .mainbar{
-  background: #2c3e50;
+  background: $main-head-color;
 }
 
 .theme-dropdown .dropdown-menu {
@@ -58,6 +60,10 @@ a{
   &:hover{
     color: lighten(#32c8de, 30)
   }
+}
+
+form{
+  color: white;
 }
 .outer{
   background-color: $main-head-color;

@@ -1,67 +1,42 @@
-<!-- Form page -->
-<div class="page-form">
-                <!-- Form Content -->
-                <form class="form-horizontal" role="form">
-
-
-<h2>Sign up</h2>
-
+<!-- Mainbar head starts -->
+<div class="main-head">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-4 col-xs-6">
+        <h4><i class="fa fa-street-view lblue"></i> Sign up</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Mainbar head ends -->
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
-    <div class="form-group">
-      <label class="col-lg-2 control-label"><%= f.label :name %></label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" placeholder="Name" <%= f.text_field :name, autofocus: true %> 
-      </div>
-    </div>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
   </div>
 
   <div class="field">
-    <div class="form-group">
-        <label class="col-lg-2 control-label"><%= f.label :email %></label>
-        <div class="col-lg-10">
-        <input type="text" class="form-control" placeholder="Email" <%= f.email_field :email, autofocus: true %>
-      </div>
-    </div>
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
   </div>
 
   <div class="field">
-    <div class="form-group">
-    <label class="col-lg-2 control-label"><%= f.label :password %></label>
-      <div class="col-lg-10">
-      <%if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %>
-        <input type="password" class="form-control" placeholder="Password Box" value="password"<%= f.password_field :password, autocomplete: "off" %>
-      </div>
-    </div>
-  </div>
-
-
-
-  <div class="field">
-    <div class="form-group">
-      <label class="col-lg-2 control-label"><%= f.label :password_confirmation %></label>
-      <div class="col-lg-10">
-      <input type="password" class="form-control" placeholder="Password Box" value="password"<%= f.password_field :password_confirmation, autocomplete: "off" %>
-      </div>
-    </div>
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
   <div class="field">
-    <div class="form-group">
-      <label for="exampleInputFile" class="col-lg-2 control-label">Upload your profile picture</label>
-      <div class="col-lg-10">
-        <input type="file" id="profilePicture">
-        <p class="help-block">Click to upload your file.</p>
-      </div>
-    </div>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
   <div class="actions">
-      <%= f.submit "Sign up", :class => "btn btn-info" %>
+    <%= f.submit "Sign up", class: "btn btn-info" %>
   </div>
 <% end %>
 

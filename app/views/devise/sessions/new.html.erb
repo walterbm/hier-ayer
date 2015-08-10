@@ -1,4 +1,14 @@
-<h2>Log in</h2>
+<!-- Mainbar head starts -->
+<div class="main-head">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-4 col-xs-6">
+        <h4><i class="fa fa-street-view lblue"></i> Log in!</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Mainbar head ends -->
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
@@ -19,7 +29,7 @@
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Log in", class: "btn btn-info" %>
   </div>
 <% end %>
 
