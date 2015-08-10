@@ -1,5 +1,1 @@
-<h1>Map Name: <%= @map.name %></h1>
-
-<%= link_to "See All My Maps", user_path(@map.user) %>
-
 <%= render partial: "map", locals: {url: map_geojson_path(@map), action: "map#show"} %>

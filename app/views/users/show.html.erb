@@ -1,9 +1,7 @@
-
-  <%= render partial: "sidebar", locals: {user: @user}  %>
-  <!-- Mainbar starts -->
+<div class="outer">
+  <%= render partial: "layouts/sidebar" %>
   <div class="mainbar">    
-    <%= render partial: "mainbar", locals: {user: @user} %>
-
+    <%= render partial: "mainbar_users", locals: {user: @user} %>
 
     <% if @user == current_user %>
       <%= render partial: "private_profile" %>
@@ -11,7 +9,7 @@
       <%= render partial: "public_profile", locals: {user: @user} %>
     <% end %>
   </div>
-
+</div>
  
 
 
