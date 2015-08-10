@@ -20,50 +20,11 @@
         <h4>Menu</h4>
         <!-- Sidebar links -->
         <ul class="list-unstyled">
-          <li><a href="<%= root_path %>"><i class="fa fa-home"></i> Home </a></li>
-          <!-- Mainmenu with submenu -->
-          <li class="has_submenu">
-            <a href="#"><i class="fa fa-user"></i> Profile <span id="submenu" class="nav-caret fa fa-caret-down"></span></a>
-            <!-- Submenu -->
-            <ul class="list-unstyled">
-              <li><i class="fa fa-angle-double-right"></i>  <%= link_to "Your Profile", user_path(current_user) %></li>
-              <li><i class="fa fa-angle-double-right"></i>  <%= link_to "Edit Info", edit_user_registration_path %></li>
-            </ul>
-          </li>
-          <!-- Mainmenu with submenu -->
-          <li class="has_submenu">
-            <a href="#"><i class="fa fa-map-o"></i> Maps <span class="badge badge-info pull-right"><%= current_user.maps.count %></span><span id="submenu" class="nav-caret fa fa-caret-down"></span></a>
-            <!-- Submenu -->
-            <ul class="list-unstyled">
-              <% current_user.maps.each do |map| %>
-                <li class="mapListItem" ><i class="fa fa-angle-double-right"></i>  <%= link_to map.name, map_path(map) %></li>
-              <% end %>
-            </ul>
-          </li>
-          <!-- Mainmenu with submenu -->
-          <li class="has_submenu">
-            <a href="#"><i class="fa fa-heart"></i> Following <span class="badge badge-info pull-right"><%= current_user.friends.count %></span><span id="submenu" class="nav-caret fa fa-caret-down"></span></a>
-            <!-- Submenu -->
-            <ul class="list-unstyled">
-              <% current_user.friends.each do |friend| %>
-                <li><i class="fa fa-angle-double-right"></i>  <%= link_to friend.name, user_path(friend) %></li>
-              <% end %>
-            </ul>
-          </li>
-          <!-- Mainmenu with submenu -->
-          <li class="has_submenu">
-            <a href="#"><i class="fa fa-users"></i> Followers <span class="badge badge-info pull-right"><%= current_user.followers.count %></span><span id="submenu" class="nav-caret fa fa-caret-down"></span></a>
-            <!-- Submenu -->
-            <ul class="list-unstyled">
-              <% current_user.followers.each do |follower| %>
-                <li><i class="fa fa-angle-double-right"></i>  <%= link_to follower.name, user_path(follower) %></li>
-              <% end %>
-            </ul>
-          </li>
-          <li><%= link_to destroy_user_session_path, :method => :delete do %>
-            <i class="fa fa-sign-out"></i>
-            Sign Out
-          <% end %></li>         
+          <% if user_signed_in? %>
+            <%= render partial: "layouts/logged_in_sidebar" %>
+          <% else %>
+            <%= render partial: "layouts/logged_out_sidebar" %>
+          <% end %>
         </ul>
       </div>
     </div>

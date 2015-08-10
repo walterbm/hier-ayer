@@ -8,7 +8,6 @@ body{
 	font-size:12px;
 	line-height:24px;
 	-webkit-font-smoothing: antialiased;
-	background:#fafafa url("../assets/main-back.png");
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -509,7 +508,6 @@ ul.nav-tabs  li a{
 	width:auto;
 	min-height:1000px;
 	margin-left:180px;
-	background:#f7f7f7 url("../assets/main-back.png") repeat;
 }
 
 .mainbar .container{
