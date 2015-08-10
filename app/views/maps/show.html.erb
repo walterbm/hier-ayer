@@ -1,11 +1,7 @@
-<div class="outer">
-  <%= render partial: "layouts/sidebar" %>
-  <div class="mainbar">
-    <%= render partial: "mainbar_maps", locals: {map: @map} %> 
-    <% if @map.user == current_user %>
-      <%= render partial: "private_map", locals: {map: @map} %>
-    <% else %>
-      <%= render partial: "public_map", locals: {map: @map} %>
-    <% end %>
-  </div>
-</div>
+<%= render partial: "mainbar_maps", locals: {map: @map} %> 
+<% if @map.user == current_user %>
+  <%= render partial: "private_map", locals: {map: @map} %>
+<% else %>
+  <%= render partial: "public_map", locals: {map: @map} %>
+<% end %>
+ 

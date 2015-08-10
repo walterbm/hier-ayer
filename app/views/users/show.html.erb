@@ -1,15 +1,10 @@
-<div class="outer">
-  <%= render partial: "layouts/sidebar" %>
-  <div class="mainbar">    
-    <%= render partial: "mainbar_users", locals: {user: @user} %>
+<%= render partial: "mainbar_users", locals: {user: @user} %>
 
-    <% if @user == current_user %>
-      <%= render partial: "private_profile" %>
-    <% else %>
-      <%= render partial: "public_profile", locals: {user: @user} %>
-    <% end %>
-  </div>
-</div>
+<% if @user == current_user %>
+  <%= render partial: "private_profile" %>
+<% else %>
+  <%= render partial: "public_profile", locals: {user: @user} %>
+<% end %>
  
 
 
