@@ -23,7 +23,14 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
+<div class="outer">
+  <%= render partial: "layouts/sidebar" %>
+  <div class="mainbar">  
+
 <%= yield %>
+
+  </div>
+</div>
 
 </body>
 </html>

@@ -1,0 +1,16 @@
+<!-- Mainbar head starts -->
+<div class="main-head">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 col-sm-4 col-xs-6">
+        <% if map.user == current_user %>
+          <h4><i class="fa fa-map lblue"></i> Your map: <%= map.name %></h4>
+          <%= link_to "Edit Map", edit_map_path(@map) %> <span class="link-divider">|</span> <%= link_to "Delete Map", map_path(@map), method: :delete %>
+        <% else %>
+          <h4><i class="fa fa-map lblue"></i> <%= link_to map.user.name.capitalize+"'s", user_path(@map.user) %> map: <%= map.name %></h4>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Mainbar head ends -->

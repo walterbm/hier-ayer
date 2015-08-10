@@ -23,6 +23,9 @@
 @import "bootstrap";
 /* Some Style from the Bootstrap Default Theme */
 
+$sidebar-color: #2c3e50;
+$main-head-color: #2c3e50;
+
 .theme-dropdown .dropdown-menu {
   position: static;
   display: block;
@@ -43,8 +46,18 @@
   margin: 0;
 }
 
+a{
+  color: #32c8de;
+  &:hover{
+    color: lighten(#32c8de, 30)
+  }
+}
+.outer{
+  background-color: $main-head-color;
+}
+
 .main-head{
-  background-color: #2c3e50;
+  background-color: $main-head-color;
   border-bottom: 0;
   h4{
     color: white;
@@ -52,7 +65,7 @@
 }
 
 .sidebar{
-  background-color: #2c3e50;
+  background-color: $sidebar-color;
 
   .logo{
     border: 0;
@@ -66,4 +79,8 @@
   ul li a{
     color: white;
   }
+}
+
+.link-divider{
+  color: white;
 }
