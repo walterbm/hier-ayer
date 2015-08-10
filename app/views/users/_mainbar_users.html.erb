@@ -1,4 +1,3 @@
-
 <!-- Mainbar head starts -->
 <div class="main-head">
   <div class="container">
@@ -6,9 +5,10 @@
       <div class="col-md-3 hidden-sm hidden-xs pull-right">
         <div class="pull-right">
           <% if user == current_user %>
-          <%=image_tag @user.avatar.url(:thumb), :class => "img-responsive img-circle"%>
+            <h4><i class="fa fa-user lblue"></i> Your Profile</h4>
           <% else %>
-          <h4><i class="fa fa-user lblue"></i> <%= user.name.capitalize %>'s Profile</h4>
+            <%=image_tag user.avatar.url(:thumb), :class => "img-responsive img-circle"%>
+            <i class="fa fa-user lblue"></i> <%= user.name.capitalize %>'s Profile
           <% end %>
         </div>  
       </div>

@@ -14,19 +14,25 @@
     <div class="sidebar-dropdown"><a href="#" class="br-blue"><i class="fa fa-bars"></i></a></div>
     
     <div class="side-nav">
-    
+      <% if user_signed_in? %>
+        <%=image_tag current_user.avatar.url(:thumb), :class => "img-responsive img-circle"%>
+        <%= current_user.name.upcase %>
       <div class="side-nav-block">
-        <!-- Sidebar heading -->
-        <h4>Menu</h4>
         <!-- Sidebar links -->
         <ul class="list-unstyled">
-          <% if user_signed_in? %>
-            <%= render partial: "layouts/logged_in_sidebar" %>
-          <% else %>
-            <%= render partial: "layouts/logged_out_sidebar" %>
-          <% end %>
+          <%= render partial: "layouts/logged_in_sidebar" %>
         </ul>
       </div>
+      <% else %>
+        <div class="side-nav-block">
+          <!-- Sidebar heading -->
+          <h4>Menu</h4>
+          <!-- Sidebar links -->
+          <ul class="list-unstyled">
+            <%= render partial: "layouts/logged_out_sidebar" %>
+          </ul>
+        </div>
+      <% end %>
     </div>
     <!-- Sidebar navigation ends -->
   </div>
