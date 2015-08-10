@@ -6,10 +6,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    binding.pry
     @user = User.find(params[:id])
   end 
 
-  def geojson
+  def geojson 
     maps = User.find(params[:user_id]).maps
     @geojson = Array.new
     maps.each do |map|
