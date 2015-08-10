@@ -18,4 +18,5 @@
 $(function() {
     var windowHeight = window.innerHeight - 70;
     $("#map-wrapper").css('height', windowHeight+'px');
+    $(".sidemaps").css('height', windowHeight+'px');
 });
