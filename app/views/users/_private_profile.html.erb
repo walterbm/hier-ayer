@@ -1,9 +1,9 @@
 <div class="col-md-3" style="height:600px;overflow: scroll;">
   <% current_user.maps.each do |map| %>
-    <div id="map-<%= map.id %>" style="height:150px;width:100%;">
+    <a href="/maps/<%= map.id %>"><div class="minimap" id="map-<%= map.id %>" style="height:150px;width:100%;">
       <script>
         L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
-        var map<%= map.id %> = L.mapbox.map('map-<%= map.id %>', 'mapbox.run-bike-hike',{
+        var map<%= map.id %> = L.mapbox.map('map-<%= map.id %>', 'mapbox.streets-satellite',{
           scrollWheelZoom: false,
           zoomControl: false,
           doubleClickZoom: false,
@@ -31,12 +31,16 @@
             }, 0);
             var line = [];
             myLayer<%= map.id %>.eachLayer(function(marker) {line.push(marker.getLatLng())});
-            var polyline_options = {color: '#000'};
+            var polyline_options = {color: '#15b3d9'};
             var polyline = L.polyline(line, polyline_options).addTo(map<%= map.id %>);
           }
         });
+        myLayer<%= map.id %>.on('click', function(e) {
+          e.layer.closePopup();
+          map<%= map.id %>.fitBounds(myLayer<%= map.id %>.getBounds())
+        });
       </script>
-    </div>
+    </div></a>
   <% end %>
 </div>
 
