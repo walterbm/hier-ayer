@@ -1,20 +1,5 @@
 <%= render partial: "map", locals: {url: map_geojson_path(@map), action: "map#show"} %>
 
-<h2>add a moment to this map:</h2>
-  <%= form_for(@map) do |f| %>
-    <p>
-      <%= f.fields_for @map.moments.build, html: { multipart: true } do |moment_f| %>
-        <%= moment_f.label :memo %>
-        <%= moment_f.text_field :memo %>
-        <%= moment_f.file_field :image %>
-        <%= moment_f.hidden_field :latitude %>
-        <%= moment_f.hidden_field :longitude %>
-      <% end %>
-    </p>
-
-    <%= f.submit "Create a New Moment", :id => "submit" %>
-  <% end %>
-
 <h2>Current Moments:</h2>
 <ol id="moments">
 <% @map.moments.each do |moment| %>
