@@ -18,13 +18,17 @@
 <% end %>
 </ol>
 
-<h3>Share Your Map with A Friend</h3>
-  <%= form_tag(map_send_link_to_friend_path(@map)) do %>
-    <p>
-    <%= text_field_tag :friend_email %>
-    </p>
-  <%= submit_tag "Send Email" %>
-  <% end %>
+<%= form_for(@map, :html => {:class => "ui-element-container form-inline"}) do |f| %>
+  <div class="form-group input-group input-group-sm">
+    <span class="input-group-btn"><%= f.button "New Moment", :class => "btn btn-info", :id => "submit" %></span>
+    <%= f.fields_for @map.moments.build, html: { multipart: true } do |moment_f| %>
+      <%= moment_f.text_field :memo, :class => 'form-control', :placeholder => 'create a new moment' %>
+      <%= moment_f.file_field :image, :class => 'form-control' %>
+      <%= moment_f.hidden_field :latitude %>
+      <%= moment_f.hidden_field :longitude %>
+    <% end %>
+  </div>
+<% end %>
 
 <script>
   $("#submit").val("Automagical ...").prop('disabled', true);
