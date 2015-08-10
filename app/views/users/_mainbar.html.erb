@@ -1,17 +1,16 @@
-<!-- Mainbar starts -->
-<div class="mainbar">     
-  <!-- Mainbar head starts -->
-  <div class="main-head">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3 col-sm-4 col-xs-6">
-          <% if user == current_user %>
-            <h4><i class="fa fa-user lblue"></i> Your Profile</h4>
-          <% else %>
-            <h4><i class="fa fa-user lblue"></i> <%= user.name.capitalize %>'s Profile</h4>
-          <% end %>
-        </div>
+ 
+<!-- Mainbar head starts -->
+<div class="main-head">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-4 col-xs-6">
+        <% if user == current_user %>
+          <h4><i class="fa fa-user lblue"></i> Your Profile</h4>
+        <% else %>
+          <h4><i class="fa fa-user lblue"></i> <%= user.name.capitalize %>'s Profile</h4>
+        <% end %>
       </div>
     </div>
   </div>
+</div>
 <!-- Mainbar head ends -->
