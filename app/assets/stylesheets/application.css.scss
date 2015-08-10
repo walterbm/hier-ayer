@@ -94,6 +94,15 @@ form{
   }
 }
 
+.img-circle {
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border: 2px solid #32c8de;
+    display:block;
+    background-position-y:25;
+}
+
 .link-divider{
   color: white;
 }
