@@ -57,26 +57,12 @@
   </div>
 </div>
 
-<h3>Maps:</h3>
-<ul id="mapList">
-  <% current_user.maps.each do |map| %>
-    <li class="mapListItem" id="map-<%= map.id %>"><%= link_to map.name, map_path(map) %></li>
-  <% end %>
-</ul>
-
 <h3>Create a New Map</h3>
 <%= form_tag("/maps") do %>
   <%= label_tag('map[name]', "Name") %>
   <%= text_field_tag('map[name]') %>
 <%= submit_tag "Create Map", :id => "createmap" %>
 <% end %>
-
-<h3>Following:</h3>
-<ul>
-<% current_user.friends.each do |friend| %>
-  <li><%= link_to friend.name, user_path(friend) %> | <%= link_to "un-follow", user_friends_path(user_id: current_user, friend_id: friend.id), method: 'delete' %></li>
-<% end %>
-</ul>
 
 <%= form_tag(user_friends_path(@user)) do %>
   <%= text_field_tag :friend_name %>
