@@ -40,3 +40,12 @@
     </p>
   <%= submit_tag "Send Email" %>
   <% end %>
+
+<script>
+  $("#submit").val("Automagical ...").prop('disabled', true);
+  getCoordinates(function(latitude,longitude){
+    $("#map_moment_latitude").val(latitude);
+    $("#map_moment_longitude").val(longitude);
+    $("#submit").val("Create a New Moment").prop('disabled', false);
+  });
+</script>

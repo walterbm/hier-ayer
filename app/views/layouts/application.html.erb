@@ -14,12 +14,22 @@
 </head>
 <body>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
 
 <div class="outer">
   <%= render partial: "layouts/sidebar" %>
-  <div class="mainbar">  
+  <div class="mainbar">
+
+  <% if notice %> 
+    <div class="alert alert-warning alert-dismissable"><%= notice %>
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    </div>
+  <% end %>
+
+  <% if alert %> 
+    <div class="alert alert-danger alert-dismissable"><%= alert %>
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    </div>
+  <% end %>
 
 <%= yield %>
 
