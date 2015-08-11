@@ -47,6 +47,9 @@ gem 'omniauth'
 
 gem 'omniauth-instagram'
 
+# Geocode Latitude and Longitude
+gem 'geocoder'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
