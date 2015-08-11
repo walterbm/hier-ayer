@@ -1,22 +1,32 @@
 <%= render partial: "map", locals: {url: map_geojson_path(@map), action: "map#show"} %>
 
-<h2>Current Moments:</h2>
-<ol id="moments">
-<% @map.moments.each do |moment| %>
-  <% if moment.persisted? %>
-    <ul>
-      <li class="memo"><h3>Content: <%= moment.memo %></h3></li>
-      <li class="lat"><p>Latitude: <%= moment.latitude %></p></li>
-      <li class="long"><p>Longitude: <%= moment.longitude %></p></li>
-      <% if moment.image.exists? %> 
-        <%= link_to image_tag(moment.image.url(:med)), moment.image.url %>
-      <% end %> 
-      <li><%= link_to "Edit Moment", edit_moment_path(moment) %></li>
-      <li><%= link_to "Delete Moment", moment_path(moment), method: :delete %></li>
-    </ul>
-  <% end %>
-<% end %>
-</ol>
+<div class="main-content container">
+  <div class="page-content">
+    <div class="single-head">
+      <h3 class="pull-left"><i class="fa fa-picture-o red"></i> <%= @map.name.capitalize %>'s Moments</h3>
+      <div class="clearfix"></div>
+    </div>
+    <div class="page-gallery">
+      <div id="gallery">
+        <% @map.moments.each do |moment| %>
+          <% if moment.persisted? %>
+            <div class="element">
+              <% if moment.image.exists? %>
+                <%= link_to image_tag(moment.image.url(:med), :class => 'img-responsive'), moment.image.url, {:class =>'prettyphoto'} %>
+              <% end %>
+              <div class="gall-caption">
+                <ul class="list-unstyled">
+                  <li class="memo"><h5><%= moment.memo %></h5></li>
+                  <li><p><%= link_to "Edit Moment", edit_moment_path(moment) %> | <%= link_to "Delete Moment", moment_path(moment), method: :delete %></p></li>
+                </ul>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= form_for(@map, :html => {:class => "ui-element-container form-inline"}) do |f| %>
   <div class="form-group input-group input-group-sm">
