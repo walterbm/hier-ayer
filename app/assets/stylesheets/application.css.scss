@@ -33,6 +33,7 @@ body{
 
 .mainbar{
   background: $main-head-color;
+  min-height: 0;
 }
 
 .theme-dropdown .dropdown-menu {
