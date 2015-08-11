@@ -19,13 +19,13 @@
 <%= render partial: "map", locals: {url: map_geojson_path(@map), action: "map#show"} %>
 
 <div class="main-content container">
-  <div class="page-content">
+  <div class="page-content col-md-12">
     <div class="single-head">
       <h3 class="pull-left"><i class="fa fa-picture-o lblue"></i> <%= @map.name.capitalize %>'s Moments</h3>
       <div class="clearfix"></div>
     </div>
     
-    <% @map.moments.each do |moment| %>
+    <% @map.moments.each_with_index do |moment, i| %>
       <% if moment.persisted? %>
         <div class="widget">
           <div class="widget-head br-lblue">
@@ -35,7 +35,7 @@
           </div>
           <div class="widget-body">
             <% if moment.image.exists? %>
-            <%= link_to image_tag(moment.image.url(:med)), moment.image.url %>
+              <%= link_to image_tag(moment.image.url), moment.image.url %>
             <% end %>
             <p><%= moment.memo %></p>
           </div>
