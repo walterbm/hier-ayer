@@ -5,10 +5,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @auth = call(request.env['omniauth.auth'], current_user)
     @user = @auth.user
     @user.save
-    if user_signed_in?    
+    if user_signed_in?   
       flash[:notice] = 'You have added a new authentication!'
       redirect_to :root
-    else
+    #elsif user_signed_in && @user.valid?
+    #sign_in_and_redirect(:user, @user)
+    else 
       sign_in_and_redirect(:user, @user)
     end
   end  
@@ -22,7 +24,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         name: auth_hash[:info][:name],
         password: auth_hash[:info][:name],
         password_confirmation: auth_hash[:info][:name],
-        email: auth_hash[:info][:name]
+        email: auth_hash[:info][:nickname]
       )
     end
 
