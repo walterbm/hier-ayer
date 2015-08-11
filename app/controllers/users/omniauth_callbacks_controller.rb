@@ -5,7 +5,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @auth = call(request.env['omniauth.auth'], current_user)
     @user = @auth.user
     @user.save
-    binding.pry
     if user_signed_in?    
       flash[:notice] = 'You have added a new authentication!'
       redirect_to :root
