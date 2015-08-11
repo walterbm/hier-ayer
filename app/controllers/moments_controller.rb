@@ -8,7 +8,7 @@ class MomentsController < ApplicationController
   def update
     moment = Moment.find(params[:id])
     moment.update(moment_params)
-     
+    track_activity(moment)
 
     redirect_to map_path(moment.map)
   end

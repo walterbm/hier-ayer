@@ -1,0 +1,8 @@
+<h1>Feed</h1>
+
+<ul>
+<% @activities.each do |activity| %>
+  <li><%= link_to activity.user.name, activity.user %>
+  <%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity: activity %></li>
+<% end %>
+</ul>
