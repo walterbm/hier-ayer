@@ -11,6 +11,13 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
   has_many :authentications
+  has_many :activities
+
+
+  has_attached_file :avatar, 
+                    :styles => { :thumb => "100x100#" },
+                    :default_url => "missing_avatar.jpg"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -31,13 +38,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  has_attached_file :avatar, 
-                    :styles => { :thumb => "100x100#" },
-                    :default_url => "missing_avatar.jpg"
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-
-  def new_map(map_hash)
-    self.maps.build(map_hash)
+  def new_map(map_params)
+    self.maps.build(map_params)
   end
 
   def delete_map(map_id)
@@ -71,4 +73,5 @@ class User < ActiveRecord::Base
   def followers
     self.inverse_friends
   end
+
 end

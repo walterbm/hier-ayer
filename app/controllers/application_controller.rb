@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def track_activity(trackable_object)
+    current_user.activities.create(action: params[:action], trackable: trackable_object)
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :name
     devise_parameter_sanitizer.for(:account_update) << :name

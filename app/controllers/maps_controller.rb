@@ -8,6 +8,8 @@ class MapsController < ApplicationController
   def create
     map = current_user.new_map(map_params)
     map.save
+    track_activity(map)
+
     redirect_to map_path(map)
   end
 
@@ -32,6 +34,7 @@ class MapsController < ApplicationController
   def update
     map = current_user.maps.find(params[:id])
     map.update_all(map_params)
+    track_activity(map)
     
     redirect_to map_path(map)
   end
