@@ -33,11 +33,6 @@ ActiveRecord::Schema.define(version: 20150810235132) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "instagrams", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "maps", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
