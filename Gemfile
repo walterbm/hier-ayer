@@ -34,6 +34,9 @@ gem 'figaro'
 # Use Paperclip to upload media files
 gem 'paperclip'
 
+# Use AWS to move Paperclip files to s3 storage
+gem 'aws-sdk'
+
 # Use Font Awesome for web-icons
 gem "font-awesome-rails"
 
