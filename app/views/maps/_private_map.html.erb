@@ -35,7 +35,7 @@
     <% if moment.persisted? %>
       <div class="widget">
         <div class="widget-head br-lblue">
-          <% if Geocoder.address("#{moment.latitude},#{moment.longitude}").split(", ") %>
+          <% if Geocoder.address("#{moment.latitude},#{moment.longitude}") %>
             <% coord_arr = Geocoder.address("#{moment.latitude},#{moment.longitude}").split(", ") %>
           <% end %>
           <h3 class="pull-left"><i class="fa fa-map-marker"></i> <%= "#{coord_arr[1]}, #{coord_arr[2].split(" ")[0]} #{coord_arr[3]}" %></h3>
