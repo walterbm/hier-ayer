@@ -40,6 +40,10 @@ gem "font-awesome-rails"
 # Postgres Database
 gem 'pg'
 
+gem 'omniauth'
+
+gem 'omniauth-instagram'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
