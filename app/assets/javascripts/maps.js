@@ -1,14 +1,18 @@
 L.mapbox.accessToken = 'pk.eyJ1Ijoid2FsdGVyYm0iLCJhIjoiMDU5ODljMDBjNzg3ZThlZTJlMTAwYWRhMTFjYWE0MzUifQ.CJ0ZCaTRHRMJTWDE0kIubA';
 
-function MakeMap(url,page){
+function MakeMap(url,page,map_number){
   var self = this;
   self.page = page;
   self.url = url;
 
+  // set default argument
+  if (typeof(map_number)==='undefined'){ self.map_number = false; } 
+  else{self.map_number = map_number;}
   pageFunctions = {
     'map#show' : self.mapShowPage,
     'welcome#index' : self.welcomeIndexPage,
-    'user#show' : self.userShowPage
+    'user#show' : self.userShowPage,
+    'minimap' : self.minimaps
   };
   pageFunctions[page](self);
 }
@@ -62,6 +66,26 @@ MakeMap.prototype.userShowPage = function(self){
   });
 };
 
+MakeMap.prototype.minimaps = function(self){
+  self.map = L.mapbox.map('map-'+self.map_number, 'mapbox.run-bike-hike',{
+    scrollWheelZoom: false,
+    zoomControl: false,
+    doubleClickZoom: false,
+    touchZoom: false,
+    dragging: false,
+    compact: true,
+    animate: true
+  }).setView([0,0],1);
+
+  self.myLayer = L.mapbox.featureLayer().addTo(self.map);
+
+  self.getData(self.url, function(){
+    self.animateLine();
+    self.blockPopups();
+  });
+};
+
+
 MakeMap.prototype.getData = function(url,callback){
   var self = this;
   $.get(url, function(data) {
@@ -88,7 +112,7 @@ MakeMap.prototype.fitView = function(){
 
 MakeMap.prototype.animateLine = function(){
   var self = this;
-  var polyline_options = {color: '#000'};
+  var polyline_options = {color: '#15b3d9', opacity: 0.85};
   var polyline = L.polyline([], polyline_options).addTo(self.map);
   var line = [];
   self.myLayer.eachLayer(function(marker){
@@ -214,5 +238,13 @@ MakeMap.prototype.heatMap = function(){
   var heat = L.heatLayer([], { maxZoom: 12 }).addTo(self.map);
   self.myLayer.eachLayer(function(l) {
     self.heat.addLatLng(l.getLatLng());
+  });
+};
+
+MakeMap.prototype.blockPopups = function(){
+  var self = this;
+  self.myLayer.on('click', function(e) {
+     e.layer.closePopup();
+     self.map.fitBounds(self.myLayer.getBounds());
   });
 };
