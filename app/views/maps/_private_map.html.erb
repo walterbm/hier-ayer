@@ -6,25 +6,24 @@
       <h3 class="pull-left"><i class="fa fa-picture-o lblue"></i> <%= @map.name.capitalize %>'s Moments</h3>
       <div class="clearfix"></div>
     </div>
-    <div class="page-gallery">
-      <div id="gallery">
-        <% @map.moments.each do |moment| %>
-          <% if moment.persisted? %>
-            <div class="element">
-              <% if moment.image.exists? %>
-                <%= link_to image_tag(moment.image.url(:med), :class => 'img-responsive'), moment.image.url, {:class =>'prettyphoto'} %>
-              <% end %>
-              <div class="gall-caption">
-                <ul class="list-unstyled">
-                  <li class="memo"><h5><%= moment.memo %></h5></li>
-                  <li><p><%= link_to "Edit Moment", edit_moment_path(moment) %> | <%= link_to "Delete Moment", moment_path(moment), method: :delete %></p></li>
-                </ul>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
+    
+    <% @map.moments.each do |moment| %>
+      <% if moment.persisted? %>
+        <div class="widget">
+          <div class="widget-head br-lblue">
+            <h3 class="pull-left"><i class="fa fa-map-marker"></i> <%= moment.latitude %>, <%= moment.longitude %></h3>
+            <h3 class="pull-right" style="text-align:center;"><%= link_to "Edit Moment", edit_moment_path(moment) %> | <%= link_to "Delete Moment", moment_path(moment), method: :delete %></h3>
+            <div class="clearfix"></div>
+          </div>
+          <div class="widget-body">
+            <% if moment.image.exists? %>
+            <%= link_to image_tag(moment.image.url(:med)), moment.image.url %>
+            <% end %>
+            <p><%= moment.memo %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
