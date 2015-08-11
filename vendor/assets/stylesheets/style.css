@@ -941,12 +941,13 @@ ul.nav-tabs  li a{
 	background:#fff;
 	margin-bottom:10px;
   width: 100%;
+  border-radius: 8px;
 }
 
 .widget .widget-head{
 	padding:0 15px;
-	border-top-left-radius:3px;
-	border-top-right-radius:3px;
+	border-top-left-radius:8px;
+	border-top-right-radius:8px;
 }
 
 .widget .widget-head h3{
@@ -977,7 +978,6 @@ ul.nav-tabs  li a{
 
 .widget .widget-body{
 	padding:15px;
-	border: 1px solid #d5d5d5;
 	border-top:0px;
 }
 
