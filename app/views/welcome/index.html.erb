@@ -1,3 +1,7 @@
-<%= render partial: "mainbar_welcome" %>
+<%= render layout: "layouts/mainbar" do %>
+  <div class="col-md-4 col-sm-4 col-xs-6">
+    <h4><i class="fa fa-street-view lblue"></i> Welcome to Moments!</h4>
+  </div>
+<% end %>
 
 <%= render partial: "map", locals: {users: @users}%>

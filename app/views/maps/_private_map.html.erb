@@ -1,3 +1,21 @@
+<%= render layout: "layouts/mainbar" do %>
+  <div class="col-md-4 col-sm-4 col-xs-6">
+      <h4><i class="fa fa-map lblue"></i> Your Map: <%= @map.name %></h4>
+      <%= link_to "Edit Map", edit_map_path(@map) %> <span class="link-divider">|</span> <%= link_to "Delete Map", map_path(@map), method: :delete %>
+  </div>
+  <div class="col-md-4 col-sm-4 col-xs-6"></div>
+  <div class="col-md-4 col-sm-4 col-xs-6">
+    <p>Share This Map with a Friend</p>
+    <%= form_tag(map_send_link_to_friend_path(@map), :html => {:class => "ui-element-container form-inline"}) do %>
+      <div class="form-group input-group input-group-sm">
+        <%= text_field_tag :friend_email, nil, :class => 'form-control', :placeholder => 'friend@nostalgeo.com' %>
+        <span class="input-group-btn"><%= submit_tag "Send Email", :class => "btn btn-info" %></span>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+
 <%= render partial: "map", locals: {url: map_geojson_path(@map), action: "map#show"} %>
 
 <h2>Current Moments:</h2>
