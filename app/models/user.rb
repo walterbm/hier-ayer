@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
-  has_attached_file :avatar, :styles => { :thumb => "35x35#" }
+  has_attached_file :avatar, 
+                    :styles => { :thumb => "100x100#" },
+                    :default_url => "missing_avatar.jpg"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def new_map(map_hash)

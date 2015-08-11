@@ -15,7 +15,9 @@
     
     <div class="side-nav">
       <% if user_signed_in? %>
-        <%=image_tag current_user.avatar.url(:thumb), :class => "img-responsive img-circle"%>
+        <%= link_to user_path(current_user) do %>
+          <%=image_tag current_user.avatar.url(:thumb), :class => "img-responsive img-circle"%>
+        <% end %>
         <%= current_user.name.upcase %>
       <div class="side-nav-block">
         <!-- Sidebar links -->
