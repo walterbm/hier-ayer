@@ -25,7 +25,7 @@
       <div class="clearfix"></div>
     </div>
     
-    <% @map.moments.each_with_index do |moment, i| %>
+    <% @map.moments.each do |moment| %>
       <% if moment.persisted? %>
         <div class="widget">
           <div class="widget-head br-lblue">
