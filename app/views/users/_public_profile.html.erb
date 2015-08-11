@@ -1,19 +1,25 @@
-<div id="map-wrapper">
-  <div class="custom-popup" id= 'map'>
-    <script>
-      $(function() {
-        map = new MakeMap("<%= user_geojson_path(@user) %>","user#show");
-      });
-    </script>
+<div class="col-md-9">
+  <div id="map-wrapper">
+    <div class="custom-popup" id= 'map'>
+      <script>
+        $(function() {
+          map = new MakeMap("<%= user_geojson_path(@user) %>","user#show");
+        });
+      </script>
+    </div>
   </div>
 </div>
 
-<h3>Maps:</h3>
-<ul id="mapList">
+<div class="sidemaps col-md-3">
   <% @user.maps.each do |map| %>
-    <li class="mapListItem" id="map-<%= map.id %>"><%= link_to map.name, map_path(map) %></li>
+    <a href="/maps/<%= map.id %>"><div class="minimap" id="map-<%= map.id %>">
+      <script>
+         minimap = new MakeMap("<%= map_geojson_path(map) %>","minimap","<%= map.id %>");
+      </script>
+      <div class="title"><p><%= map.name %></p></div>
+    </div></a>
   <% end %>
-</ul>
+</div>
 
 <h3>Following:</h3>
 <ul>
