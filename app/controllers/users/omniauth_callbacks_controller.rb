@@ -12,7 +12,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       sign_in_and_redirect(:user, @user)
     end
-  end
+  end  
 
 
   def call(auth_hash, current_user = nil)
