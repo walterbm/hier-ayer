@@ -1,15 +1,11 @@
-<!-- Mainbar head starts -->
-<div class="main-head">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-5 col-sm-4 col-xs-6">
-        <% if @map.user == current_user %>
-          <h4><i class="fa fa-map lblue"></i> Editing your map: <%= @map.name %></h4>
-        <% end %>
-      </div>
-    </div>
+<%= render layout: "layouts/mainbar" do %>
+  <div class="col-md-4 col-sm-4 col-xs-6">
+    <% if @map.user == current_user %>
+      <h4><i class="fa fa-map lblue"></i> Editing: <%= @map.name %></h4>
+    <% end %>
   </div>
-</div>
-<!-- Mainbar head ends -->
+  <div class="col-md-4 col-sm-4 col-xs-6"></div>
+  <div class="col-md-4 col-sm-4 col-xs-6"></div>
+<% end %>
 
 <%= render partial: "form", locals: {map: @map} %>

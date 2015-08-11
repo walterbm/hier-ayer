@@ -1,5 +1,3 @@
-<%= render partial: "mainbar_users", locals: {user: @user} %>
-
 <% if @user == current_user %>
   <%= render partial: "private_profile" %>
 <% else %>
