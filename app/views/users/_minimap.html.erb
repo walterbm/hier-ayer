@@ -1,0 +1,10 @@
+<div class="sidemaps col-md-3">
+  <% user.maps.each do |map| %>
+    <a href="/maps/<%= map.id %>"><div class="minimap" id="map-<%= map.id %>">
+      <script>
+         minimap = new MakeMap("<%= map_geojson_path(map) %>","minimap","<%= map.id %>");
+      </script>
+      <div class="title"><p><%= map.name %></p></div>
+    </div></a>
+  <% end %>
+</div>
