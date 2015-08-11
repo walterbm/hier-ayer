@@ -6,4 +6,7 @@ class Moment < ActiveRecord::Base
   attr_accessor :delete_image
   before_validation { image.clear if delete_image == '1'}
 
+  # def get_instagram_photos
+  #   @photos = Instagram.new
+  # end
 end

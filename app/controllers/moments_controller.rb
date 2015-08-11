@@ -8,6 +8,7 @@ class MomentsController < ApplicationController
   def update
     moment = Moment.find(params[:id])
     moment.update(moment_params)
+     
 
     redirect_to map_path(moment.map)
   end
@@ -18,6 +19,10 @@ class MomentsController < ApplicationController
     moment.delete
 
     redirect_to map_path(map)
+  end
+
+  def instagram_photos
+    @photos = Instagram.new
   end
 
   private

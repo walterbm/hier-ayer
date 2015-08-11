@@ -10,4 +10,5 @@ class Map < ActiveRecord::Base
       self.save
     end
   end
+
 end
