@@ -16,6 +16,12 @@
     <% current_user.maps.each do |map| %>
       <li class="mapListItem" ><i class="fa fa-angle-double-right"></i>  <%= link_to map.name, map_path(map) %></li>
     <% end %>
+
+    <%= form_tag("/maps") do %>
+      <%= label_tag('map[name]', "Name") %>
+      <%= text_field_tag 'map[name]', "Add A Map!", :class => 'input-medium' %></li>
+      <%= submit_tag "Make Map!", :id => "createmap", class: "btn btn-info btn-large"%>
+    <% end %>
   </ul>
 </li>
 <!-- Mainmenu with submenu -->
@@ -24,9 +30,17 @@
   <!-- Submenu -->
   <ul class="list-unstyled">
     <% current_user.friends.each do |friend| %>
-      <li><i class="fa fa-angle-double-right"></i>  <%= link_to friend.name, user_path(friend) %></li>
+    <li>
+    <%=image_tag friend.avatar.url(:thumb), :class => "img-responsive img-circle-frfo"%>
+    <%= link_to friend.name, user_path(friend) %>
+    </li>
     <% end %>
+    <%= form_tag(user_friends_path(current_user)) do %>
+    <li><%= text_field_tag :friend_name, "Find People to Follow!", :class => 'input-medium' %></li>
+    <%= button_tag "Follow!", class: "btn btn-info btn-large"%>
+  <% end %>
   </ul>
+    
 </li>
 <!-- Mainmenu with submenu -->
 <li class="has_submenu">
@@ -34,7 +48,8 @@
   <!-- Submenu -->
   <ul class="list-unstyled">
     <% current_user.followers.each do |follower| %>
-      <li><i class="fa fa-angle-double-right"></i>  <%= link_to follower.name, user_path(follower) %></li>
+      <%=image_tag follower.avatar.url(:thumb), :class => "img-responsive img-circle-frfo"%>
+      <%= link_to follower.name, user_path(follower) %>
     <% end %>
   </ul>
 </li>
