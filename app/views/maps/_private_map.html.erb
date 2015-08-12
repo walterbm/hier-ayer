@@ -27,12 +27,12 @@
     <div class="widget-body collapse" id="collapseExample">
       <%= form_for(@map.moments.build, :html => {:class => "ui-element-container form-inline"}) do |f| %>
         <div class="form-group input-group input-group-sm">
-            <%= f.text_field :memo, :class => 'form-control', :placeholder => 'create a new moment' %>
-            <%= f.file_field :image, :class => 'form-control' %>
-            <%= f.hidden_field :latitude %>
-            <%= f.hidden_field :longitude %>
-            <%= f.hidden_field :map_id, value: @map.id %>
-            <%= f.button "New Moment", :class => "btn btn-info btn-block", :id => "submit" %>
+          <%= f.text_area :memo, :class => 'form-control', :placeholder => 'write about your moment' %>
+          <%= f.file_field :image, :class => 'form-control' %>
+          <%= f.hidden_field :latitude %>
+          <%= f.hidden_field :longitude %>
+          <%= f.hidden_field :map_id, value: @map.id %>
+          <%= f.button "New Moment", :class => "btn btn-info btn-block", :id => "submit" %>
         </div>
       <% end %>
     </div>

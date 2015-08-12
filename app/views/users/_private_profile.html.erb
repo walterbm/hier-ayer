@@ -10,23 +10,3 @@
 
 <%= render partial: "bigmap", locals: {user: current_user} %>
 <%= render partial: "minimap", locals: {user: current_user} %>
-
-<h3>Create a New Map</h3>
-<%= form_tag("/maps") do %>
-  <%= label_tag('map[name]', "Name") %>
-  <%= text_field_tag('map[name]') %>
-<%= submit_tag "Create Map", :id => "createmap" %>
-<% end %>
-
-<%= form_tag(user_friends_path(@user)) do %>
-  <%= text_field_tag :friend_name %>
-  <%= submit_tag "Find People to Follow!" %>
-<% end %>
-
-
-<p> ~ Test Code Please Ignore ~ </p>
-<ul>
-<% User.all.each do |user| %>
-<li><%= user.name %></li>
-<% end %> 
-</ul>
