@@ -52,4 +52,19 @@
 <li><%= link_to destroy_user_session_path, :method => :delete do %>
   <i class="fa fa-sign-out"></i>
   Sign Out
-<% end %></li>         
+<% end %></li>
+<li><a href="<%= root_path %>"><i class="fa fa-comment"></i>Feed </a></li>
+<div class="feed-container">
+  <div class="feed-content">
+    <ul class="feed-ul">
+      <% activity_feed.each do |activity| %>
+        <span class="feed-time"><%= time_ago_in_words(activity.created_at) %>:</span>
+
+        <li> <%= link_to user_path(activity.user) do %>
+                <%=image_tag activity.user.avatar.url(:thumb), :class => "img-responsive img-circle-frfo"%>
+            <% end %>
+        <%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity: activity %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

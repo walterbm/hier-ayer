@@ -154,3 +154,24 @@ textarea{
 .widget-body{
   background-color: #F2F2F2;
 }
+
+.feed-container{
+  min-height: 300px;
+  max-height: 380px;
+  overflow-x: auto;
+  direction: rtl;
+}
+.feed-content{
+  direction: ltr;
+}
+
+.sidebar .side-nav .feed-ul{
+  margin: 0 0 0em 1.1em;
+  a{
+    color: #32c8de;
+  }
+}
+
+.feed-time{
+  font-size: 11px;
+}

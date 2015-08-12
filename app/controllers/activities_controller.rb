@@ -1,7 +1,2 @@
-class ActivitiesController < ApplicationController
-
-  def index
-    @activities = Activity.feed
-  end
-  
+class ActivitiesController < ApplicationController  
 end

@@ -18,7 +18,7 @@
 
 $(function() {
     var windowHeight = window.innerHeight - 70;
-    $("#map-wrapper").css('height', windowHeight+'px');
-    $(".sidemaps").css('height', windowHeight+'px');
-    $(".momentlist").css('height', windowHeight+'px');
+    $("#map-wrapper, .sidemaps, .momentlist").css('height', windowHeight+'px');
+    var feedBarHeight = window.innerHeight - 300;
+    $(".feed-container").css('max-height', feedBarHeight+'px');
 });

@@ -1,4 +1,4 @@
-<% if activity.trackable %>
+<% if activity.trackable && activity.trackable.map %>
   updated a moment on <%= link_to activity.trackable.map.name, activity.trackable.map %>
 <% else %>
   updated a moment that has been deleted
