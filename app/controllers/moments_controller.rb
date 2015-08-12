@@ -1,6 +1,14 @@
 class MomentsController < ApplicationController
   before_filter :authenticate_user!
   
+  def create
+    map = current_user.maps.find(map_params)
+    moment = map.moments.build(moment_params)
+    map.save
+    
+    redirect_to map_path(map)
+  end
+
   def edit
     @moment = Moment.find(params[:id])
   end
@@ -26,6 +34,10 @@ class MomentsController < ApplicationController
   end
 
   private
+
+    def map_params
+      params.require(:moment).permit(:map_id)[:map_id]
+    end
 
     def moment_params
       params.require(:moment).permit(:memo, :latitude, :longitude, :image, :delete_image)

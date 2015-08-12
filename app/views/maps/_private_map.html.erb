@@ -25,14 +25,13 @@
       <div class="clearfix"></div>
     </div>
     <div class="widget-body collapse" id="collapseExample">
-      <%= form_for(@map, :html => {:class => "ui-element-container form-inline"}) do |f| %>
+      <%= form_for(@map.moments.build, :html => {:class => "ui-element-container form-inline"}) do |f| %>
         <div class="form-group input-group input-group-sm">
-          <%= f.fields_for @map.moments.build, html: { multipart: true } do |moment_f| %>
-            <%= moment_f.text_field :memo, :class => 'form-control', :placeholder => 'create a new moment' %>
-            <%= moment_f.file_field :image, :class => 'form-control' %>
-            <%= moment_f.hidden_field :latitude %>
-            <%= moment_f.hidden_field :longitude %>
-          <% end %>
+            <%= f.text_field :memo, :class => 'form-control', :placeholder => 'create a new moment' %>
+            <%= f.file_field :image, :class => 'form-control' %>
+            <%= f.hidden_field :latitude %>
+            <%= f.hidden_field :longitude %>
+            <%= f.hidden_field :map_id, value: @map.id %>
             <%= f.button "New Moment", :class => "btn btn-info btn-block", :id => "submit" %>
         </div>
       <% end %>
@@ -66,8 +65,8 @@
 <script>
   $("#submit").val("Automagical ...").prop('disabled', true);
   getCoordinates(function(latitude,longitude){
-    $("#map_moment_latitude").val(latitude);
-    $("#map_moment_longitude").val(longitude);
+    $("#moment_latitude").val(latitude);
+    $("#moment_longitude").val(longitude);
     $("#submit").val("Create a New Moment").prop('disabled', false);
   });
 </script>
