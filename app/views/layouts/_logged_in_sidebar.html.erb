@@ -50,8 +50,10 @@
   <!-- Submenu -->
   <ul class="list-unstyled">
     <% current_user.followers.each do |follower| %>
+    <li>
       <%=image_tag follower.avatar.url(:thumb), :class => "img-responsive img-circle-frfo"%>
       <%= link_to follower.name, user_path(follower) %>
+    </li>  
     <% end %>
   </ul>
 </li>
