@@ -1,26 +1,18 @@
-<li><a href="<%= root_path %>"><i class="fa fa-home"></i> Home </a></li>
-<!-- Mainmenu with submenu -->
-<li class="has_submenu">
-  <a href="#"><i class="fa fa-user"></i> Profile <span id="submenu" class="nav-caret fa fa-caret-down"></span></a>
-  <!-- Submenu -->
-  <ul class="list-unstyled">
-    <li><i class="fa fa-angle-double-right"></i>  <%= link_to "View Your Profile", user_path(current_user) %></li>
-    <li><i class="fa fa-angle-double-right"></i>  <%= link_to "Edit Info", edit_user_registration_path %></li>
-  </ul>
-</li>
 <!-- Mainmenu with submenu -->
 <li class="has_submenu">
   <a href="#"><i class="fa fa-map-o"></i> Maps <span class="badge badge-info pull-right"><%= current_user.maps.count %></span><span id="submenu" class="nav-caret fa fa-caret-down"></span></a>
   <!-- Submenu -->
   <ul class="list-unstyled">
     <%= form_tag(("/maps"), :html => {:class => "ui-element-container form-inline"}) do %>
-      <li><div class="form-group input-group input-group-sm">
+      <div class="input-group input-group-sm">
         <%= text_field_tag 'map[name]', nil, :class => 'form-control', :placeholder => 'Create Map'%>
         <span class="input-group-btn"><%= submit_tag "+", :id => "createmap", :class => "btn btn-info" %></span>
-      </div></li>
+      </div>
     <% end %>
     <% current_user.maps.each do |map| %>
-      <li class="mapListItem" ><i class="fa fa-angle-double-right"></i>  <%= link_to map.name, map_path(map) %></li>
+      <li 
+      class="mapListItem" ><i class="fa fa-angle-double-right"></i>  
+      <%= link_to map.name, map_path(map) %></li>
     <% end %>
   </ul>
 </li>
@@ -30,7 +22,7 @@
   <!-- Submenu -->
   <ul class="list-unstyled">
     <%= form_tag(user_friends_path(current_user), :html => {:class => "ui-element-container form-inline"}) do %>
-      <li><div class="form-group input-group input-group-sm">
+      <li><div class="input-group input-group-sm">
         <%= text_field_tag :friend_name, nil, :class => 'form-control', :placeholder => 'Follow' %>
         <span class="input-group-btn"><%= submit_tag "+", :class => "btn btn-info" %></span>
       </div></li>
