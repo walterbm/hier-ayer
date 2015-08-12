@@ -16,11 +16,11 @@
     <% current_user.maps.each do |map| %>
       <li class="mapListItem" ><i class="fa fa-angle-double-right"></i>  <%= link_to map.name, map_path(map) %></li>
     <% end %>
-
-    <%= form_tag("/maps") do %>
-      <%= label_tag('map[name]', "Name") %>
-      <%= text_field_tag 'map[name]', "Add A Map!", :class => 'input-medium' %></li>
-      <%= submit_tag "Make Map!", :id => "createmap", class: "btn btn-info btn-large"%>
+      <%= form_tag(("/maps"), :html => {:class => "ui-element-container form-inline"}) do %>
+      <li><div class="form-group input-group input-group-sm">
+      <%= text_field_tag 'map[name]', nil, :class => 'form-control', :placeholder => 'Add A Map!'%>
+        <span class="input-group-btn"><%= submit_tag "+", :id => "createmap", :class => "btn btn-info" %></span>
+      </div></li>
     <% end %>
   </ul>
 </li>
@@ -35,12 +35,14 @@
     <%= link_to friend.name, user_path(friend) %>
     </li>
     <% end %>
-    <%= form_tag(user_friends_path(current_user)) do %>
-    <li><%= text_field_tag :friend_name, "Find People to Follow!", :class => 'input-medium' %></li>
-    <%= button_tag "Follow!", class: "btn btn-info btn-large"%>
-  <% end %>
+    <%= form_tag(user_friends_path(current_user), :html => {:class => "ui-element-container form-inline"}) do %>
+      <li><div class="form-group input-group input-group-sm">
+        <%= text_field_tag :friend_name, nil, :class => 'form-control', :placeholder => 'Follow...' %>
+        <span class="input-group-btn"><%= submit_tag "Follow!", :class => "btn btn-info" %></span>
+      </div></li>
+    <% end %>
   </ul>
-    
+
 </li>
 <!-- Mainmenu with submenu -->
 <li class="has_submenu">
