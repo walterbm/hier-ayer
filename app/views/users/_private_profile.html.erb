@@ -3,7 +3,8 @@
   <div class="col-md-4 col-sm-4 col-xs-6"></div>
   <div class="col-md-4 col-sm-4 col-xs-6">
     <div class="pull-right">
-      <h4>Your Profile <i class="fa fa-user lblue"></i></h4>
+      <h4 class="user-profile-text">Your Profile <i class="fa fa-user lblue"></i></h4>
+      <%= link_to "edit", edit_user_registration_path, class: "user-edit-link" %>
     </div>
   </div>
 <% end %>

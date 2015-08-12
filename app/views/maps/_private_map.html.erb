@@ -1,7 +1,7 @@
 <%= render layout: "layouts/mainbar" do %>
   <div class="col-md-4 col-sm-4 col-xs-6">
-      <h4><i class="fa fa-map lblue"></i> Your Map: <%= @map.name %></h4>
-      <%= link_to "Edit Map", edit_map_path(@map) %> <span class="link-divider">|</span> <%= link_to "Delete Map", map_path(@map), method: :delete %>
+      <h4 class="private-map-text"><i class="fa fa-map lblue"></i> Your Map: <%= @map.name %></h4>
+      <%= link_to "edit", edit_map_path(@map) %> <span class="link-divider">|</span> <%= link_to "delete", map_path(@map), method: :delete %>
   </div>
   <div class="col-md-4 col-sm-4 col-xs-6"></div>
   <div class="col-md-4 col-sm-4 col-xs-6">
