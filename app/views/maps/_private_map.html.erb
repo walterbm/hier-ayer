@@ -3,6 +3,7 @@
       <h4><i class="fa fa-map lblue"></i> Your Map: <%= @map.name %></h4>
       <%= link_to "Edit Map", edit_map_path(@map) %> <span class="link-divider">|</span> <%= link_to "Delete Map", map_path(@map), method: :delete %>
   </div>
+  <div class="col-md-4 col-sm-4 col-xs-6"></div>
   <div class="col-md-4 col-sm-4 col-xs-6">
     <p>Share This Map with a Friend</p>
     <%= form_tag(map_send_link_to_friend_path(@map), :html => {:class => "ui-element-container form-inline"}) do %>
@@ -17,26 +18,27 @@
 
 <%= render partial: "map", locals: {url: map_geojson_path(@map), action: "map#show"} %>
 
-<div class="col-md-4" style="padding-left:5px;padding-right:5px">
-<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-</button>
-<div class="collapse" id="collapseExample">
-  <div class="well">
-    <%= form_for(@map, :html => {:class => "ui-element-container form-inline"}) do |f| %>
-      <div class="form-group input-group input-group-sm">
-        <span class="input-group-btn"><%= f.button "New Moment", :class => "btn btn-info", :id => "submit" %></span>
-        <%= f.fields_for @map.moments.build, html: { multipart: true } do |moment_f| %>
-          <%= moment_f.text_field :memo, :class => 'form-control', :placeholder => 'create a new moment' %>
-          <%= moment_f.file_field :image, :class => 'form-control' %>
-          <%= moment_f.hidden_field :latitude %>
-          <%= moment_f.hidden_field :longitude %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-</div>
-
 <div class="momentlist col-md-4" style="padding-left:5px;padding-right:5px">
+  <div class="widget">
+    <div class="widget-head br-lblue" data-toggle="collapse" data-target="#collapseExample">
+      <h3 class= "pull-left"><i class= "fa fa-plus"></i> Add New Moment</h3>
+      <div class="clearfix"></div>
+    </div>
+    <div class="widget-body collapse" id="collapseExample">
+      <%= form_for(@map, :html => {:class => "ui-element-container form-inline"}) do |f| %>
+        <div class="form-group input-group input-group-sm">
+          <%= f.fields_for @map.moments.build, html: { multipart: true } do |moment_f| %>
+            <%= moment_f.text_field :memo, :class => 'form-control', :placeholder => 'create a new moment' %>
+            <%= moment_f.file_field :image, :class => 'form-control' %>
+            <%= moment_f.hidden_field :latitude %>
+            <%= moment_f.hidden_field :longitude %>
+          <% end %>
+            <%= f.button "New Moment", :class => "btn btn-info btn-block", :id => "submit" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
   <% @map.moments.each do |moment| %>
     <% if moment.persisted? %>
       <div class="widget">
