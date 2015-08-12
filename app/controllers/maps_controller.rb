@@ -33,7 +33,7 @@ class MapsController < ApplicationController
 
   def update
     map = current_user.maps.find(params[:id])
-    map.update_all(map_params)
+    map.update(map_params)
     track_activity(map)
     
     redirect_to map_path(map)
@@ -70,6 +70,6 @@ class MapsController < ApplicationController
   
   private
     def map_params
-      params.require(:map).permit(:name, moment: [:memo, :latitude, :longitude, :image])
+      params.require(:map).permit(:name)
     end
 end
