@@ -47,6 +47,9 @@ gem 'omniauth'
 
 gem 'omniauth-instagram'
 
+gem 'omniauth-twitter'
+
+
 # Geocode Latitude and Longitude
 gem 'geocoder'
 
