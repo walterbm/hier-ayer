@@ -3,20 +3,7 @@ var html = '<div class="widget"><div class="widget-head br-lblue"><% if Geocoder
 
 $('.momentlist').append(html);
 
-debugger;
-var geojson = [{
-  type: 'Feature',
-  geometry: {
-    type: 'Point',
-    coordinates: [<%= @moment.longitude %>, <%= @moment.latitude %>]
-  },
-  properties: {
-    'description': '<%= @moment.memo %>',
-    'image': '<%= @moment.image.url %>',
-    'marker-color': '#15b3d9',
-    'marker-symbol': 'star-stroked',
-    'marker-size': 'medium'
-  }
-}]
-debugger; 
-map.myLayer.setGeoJSON(geojson);
+map.getData('<%= map_geojson_path(@moment.map) %>', function(){
+  map.addMapShowContent();
+  map.attachMapShowListeners();
+});
