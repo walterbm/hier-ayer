@@ -20,8 +20,8 @@
 <li class="has_submenu">
   <a href="#"><i class="fa fa-heart"></i> Following <span class="badge badge-info pull-right"><%= current_user.friends.count %></span><span id="submenu" class="nav-caret fa fa-caret-down"></span></a>
   <!-- Submenu -->
-  <ul class="list-unstyled">
-    <%= form_tag(user_friends_path(current_user), :html => {:class => "ui-element-container form-inline"}) do %>
+  <ul id= "following" class="list-unstyled">
+    <%= form_tag(user_friends_path(current_user), remote: true, :html => {:class => "ui-element-container form-inline"}) do %>
       <li><div class="input-group input-group-sm">
         <%= text_field_tag :friend_name, nil, :class => 'form-control', :placeholder => 'Follow' %>
         <span class="input-group-btn"><%= submit_tag "+", :class => "btn btn-info" %></span>
@@ -38,7 +38,7 @@
 </li>
 <!-- Mainmenu with submenu -->
 <li class="has_submenu">
-  <a href="#"><i class="fa fa-users"></i> Followers <span class="badge badge-info pull-right"><%= current_user.followers.count %></span><span id="submenu" class="nav-caret fa fa-caret-down"></span></a>
+  <a href="#"><i="fa fa-users"></i> Followers <span class="badge badge-info pull-right"><%= current_user.followers.count %></span><span id="submenu" class="nav-caret fa fa-caret-down"></span></a>
   <!-- Submenu -->
   <ul class="list-unstyled">
     <% current_user.followers.each do |follower| %>
