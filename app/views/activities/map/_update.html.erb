@@ -1,1 +1,5 @@
-updated <%= link_to activity.trackable.name, activity.trackable %>
+<% if activity.trackable %>
+  updated the map <%= link_to activity.trackable.name, activity.trackable %>
+<% else %>
+  updated a map that has been deleted
+<% end %>

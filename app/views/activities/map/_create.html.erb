@@ -1,1 +1,6 @@
-created a <%= link_to activity.trackable.name, activity.trackable %>
+<% if activity.trackable %>
+  created the map <%= link_to activity.trackable.name, activity.trackable %>
+<% else %>
+  created a map that has been deleted
+<% end %>
+
