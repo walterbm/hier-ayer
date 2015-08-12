@@ -1,4 +1,4 @@
-<% if activity.trackable %>
+<% if activity.trackable && activity.trackable.map %>
   created a moment on <%= link_to activity.trackable.map.name, activity.trackable.map %>
 <% else %>
   created a moment that has been deleted

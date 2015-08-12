@@ -1,5 +1,5 @@
 <% if activity.trackable %>
-  created the map <%= link_to activity.trackable.name, activity.trackable %>
+  created the map <%= link_to activity.trackable.name, activity.trackable, class: "feed-link" %>
 <% else %>
   created a map that has been deleted
 <% end %>

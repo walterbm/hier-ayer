@@ -1,5 +1,8 @@
 <% if activity.trackable %>
-  is now following <%= link_to activity.trackable.name, activity.trackable %>
+  is following 
+    <%= link_to user_path(activity.trackable) do %>
+      <%=image_tag activity.trackable.avatar.url(:thumb), :class => "img-responsive img-circle-frfo"%>
+    <% end %>
 <% else %>
   was following a user that has left
 <% end %>

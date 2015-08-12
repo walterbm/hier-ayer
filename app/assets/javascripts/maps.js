@@ -90,9 +90,12 @@ MakeMap.prototype.getData = function(url,callback){
   var self = this;
   $.get(url, function(data) {
     if (data.length === 0) {
+      debugger;
+      // HARDCODE LAT/LONG WHEN MAP IS EMPTY TO AVOID MULTIPLE CALLS IN USER#SHOW
       getCoordinates(function(latitude,longitude){
         self.map.setView([latitude,longitude],13);
       });
+      // self.map.setView([40.7050, -74.0136],13);
     }
     else{
       self.myLayer.setGeoJSON({
