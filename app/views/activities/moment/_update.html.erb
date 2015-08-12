@@ -1,1 +1,5 @@
-updated a <%= link_to activity.trackable_type.downcase, activity.trackable %> on the map <%= activity.trackable.map.name %>
+<% if activity.trackable %>
+  updated a moment on <%= link_to activity.trackable.map.name, activity.trackable.map %>
+<% else %>
+  updated a moment that has been deleted
+<% end %>

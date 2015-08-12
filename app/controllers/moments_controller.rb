@@ -5,6 +5,7 @@ class MomentsController < ApplicationController
     map = current_user.maps.find(map_params)
     moment = map.moments.build(moment_params)
     map.save
+    track_activity(moment)
     
     redirect_to map_path(map)
   end

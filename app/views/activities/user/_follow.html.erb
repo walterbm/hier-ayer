@@ -1,0 +1,5 @@
+<% if activity.trackable %>
+  is now following <%= link_to activity.trackable.name, activity.trackable %>
+<% else %>
+  was following a user that has left
+<% end %>

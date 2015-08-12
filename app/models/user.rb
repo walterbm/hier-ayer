@@ -58,6 +58,7 @@ class User < ActiveRecord::Base
       "Already following #{friend_name}"
     elsif user_exists?(friend_name)
       self.friends << User.find_by(name: friend_name)
+      self.activities.create(action: "follow", trackable: User.find_by(name: friend_name))
       "Now following #{friend_name}!"
     else
       "Sorry, no such user"
