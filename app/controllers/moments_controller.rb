@@ -3,10 +3,13 @@ class MomentsController < ApplicationController
   
   def create
     map = current_user.maps.find(map_params)
-    moment = map.moments.build(moment_params)
+    @moment = map.moments.build(moment_params)
     map.save
     
-    redirect_to map_path(map)
+    respond_to do |format|
+      format.html { redirect_to map_path(map) }
+      format.js { }
+    end
   end
 
   def edit
