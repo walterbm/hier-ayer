@@ -25,7 +25,7 @@
       <div class="clearfix"></div>
     </div>
     <div class="widget-body collapse" id="collapseExample">
-      <%= form_for(@map.moments.build, :html => {:class => "ui-element-container form-inline"}) do |f| %>
+      <%= form_for(@map.moments.build, remote: true, :html => {:class => "ui-element-container form-inline", :multipart => true}) do |f| %>
         <div class="form-group input-group input-group-sm">
           <%= f.text_area :memo, :class => 'form-control', :placeholder => 'write about your moment' %>
           <%= f.file_field :image, :class => 'form-control' %>
