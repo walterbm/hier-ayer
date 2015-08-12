@@ -38,7 +38,7 @@
 </li>
 <!-- Mainmenu with submenu -->
 <li class="has_submenu">
-  <a href="#"><i="fa fa-users"></i> Followers <span class="badge badge-info pull-right"><%= current_user.followers.count %></span><span id="submenu" class="nav-caret fa fa-caret-down"></span></a>
+  <a href="#"><i class="fa fa-users"></i> Followers <span class="badge badge-info pull-right"><%= current_user.followers.count %></span><span id="submenu" class="nav-caret fa fa-caret-down"></span></a>
   <!-- Submenu -->
   <ul class="list-unstyled">
     <% current_user.followers.each do |follower| %>
