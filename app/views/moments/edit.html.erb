@@ -1,15 +1,45 @@
+<%= render layout: "layouts/mainbar" do %>
+  <div class="col-md-4 col-sm-4 col-xs-6">
+    <h4><i class="fa fa-map lblue"></i> Editing: moment on <%= link_to @moment.map.name, @moment.map%></h4>
+  </div>
+  <div class="col-md-4 col-sm-4 col-xs-6"></div>
+  <div class="col-md-4 col-sm-4 col-xs-6"></div>
+<% end %>
+
 <%= form_for(@moment) do |f| %>
-  <%= f.label :memo %>
-  <%= f.text_area :memo, rows: "10" %>
-  <%= f.text_field :latitude %>
-  <%= f.text_field :longitude %>
-  <% if @moment.image.exists? %> 
-    <%= link_to image_tag(@moment.image.url(:med)), @moment.image.url %>
-    <%= f.check_box(:delete_image) %>
-    <%= f.label :image, "Delete your image" %>
-  <% end %> 
-  <br>
-  <%= f.label :image, "Choose a file for your image!" %>
-  <%= f.file_field :image %>
-  <%= f.submit %>
+  <div class="field">
+    <%= f.label :memo %>
+    <br>
+    <%= f.text_area :memo, rows: "10" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :latitude %>
+    <br>
+    <%= f.text_field :latitude %>
+  </div>
+
+  <div class="field">
+    <%= f.label :longitude %>
+    <br>
+    <%= f.text_field :longitude %>
+  </div>
+
+  <div class="field">
+    <% if @moment.image.exists? %> 
+      <%= f.label :image %>
+      <%= link_to image_tag(@moment.image.url(:med)), @moment.image.url %>
+      <br>
+      <%= f.check_box(:delete_image) %>
+      <%= f.label :image, "Delete your image" %>
+    <% end %> 
+    <br>
+    <%= f.label :image, "Choose a new file for your image!" %>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <br>
+    <%= f.submit "Update", class: "btn btn-info" %>
+  </div>
 <% end %>
