@@ -6,7 +6,7 @@ class MomentsController < ApplicationController
     @moment = map.moments.build(moment_params)
     map.save
 
-    track_activity(moment)
+    track_activity(@moment)
     
     respond_to do |format|
       format.html { redirect_to map_path(map) }
