@@ -1,6 +1,6 @@
 <%= form_for(@moment) do |f| %>
   <%= f.label :memo %>
-  <%= f.text_field :memo %>
+  <%= f.text_area :memo, rows: "10" %>
   <%= f.text_field :latitude %>
   <%= f.text_field :longitude %>
   <% if @moment.image.exists? %> 
