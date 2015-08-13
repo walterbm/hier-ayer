@@ -11,28 +11,13 @@ class UsersController < ApplicationController
 
   def geojson 
     maps = User.find(params[:user_id]).maps
-    @geojson = Array.new
-    maps.each do |map|
-      map.moments.each do |moment|
-        @geojson << {
-          type: 'Feature',
-          geometry: {
-            type: 'Point',
-            coordinates: [moment.longitude, moment.latitude]
-          },
-          properties: {
-            'title'=> map.name,
-            'description'=> moment.memo,
-            'image'=> moment.image.url,
-            'marker-color'=> '#15b3d9',
-            'marker-symbol'=> 'star-stroked',
-            'marker-size'=> 'medium'
-          }
-        }
+    @geojson = maps.collect do |map|
+      map.moments.collect do |moment|
+        moment.geojson
       end
-    end
+    end.flatten
 
-     render json: @geojson
+    render json: @geojson
   end
 
   def add_friend

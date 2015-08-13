@@ -133,7 +133,7 @@ MakeMap.prototype.addMapShowContent = function(){
   var self = this;
   self.myLayer.eachLayer(function(layer) {
     var content;
-    if(layer.feature.properties.image == "/images/original/missing.png"){
+    if(layer.feature.properties.image === null){
       content = '<h1>'+ layer.feature.properties.description +'<\/h1>';
     }
     else{
@@ -153,7 +153,7 @@ MakeMap.prototype.addUserShowContent = function(){
   var self = this;
   self.myLayer.eachLayer(function(layer) {
     var content;
-    if(layer.feature.properties.image == "/images/original/missing.png"){
+    if(layer.feature.properties.image === null){
       content = '<h1><b>' + layer.feature.properties.title + '</b></h1>' + '<p>'+ layer.feature.properties.description +'</p>';
     }
     else{
@@ -210,7 +210,7 @@ MakeMap.prototype.attachUserShowJqueryListeners = function(){
         });
         self.myMomentLayer.eachLayer(function(layer) {
           var content;
-          if(layer.feature.properties.image == "/images/original/missing.png"){
+          if(layer.feature.properties.image === null){
             content = '<h2>'+ layer.feature.properties.description +'<\/h2>';
           }
           else{

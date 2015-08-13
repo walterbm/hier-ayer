@@ -47,25 +47,11 @@ class MapsController < ApplicationController
   
   def geojson
     map = Map.find(params[:map_id])
-     @geojson = Array.new
-      map.moments.each do |moment|
-        @geojson << {
-          type: 'Feature',
-          geometry: {
-            type: 'Point',
-            coordinates: [moment.longitude, moment.latitude]
-          },
-          properties: {
-            'description' => moment.memo,
-            'image' => moment.image.url,
-            'marker-color' => '#15b3d9',
-            'marker-symbol' => 'star-stroked',
-            'marker-size' => 'medium'
-          }
-        }
-      end
+    @geojson = map.moments.collect do |moment|
+      moment.geojson
+    end
 
-     render json: @geojson
+    render json: @geojson
   end 
   
   private
