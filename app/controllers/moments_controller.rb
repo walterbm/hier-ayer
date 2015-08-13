@@ -42,8 +42,13 @@ class MomentsController < ApplicationController
     end
   end
 
-  def instagram_photos
-    @photos = Instagram.new
+  def instagram_photo
+    moment = Moment.find(params[:id])
+    @photo = InstagramWrapper.new(current_user).recent_pic
+    add_photo = moment.image_from_url(@photo)
+    add_photo.save
+
+    redirect_to map_path(moment.map.id)
   end
 
   private

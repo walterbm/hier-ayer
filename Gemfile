@@ -52,6 +52,8 @@ gem 'omniauth-instagram'
 
 gem 'omniauth-twitter'
 
+gem 'instagram'
+
 
 # Geocode Latitude and Longitude
 gem 'geocoder'
@@ -59,6 +61,7 @@ gem 'geocoder'
 # Enables AJAX file uploads
 gem 'remotipart', '~> 1.2'
 
+gem 'httparty'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

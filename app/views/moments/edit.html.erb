@@ -43,3 +43,11 @@
     <%= f.submit "Update", class: "btn btn-info" %>
   </div>
 <% end %>
+
+    <% if current_user.provider? %>
+    <h1><%= button_to "Add Most Recent Instagram Photo", instagram_photo_path(id: @moment.id) %></h1>
+    <% end %>
+
+
+
+

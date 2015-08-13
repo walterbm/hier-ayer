@@ -101,6 +101,8 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.9.2)
+      faraday (>= 0.7.4, < 0.10)
     ffi (1.9.10)
     figaro (1.1.1)
       thor (~> 0.14)
@@ -127,7 +129,13 @@ GEM
       rspec (>= 2.99.0, < 4.0)
     hashie (3.4.2)
     httpclient (2.6.0.1)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
+    instagram (1.1.5)
+      faraday (>= 0.7, < 0.10)
+      faraday_middleware (>= 0.8, < 0.10)
+      hashie (>= 0.4.0)
+      multi_json (~> 1.0, >= 1.0.3)
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -339,6 +347,8 @@ DEPENDENCIES
   geocoder
   google-analytics-rails
   guard-rspec
+  httparty
+  instagram
   jbuilder (~> 2.0)
   jquery-rails
   omniauth
