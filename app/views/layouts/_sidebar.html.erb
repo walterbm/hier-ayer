@@ -4,7 +4,7 @@
   <div class="sidey">
 
     <!-- Logo -->
-    <div class="logo">
+    <div class="logo" style="padding-top:0">
       <h1><a href="/"><i class="fa fa-map-marker br-lblue"></i></i> Ayer <span>Map Nostalgia</span></a></h1>
     </div>
     
@@ -13,7 +13,7 @@
     <!-- Responsive dropdown -->
     <div class="sidebar-dropdown"><a href="#" class="br-blue"><i class="fa fa-bars"></i></a></div>
     
-    <div class="side-nav">
+    <div class="side-nav" style="padding-top:0">
       <% if user_signed_in? %>
         <%= link_to user_path(current_user) do %>
           <%=image_tag current_user.avatar.url(:thumb), :class => "img-responsive img-circle"%>
