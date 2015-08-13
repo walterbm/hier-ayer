@@ -23,7 +23,7 @@
 
   <% map.moments.each do |moment| %>
     <% if moment.persisted? %>
-      <div class="widget">
+      <div class="widget" id="moment<%= moment.id %>">
         <div class="widget-head br-lblue">
           <% if Geocoder.address("#{moment.latitude},#{moment.longitude}") %>
             <% coord_arr = Geocoder.address("#{moment.latitude},#{moment.longitude}").split(", ") %>
@@ -32,7 +32,7 @@
             <h3 class="pull-left"><i class="fa fa-map-marker"></i> <%= moment.latitude %>, <%= moment.longitude %></h3>
           <% end %>
           <% if current_user == map.user %>
-          <h3 class="pull-right" style="text-align:center;font-size:10px;"><%= link_to "Edit Moment", edit_moment_path(moment) %> | <%= link_to "Delete Moment", moment_path(moment), method: :delete %></h3>
+          <h3 class="pull-right" style="text-align:center;font-size:10px;"><%= link_to "Edit Moment", edit_moment_path(moment) %> | <%= link_to "Delete Moment", moment_path(moment), {method: :delete, remote: true} %></h3>
           <% end %>
           <div class="clearfix"></div>
         </div>
@@ -45,9 +45,3 @@
   <% end %>
 
 </div>
-
-
-
-  
-
-  
