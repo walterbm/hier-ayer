@@ -83,6 +83,7 @@ form{
 
   .logo{
     border: 0;
+    padding-top: 0;
   }
 }
 
@@ -93,6 +94,10 @@ form{
   ul li a{
     color: white;
   }
+}
+
+.side-nav {
+  padding-top: 0;
 }
 
 .img-circle {
@@ -153,6 +158,8 @@ textarea{
 
 .widget-body{
   background-color: #F2F2F2;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .feed-container{
