@@ -1,5 +1,5 @@
 class MapsController < ApplicationController
-  before_filter :authenticate_user!, except: [:show]
+  before_filter :authenticate_user!, except: [:show, :geojson]
   
   def new
     @map = Map.new
@@ -50,11 +50,15 @@ class MapsController < ApplicationController
   
   def geojson
     map = Map.find(params[:map_id])
-    @geojson = map.moments.collect do |moment|
-      moment.geojson
-    end
+    if map.publicly_available? || user_signed_in?
+      @geojson = map.moments.collect do |moment|
+        moment.geojson
+      end
 
-    render json: @geojson
+      render json: @geojson
+    else
+      redirect_to root_path
+    end
   end 
   
   private
