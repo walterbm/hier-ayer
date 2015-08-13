@@ -1,0 +1,11 @@
+<span class="feed-time"><%= time_ago_in_words(activity.created_at) %>:</span>
+
+<li> 
+
+<%= link_to user_path(activity.user) do %>
+  <%=image_tag activity.user.avatar.url(:thumb), :class => "img-responsive img-circle-frfo"%>
+<% end %>
+
+<%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity: activity %>
+
+</li>

@@ -43,6 +43,9 @@ gem "font-awesome-rails"
 # Postgres Database
 gem 'pg'
 
+# Used for async content push to client
+gem 'pusher'
+
 gem 'omniauth'
 
 gem 'omniauth-instagram'
