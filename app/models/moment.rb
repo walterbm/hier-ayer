@@ -11,4 +11,22 @@ class Moment < ActiveRecord::Base
   
   #Geocoder
   reverse_geocoded_by :latitude, :longitude
+
+  def build_geojson
+    self.update(geojson: {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [self.longitude, self.latitude]
+        },
+        properties: {
+          'description' => self.memo,
+          'image' => self.image.exists? ? self.image.url: nil,
+          'marker-color' => '#15b3d9',
+          'marker-symbol' => 'star-stroked',
+          'marker-size' => 'medium'
+        }
+      })
+  end
+
 end

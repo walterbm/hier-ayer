@@ -4,6 +4,7 @@ class MomentsController < ApplicationController
   def create
     map = current_user.maps.find(map_params)
     @moment = map.moments.build(moment_params)
+    @moment.build_geojson
     map.save
 
     track_activity(@moment)
@@ -21,6 +22,7 @@ class MomentsController < ApplicationController
   def update
     moment = Moment.find(params[:id])
     moment.update(moment_params)
+    moment.build_geojson
     
     track_activity(moment)
 

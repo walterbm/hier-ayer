@@ -1,30 +1,18 @@
 class WelcomeController < ApplicationController
 
-  def index
-    
+  def index 
   end
   
   def geojson
-    @geojson = Array.new
-    users = User.all
-    users.each do |user|
-      user.maps.each do |map|
-        map.moments.each do |moment|
-          @geojson << {
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              coordinates: [moment.longitude, moment.latitude]
-            }
-          }
+    @geojson = User.all.collect do |user|
+      user.maps.collect do |map|
+        map.moments.collect do |moment|
+          moment.geojson.except!("properties")
         end
       end
-    end
+    end.flatten(2)
 
-     render json: @geojson
-  end
-
-  def theme_test
+    render json: @geojson
   end
   
 end
