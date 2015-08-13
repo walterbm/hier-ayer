@@ -4,6 +4,7 @@ $('.momentlist').append(html);
 
 map.getData('<%= map_geojson_path(@moment.map) %>', function(){
   map.addMapShowContent();
+  $('path.leaflet-clickable').each(function(i, line){line.remove()});
   map.animateLine();
   map.attachMapShowListeners();
 });
