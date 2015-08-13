@@ -75,7 +75,7 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  Added AWS configuration variables for Heroku and Amazon
+  # Added AWS configuration variables for Heroku and Amazon
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {

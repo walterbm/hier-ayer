@@ -39,7 +39,7 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  Added AWS configuration variables for Heroku and Amazon
+  # Added AWS configuration variables for Heroku and Amazon
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
