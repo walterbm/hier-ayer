@@ -28,11 +28,13 @@ class MomentsController < ApplicationController
   end
 
   def destroy
-    moment = Moment.find(params[:id])
-    map = moment.map
-    moment.delete
-
-    redirect_to map_path(map)
+    @moment = Moment.find(params[:id])
+    map = @moment.map
+    @moment.delete
+    respond_to do |format|
+      format.html { redirect_to map_path(map) }
+      format.js { }
+    end
   end
 
   def instagram_photos

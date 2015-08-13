@@ -1,0 +1,8 @@
+$('#moment<%= @moment.id %>').html('');
+
+map.getData('<%= map_geojson_path(@moment.map) %>', function(){
+  map.addMapShowContent();
+  $('path.leaflet-clickable')[$('path.leaflet-clickable').length - 1].remove();
+  map.animateLine();
+  map.attachMapShowListeners();
+});
