@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :users do
+    post '/follow' => 'users#add_friend_profile'
     get '/friends' => 'users#friends'
     post '/friends' => 'users#add_friend'
     delete '/friends' => 'users#remove_friend'
