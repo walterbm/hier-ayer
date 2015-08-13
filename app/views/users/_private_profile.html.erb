@@ -4,7 +4,9 @@
   <div class="col-md-4 col-sm-4 col-xs-6">
     <div class="pull-right">
       <h4 class="user-profile-text">Your Profile <i class="fa fa-user lblue"></i></h4>
-      <%= link_to "edit", edit_user_registration_path, class: "user-edit-link" %>
+      <%= link_to edit_user_registration_path, class: "user-edit-link" do %>
+        <i class="fa fa-cog"></i>
+      <% end %>
     </div>
   </div>
 <% end %>
