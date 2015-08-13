@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Moment < ActiveRecord::Base
   belongs_to :map
   has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" }
@@ -5,9 +7,11 @@ class Moment < ActiveRecord::Base
   attr_accessor :delete_image
   before_validation { image.clear if delete_image == '1'}
 
-  # def get_instagram_photos
-  #   @photos = Instagram.new
-  # end
+  def image_from_url(url)
+    self.image = URI.parse(url)
+    self.save
+    self.image
+  end
   
   #Geocoder
   reverse_geocoded_by :latitude, :longitude

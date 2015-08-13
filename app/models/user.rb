@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
   has_many :activities
 
-
   has_attached_file :avatar, 
                     :styles => { :thumb => "100x100#" },
                     :default_url => "missing_avatar.jpg"
