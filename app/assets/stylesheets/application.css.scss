@@ -83,6 +83,7 @@ form{
 
   .logo{
     border: 0;
+    padding-top: 0;
   }
 }
 
@@ -93,6 +94,10 @@ form{
   ul li a{
     color: white;
   }
+}
+
+.side-nav {
+  padding-top: 0;
 }
 
 .img-circle {
