@@ -1,6 +1,6 @@
 <!-- Mainmenu with submenu -->
 <li class="has_submenu">
-  <a href="#"><i class="fa fa-map-o"></i> Maps <span class="badge badge-info pull-right"><%= current_user.maps.count %></span><span id="submenu" class="nav-caret fa fa-caret-down"></span></a>
+  <a href="#"><i class="fa fa-map"></i> Maps <span class="badge badge-info pull-right"><%= current_user.maps.count %></span><span id="submenu" class="nav-caret fa fa-caret-down"></span></a>
   <!-- Submenu -->
   <ul class="list-unstyled">
     <%= form_tag(("/maps"), :html => {:class => "ui-element-container form-inline"}) do %>
@@ -53,7 +53,8 @@
   <i class="fa fa-sign-out"></i>
   Sign Out
 <% end %></li>
-<li><a href="<%= root_path %>"><i class="fa fa-comment"></i>Feed </a></li>
+<hr>
+<li><a href="<%= root_path %>"><i class="fa fa-commenting"></i>Feed </a></li>
 <div class="feed-container">
   <div class="feed-content">
     <ul class="feed-ul">

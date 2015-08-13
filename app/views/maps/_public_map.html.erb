@@ -6,29 +6,6 @@
   <div class="col-md-4 col-sm-4 col-xs-6"></div>
 <% end %>
 
-
 <%= render partial: "map", locals: {url: map_geojson_path(@map), action: "map#show"} %>
-<div class="momentlist col-md-4" style="padding-left:5px;padding-right:5px">
-    <% @map.moments.each do |moment| %>
-    <% if moment.persisted? %>
-      <div class="widget">
-        <div class="widget-head br-lblue">
-          <% if Geocoder.address("#{moment.latitude},#{moment.longitude}") %>
-            <% coord_arr = Geocoder.address("#{moment.latitude},#{moment.longitude}").split(", ") %>
-            <h3 class="pull-left"><i class="fa fa-map-marker"></i> <%= "#{coord_arr[1]}, #{coord_arr[2].split(" ")[0]} #{coord_arr[3]}" %></h3>
-          <% else %>
-            <h3 class="pull-left"><i class="fa fa-map-marker"></i> <%= moment.latitude %>, <%= moment.longitude %></h3>
-          <% end %>
-          <h3 class="pull-right" style="text-align:center;font-size:10px;"><%= link_to "Edit Moment", edit_moment_path(moment) %> | <%= link_to "Delete Moment", moment_path(moment), method: :delete %></h3>
-          <div class="clearfix"></div>
-        </div>
-        <div class="widget-body">
-          <% if moment.image.exists? %>
-            <%= link_to image_tag(moment.image.url), moment.image.url %>
-          <% end %>
-          <p><%= moment.memo %></p>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-</div>
+
+<%= render partial: "moment_cards", locals: {map: @map} %>
