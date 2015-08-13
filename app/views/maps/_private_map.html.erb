@@ -6,16 +6,19 @@
   <div class="col-md-4 col-sm-4 col-xs-6"></div>
   <div class="col-md-4 col-sm-4 col-xs-6">
     <div class="col-md-3">
-      <p>Public Map</p>
+      <p class="toggle-map">Public</p>
+      <div class="slideThree">
         <%= form_for(@map, remote: true) do |f| %>
-          <%= f.check_box :publicly_available, :onclick => "$('#edit_map_#{@map.id}').submit()" %>
-        <% end %>
+          <%= f.check_box :publicly_available, :onclick => "$('#edit_map_#{@map.id}').submit()", id: "slideThree" %>
+          <label for="slideThree"></label>
+        <% end %> 
+      </div>
     </div>
     <div class="col-md-9">
     <p>Share This Map with a Friend</p>
       <%= form_tag(map_send_link_to_friend_path(@map), :html => {:class => "ui-element-container form-inline"}) do %>
         <div class="form-group input-group input-group-sm">
-          <%= text_field_tag :friend_email, nil, :class => 'form-control', :placeholder => 'friend@nostalgeo.com' %>
+          <%= text_field_tag :friend_email, nil, :class => 'form-control', :placeholder => 'friend@hier-ayer.com' %>
           <span class="input-group-btn"><%= submit_tag "Send Email", :class => "btn btn-info" %></span>
         </div>
       <% end %>
