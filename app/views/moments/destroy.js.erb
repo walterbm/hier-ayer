@@ -2,7 +2,7 @@ $('#moment<%= @moment.id %>').html('');
 
 map.getData('<%= map_geojson_path(@moment.map) %>', function(){
   map.addMapShowContent();
-  $('path.leaflet-clickable')[$('path.leaflet-clickable').length - 1].remove();
+  $('path.leaflet-clickable').each(function(i, line){line.remove()});
   map.animateLine();
   map.attachMapShowListeners();
 });
