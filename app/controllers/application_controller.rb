@@ -1,3 +1,9 @@
+require 'pusher'
+
+Pusher.app_id = ENV["pusher_app_id"]
+Pusher.key = ENV["pusher_key"]
+Pusher.secret = ENV["pusher_secret"]  
+
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -8,7 +14,10 @@ class ApplicationController < ActionController::Base
   protected
 
   def track_activity(trackable_object)
-    current_user.activities.create(action: params[:action], trackable: trackable_object)
+    activity = current_user.activities.create(action: params[:action], trackable: trackable_object)
+    Pusher['feed_channel'].trigger('feed_event', {
+      activity_id: activity.id
+    })
   end
 
   def configure_permitted_parameters
@@ -17,4 +26,5 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) << :name
     devise_parameter_sanitizer.for(:account_update) << :avatar
   end
+
 end
