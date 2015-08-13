@@ -32,11 +32,14 @@ class MapsController < ApplicationController
   end
 
   def update
-    map = current_user.maps.find(params[:id])
-    map.update(map_params)
-    track_activity(map)
-    
-    redirect_to map_path(map)
+    @map = current_user.maps.find(params[:id])
+    @map.update(map_params)
+    track_activity(@map)
+
+    respond_to do |format|
+      format.html { redirect_to map_path(@map) }
+      format.js { }
+    end
   end
   
   def destroy
@@ -56,6 +59,6 @@ class MapsController < ApplicationController
   
   private
     def map_params
-      params.require(:map).permit(:name)
+      params.require(:map).permit(:name, :publicly_available)
     end
 end
