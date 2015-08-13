@@ -26,7 +26,10 @@ class MomentsController < ApplicationController
     
     track_activity(moment)
 
-    redirect_to map_path(moment.map)
+    respond_to do |format|
+      format.html { redirect_to map_path(moment.map) }
+      format.js { }
+    end
   end
 
   def destroy
