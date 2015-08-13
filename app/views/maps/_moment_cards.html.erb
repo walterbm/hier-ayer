@@ -1,0 +1,53 @@
+<div class="momentlist col-md-4" style="padding-left:5px;padding-right:5px">
+
+<% if current_user == map.user %>
+  <div class="widget">
+    <div class="widget-head br-lblue" data-toggle="collapse" data-target="#collapseExample">
+      <h3 class= "pull-left"><i class= "fa fa-plus"></i> Add New Moment</h3>
+      <div class="clearfix"></div>
+    </div>
+    <div class="widget-body collapse" id="collapseExample">
+      <%= form_for(map.moments.build, remote: true, :html => {:class => "ui-element-container form-inline", :multipart => true}) do |f| %>
+        <div class="form-group input-group input-group-sm">
+          <%= f.text_area :memo, :class => 'form-control', :placeholder => 'write about your moment' %>
+          <%= f.file_field :image, :class => 'form-control' %>
+          <%= f.hidden_field :latitude %>
+          <%= f.hidden_field :longitude %>
+          <%= f.hidden_field :map_id, value: map.id %>
+          <%= f.button "New Moment", :class => "btn btn-info btn-block", :id => "submit" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+  <% map.moments.each do |moment| %>
+    <% if moment.persisted? %>
+      <div class="widget">
+        <div class="widget-head br-lblue">
+          <% if Geocoder.address("#{moment.latitude},#{moment.longitude}") %>
+            <% coord_arr = Geocoder.address("#{moment.latitude},#{moment.longitude}").split(", ") %>
+            <h3 class="pull-left"><i class="fa fa-map-marker"></i> <%= "#{coord_arr[1]}, #{coord_arr[2].split(" ")[0]} #{coord_arr[3]}" %></h3>
+          <% else %>
+            <h3 class="pull-left"><i class="fa fa-map-marker"></i> <%= moment.latitude %>, <%= moment.longitude %></h3>
+          <% end %>
+          <% if current_user == map.user %>
+          <h3 class="pull-right" style="text-align:center;font-size:10px;"><%= link_to "Edit Moment", edit_moment_path(moment) %> | <%= link_to "Delete Moment", moment_path(moment), method: :delete %></h3>
+          <% end %>
+          <div class="clearfix"></div>
+        </div>
+        <div class="widget-body">
+          <%= link_to image_tag(moment.image.url), moment.image.url if moment.image.exists? %>
+          <p><%= moment.memo %></p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>
+
+
+
+  
+
+  
