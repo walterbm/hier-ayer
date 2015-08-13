@@ -3,7 +3,7 @@
   <div class="col-md-4 col-sm-4 col-xs-6"></div>
   <div class="col-md-4 col-sm-4 col-xs-6">
     <div class="pull-right">
-      <h4><%= @user.name.capitalize %>'s Profile <%=image_tag @user.avatar.url(:thumb), :class => "img-responsive img-circle"%></h4>
+      <h4><%= link_to "follow ", user_follow_path(current_user, :friend_id => user.id), method: :post, remote: true%><%= @user.name.capitalize %>'s Profile <%=image_tag @user.avatar.url(:thumb), :class => "img-responsive img-circle"%></h4>
     </div>
   </div>
 <% end %>

@@ -20,10 +20,23 @@ class UsersController < ApplicationController
     render json: @geojson
   end
 
-  def add_friend
-    message = current_user.add_friend(params[:friend_name])
+  def add_friend_profile
+    @friend = User.find(params[:friend_id])
+    message = current_user.add_friend(@friend.name)
+
     flash[:notice] = message
+
+    respond_to do |format|
+      format.html { redirect_to user_path(@friend) }
+      format.js { }
+    end
+
+  end
+
+  def add_friend
     @friend = User.find_by(name: params[:friend_name])
+    message = current_user.add_friend(@friend.name)
+    flash[:notice] = message
     respond_to do |format|
       format.html { redirect_to user_path(@friend) }
       format.js { }
@@ -31,8 +44,8 @@ class UsersController < ApplicationController
   end
 
   def remove_friend
-    current_user.unfriend(params[:friend_id])
     @friend_id = params[:friend_id]
+    current_user.unfriend(@friend_id)
     respond_to do |format|
       format.html { redirect_to user_path(current_user) }
 
