@@ -1,1 +1,3 @@
 $('li #<%=@friend_id%>').remove();
+var count = '<%=current_user.friends.count%>';
+$('#friend-count').text(count);
