@@ -36,22 +36,22 @@ class UsersController < ApplicationController
   end
 
   def add_friend
-  message = current_user.add_friend(params[:friend_name])
-  flash[:notice] = message
-  @friend = User.find_by(name: params[:friend_name])
-  respond_to do |format|
-    format.html { redirect_to user_path(@friend) }
-    format.js { }
+    message = current_user.add_friend(params[:friend_name])
+    flash[:notice] = message
+    @friend = User.find_by(name: params[:friend_name])
+    respond_to do |format|
+      format.html { redirect_to user_path(@friend) }
+      format.js { }
     end
   end
 
   def remove_friend
-  @remove = current_user.unfriend(params[:friend_id])
+    current_user.unfriend(params[:friend_id])
+    @friend_id = params[:friend_id]
+    respond_to do |format|
+      format.html { redirect_to user_path(current_user) }
 
-  respond_to do |format|
-    format.html { redirect_to user_path(current_user) }
-    format.js { }
+      format.js { }
     end
   end
-
 end
