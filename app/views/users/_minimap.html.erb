@@ -4,7 +4,7 @@
       <script>
         new MakeMap("<%= map_geojson_path(map) %>","minimap","<%= map.id %>");
       </script>
-      <div class="title"><p><%= map.name %></p></div>
+      <div class="title"><p class="map-overlay-title"><%= map.name %></p></div>
     </div></a>
   <% end %>
 </div>
