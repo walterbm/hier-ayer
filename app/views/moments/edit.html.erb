@@ -8,22 +8,17 @@
 
 <%= form_for(@moment) do |f| %>
   <div class="field">
-    <%= f.label :memo %>
-    <br>
+    <%= f.label :memo %><br>
     <%= f.text_area :memo, rows: "10" %>
   </div>
 
   <div class="field">
-    <%= f.label :latitude %>
-    <br>
-    <%= f.text_field :latitude %>
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
   </div>
 
-  <div class="field">
-    <%= f.label :longitude %>
-    <br>
-    <%= f.text_field :longitude %>
-  </div>
+  <%= f.hidden_field :latitude %>
+  <%= f.hidden_field :longitude %>
 
   <div class="field">
     <% if @moment.image.exists? %> 
@@ -44,10 +39,6 @@
   </div>
 <% end %>
 
-    <% if current_user.provider? %>
-    <h1><%= button_to "Add Most Recent Instagram Photo", instagram_photo_path(id: @moment.id) %></h1>
-    <% end %>
-
-
-
-
+<% if current_user.provider? %>
+  <h1><%= button_to "Add Most Recent Instagram Photo", instagram_photo_path(id: @moment.id) %></h1>
+<% end %>
