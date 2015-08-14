@@ -11,18 +11,39 @@
 <%= render partial: "bigmap", locals: {user: @user} %>
 <%= render partial: "minimap", locals: {user: @user} %>
 
-<h3>Following:</h3>
-<ul>
-<% @user.friends.each do |friend| %>
-  <li><%= link_to friend.name, user_path(friend) %></li>
-<% end %>
-</ul>
+<div class="momentlist col-md-4" style="padding-left:5px;padding-right:5px">
+  <div class="widget">
+    <div class="widget-head br-lblue" data-toggle="collapse" data-target="#collapseExample">
+      <h3 class= "pull-left"><i class= "fa fa-plus"></i> Following: </h3>
+      <div class="clearfix"></div>
+    </div>
+    <div class="widget-body collapse" id="collapseExample" class= "side-bar">
+      <ul class="list-unstyled">
+      <% @user.friends.each do |friend| %>
+      <%=image_tag friend.avatar.url(:thumb), :class => "img-responsive img-circle-frfo"%>
+      <%= link_to friend.name, user_path(friend) %>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
 
-
-<h3>Followers:</h3>
-<ul>
-<% @user.followers.each do |friend| %>
-  <li><%= link_to friend.name, user_path(friend) %></li>
-<% end %>
-</ul>
+<div class="momentlist col-md-4" style="padding-left:5px;padding-right:5px">
+  <div class="widget">
+    <div class="widget-head br-lblue" data-toggle="collapse" data-target="#collapseExampleTwo">
+      <h3 class= "pull-left"><i class= "fa fa-plus"></i> Followers:</h3>
+      <div class="clearfix"></div>
+    </div>
+    <div class="widget-body collapse" id="collapseExampleTwo">
+      <ul>
+        <li>
+          <% @user.followers.each do |friend| %>
+          <%=image_tag friend.avatar.url(:thumb), :class => "img-responsive img-circle-frfo"%>
+          <%= link_to friend.name, user_path(friend) %>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
 
