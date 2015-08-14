@@ -44,7 +44,7 @@ gem "font-awesome-rails"
 gem 'pg'
 
 # Used for async content push to client
-gem 'pusher'
+gem 'pubnub'
 
 gem 'omniauth'
 
@@ -53,7 +53,6 @@ gem 'omniauth-instagram'
 gem 'omniauth-twitter'
 
 gem 'instagram'
-
 
 # Geocode Latitude and Longitude
 gem 'geocoder'

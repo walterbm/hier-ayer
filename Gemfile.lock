@@ -128,7 +128,8 @@ GEM
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
     hashie (3.4.2)
-    httpclient (2.6.0.1)
+    httparty (0.13.5)
+      json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
     instagram (1.1.5)
@@ -162,6 +163,7 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nenv (0.2.0)
+    net-http-persistent (2.9.4)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     notiffany (0.0.7)
@@ -201,10 +203,10 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pusher (0.14.5)
-      httpclient (~> 2.5)
-      multi_json (~> 1.0)
-      signature (~> 0.1.8)
+    pubnub (3.7.7)
+      eventmachine (~> 1.0)
+      json (~> 1.8)
+      net-http-persistent (~> 2.9)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -289,7 +291,6 @@ GEM
       rubyzip (~> 1.0)
       websocket (~> 1.0)
     shellany (0.0.1)
-    signature (0.1.8)
     simplecov (0.10.0)
       docile (~> 1.1.0)
       json (~> 1.8)
@@ -357,7 +358,7 @@ DEPENDENCIES
   paperclip
   pg
   pry
-  pusher
+  pubnub
   rails (= 4.2.0)
   rails_12factor
   remotipart (~> 1.2)
@@ -372,4 +373,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.10.2
+   1.10.6
