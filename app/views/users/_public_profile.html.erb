@@ -11,8 +11,8 @@
 <%= render partial: "bigmap", locals: {user: @user} %>
 <%= render partial: "minimap", locals: {user: @user} %>
 
-<div class="momentlist col-md-9">
-  <div class="momentlist col-md-6" style="padding-top:5px">
+<div class="col-md-9">
+  <div class="col-md-6" style="padding-top:5px">
     <ul class="list-unstyled">
     <h6><%=@user.name.capitalize%>'s Following:</h6>
     <% @user.friends.each do |friend| %>
@@ -22,7 +22,7 @@
     </ul>
   </div>
 
-  <div class="momentlist col-md-6" style="padding-left:5px;padding-top:5px">
+  <div class="col-md-6" style="padding-left:5px;padding-top:5px">
     <ul class="list-unstyled">
       <li>
       <h6><%=@user.name.capitalize%>'s Followers: </h6>

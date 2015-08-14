@@ -194,14 +194,18 @@ hr{
   border-top: 1px solid rgba(170, 170, 170, 0.5);
 }
 
-.footer {
+footer {
+  text-align:center;
+  right: 15%;
   padding-top: 6px;
   padding-bottom: 6px;
+  a {
+    color: #ADD8E6
+  }
 }
 
-.footer a {
-  color: #ADD8E6
-}
+
+
 #error_explanation{
   width: 50%;
   font-size: 1.1em;
