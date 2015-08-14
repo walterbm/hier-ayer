@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
   
   get '/geojson' => 'welcome#geojson'
+  get '/about' => 'welcome#about'
 
   get '/act/:id' => 'activities#item'
   
