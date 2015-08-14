@@ -22,7 +22,7 @@ MakeMap.prototype.mapShowPage = function(self){
     scrollWheelZoom: false,
     compact: true,
     animate: true,
-    maxZoom: 20
+    maxZoom: 19
   }).setView([0,0],1);
 
   self.myLayer = L.mapbox.featureLayer().addTo(self.map);
@@ -40,7 +40,7 @@ MakeMap.prototype.welcomeIndexPage = function(self){
     scrollWheelZoom: false,
     compact: true,
     animate: true,
-    maxZoom: 20
+    maxZoom: 19
   }).setView([0,0],1);
 
   self.myLayer = L.mapbox.featureLayer();
@@ -56,7 +56,7 @@ MakeMap.prototype.userShowPage = function(self){
     scrollWheelZoom: false,
     compact: true,
     animate: true,
-    maxZoom: 20
+    maxZoom: 19
   }).setView([0,0],1);
 
   self.myLayer = L.mapbox.featureLayer().addTo(self.map);
@@ -78,7 +78,7 @@ MakeMap.prototype.minimaps = function(self){
     dragging: false,
     compact: true,
     animate: true,
-    maxZoom: 20
+    maxZoom: 19
   }).setView([0,0],1);
 
   self.myLayer = L.mapbox.featureLayer().addTo(self.map);
