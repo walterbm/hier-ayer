@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     @friend = User.find(params[:friend_id])
     message = current_user.add_friend(@friend.name)
 
-    flash[:notice] = message
+    flash.now[:notice] = message
 
     respond_to do |format|
       format.html { redirect_to user_path(@friend) }
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   def add_friend
     @friend = User.find_by(name: params[:friend_name])
     message = current_user.add_friend(@friend.name)
-    flash[:notice] = message
+    flash.now[:notice] = message
     respond_to do |format|
       format.html { redirect_to user_path(@friend) }
       format.js { }
