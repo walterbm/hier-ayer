@@ -15,7 +15,10 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, 
                     :styles => { :thumb => "100x100#" },
                     :default_url => "missing_avatar.jpg"
+  has_attached_file :image
+  validates_attachment_presence :avatar
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
 
   def self.from_omniauth(auth)
    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
