@@ -6,6 +6,7 @@ class MapsController < ApplicationController
   end
   
   def create
+    current_user = User.find(session[:id])
     map = current_user.new_map(map_params)
     map.save
     track_activity(map)

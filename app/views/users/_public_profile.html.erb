@@ -11,18 +11,27 @@
 <%= render partial: "bigmap", locals: {user: @user} %>
 <%= render partial: "minimap", locals: {user: @user} %>
 
-<h3>Following:</h3>
-<ul>
-<% @user.friends.each do |friend| %>
-  <li><%= link_to friend.name, user_path(friend) %></li>
-<% end %>
-</ul>
+<div class="momentlist col-md-9">
+  <div class="momentlist col-md-6" style="padding-top:5px">
+    <ul class="list-unstyled">
+    <h6><%=@user.name.capitalize%>'s Following:</h6>
+    <% @user.friends.each do |friend| %>
+    <%=image_tag friend.avatar.url(:thumb), :class => "img-responsive img-circle-frfo"%>
+    <%= link_to friend.name, user_path(friend) %>
+    <% end %>
+    </ul>
+  </div>
 
-
-<h3>Followers:</h3>
-<ul>
-<% @user.followers.each do |friend| %>
-  <li><%= link_to friend.name, user_path(friend) %></li>
-<% end %>
-</ul>
+  <div class="momentlist col-md-6" style="padding-left:5px;padding-top:5px">
+    <ul class="list-unstyled">
+      <li>
+      <h6><%=@user.name.capitalize%>'s Followers: </h6>
+        <% @user.followers.each do |friend| %>
+        <%=image_tag friend.avatar.url(:thumb), :class => "img-responsive img-circle-frfo"%>
+        <%= link_to friend.name, user_path(friend) %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+</div>  
 
