@@ -40,6 +40,9 @@
         <div class="widget-body">
           <%= link_to image_tag(moment.image.url), moment.image.url if moment.image.exists? %>
           <p><%= moment.memo %></p>
+           <% if current_user.provider? %>
+          <p><%= button_to "Add Most Recent Instagram Photo", instagram_photo_path(id: moment.id) %></p>
+          <% end %>
         </div>
       </div>
     <% end %>
