@@ -193,3 +193,20 @@ hr{
   border: 0;
   border-top: 1px solid rgba(170, 170, 170, 0.5);
 }
+
+#error_explanation{
+  width: 50%;
+  font-size: 1.1em;
+  padding: 0.5em;
+  background-color: lighten($main-color, 10);
+  border-radius: 20px;
+  h2{
+    padding-left: 20px;
+    font-size: 1.5em;
+    color: lighten(#f39c12, 10);
+  }
+  ul{
+    list-style: none;
+  }
+  
+}
