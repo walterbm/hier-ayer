@@ -1,5 +1,5 @@
 function geo_error() {
-  alert('Your browser does not support GeoLocation');
+  console.log('browser does not support GeoLocation');
 }
 function getCoordinates(callback){
   var geo_options = {

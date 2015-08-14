@@ -21,7 +21,8 @@ MakeMap.prototype.mapShowPage = function(self){
   self.map = L.mapbox.map('map', 'mapbox.run-bike-hike',{
     scrollWheelZoom: false,
     compact: true,
-    animate: true
+    animate: true,
+    maxZoom: 20
   }).setView([0,0],1);
 
   self.myLayer = L.mapbox.featureLayer().addTo(self.map);
@@ -38,7 +39,8 @@ MakeMap.prototype.welcomeIndexPage = function(self){
   self.map = L.mapbox.map('map', 'mapbox.light',{
     scrollWheelZoom: false,
     compact: true,
-    animate: true
+    animate: true,
+    maxZoom: 20
   }).setView([0,0],1);
 
   self.myLayer = L.mapbox.featureLayer();
@@ -53,7 +55,8 @@ MakeMap.prototype.userShowPage = function(self){
   self.map = L.mapbox.map('map', 'mapbox.run-bike-hike',{
     scrollWheelZoom: false,
     compact: true,
-    animate: true
+    animate: true,
+    maxZoom: 20
   }).setView([0,0],1);
 
   self.myLayer = L.mapbox.featureLayer().addTo(self.map);
@@ -74,7 +77,8 @@ MakeMap.prototype.minimaps = function(self){
     touchZoom: false,
     dragging: false,
     compact: true,
-    animate: true
+    animate: true,
+    maxZoom: 20
   }).setView([0,0],1);
 
   self.myLayer = L.mapbox.featureLayer().addTo(self.map);
@@ -90,11 +94,9 @@ MakeMap.prototype.getData = function(url,callback){
   var self = this;
   $.get(url, function(data) {
     if (data.length === 0) {
-      // HARDCODE LAT/LONG WHEN MAP IS EMPTY TO AVOID MULTIPLE CALLS IN USER#SHOW
       getCoordinates(function(latitude,longitude){
         self.map.setView([latitude,longitude],13);
       });
-      // self.map.setView([40.7050, -74.0136],13);
     }
     else{
       self.myLayer.setGeoJSON({
