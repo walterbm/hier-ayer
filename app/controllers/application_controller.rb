@@ -1,8 +1,4 @@
-require 'pusher'
-
-Pusher.app_id = ENV["pusher_app_id"]
-Pusher.key = ENV["pusher_key"]
-Pusher.secret = ENV["pusher_secret"]  
+require 'pubnub'
 
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
@@ -15,9 +11,12 @@ class ApplicationController < ActionController::Base
 
   def track_activity(trackable_object)
     activity = current_user.activities.create(action: params[:action], trackable: trackable_object)
-    Pusher['feed_channel'].trigger('feed_event', {
-      activity_id: activity.id
-    })
+    $pubnub.publish(
+      channel: 'feed_channel',
+      message:  "#{activity.id}"
+    ) do |envelope| 
+        puts envelope.parsed_response
+      end
   end
 
   def configure_permitted_parameters
