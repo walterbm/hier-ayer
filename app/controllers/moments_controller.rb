@@ -21,6 +21,9 @@ class MomentsController < ApplicationController
 
   def update
     moment = Moment.find(params[:id])
+    coord = Geocoder.coordinates(moment_params[:address])
+    params['moment']['latitude'] = coord[0]
+    params['moment']['longitude'] = coord[1]
     moment.update(moment_params)
     moment.build_geojson
     
@@ -58,6 +61,6 @@ class MomentsController < ApplicationController
     end
 
     def moment_params
-      params.require(:moment).permit(:memo, :latitude, :longitude, :image, :delete_image)
+      params.require(:moment).permit(:memo, :address, :latitude, :longitude, :image, :delete_image)
     end
 end
