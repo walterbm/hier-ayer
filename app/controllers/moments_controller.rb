@@ -21,9 +21,13 @@ class MomentsController < ApplicationController
 
   def update
     moment = Moment.find(params[:id])
+
     coord = Geocoder.coordinates(moment_params[:address])
-    params['moment']['latitude'] = coord[0]
-    params['moment']['longitude'] = coord[1]
+    
+    if coord
+      params['moment']['latitude'] = coord[0]
+      params['moment']['longitude'] = coord[1]
+    end
     moment.update(moment_params)
     moment.build_geojson
     

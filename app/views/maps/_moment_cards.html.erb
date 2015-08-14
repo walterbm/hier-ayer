@@ -25,9 +25,10 @@
     <% if moment.persisted? %>
       <div class="widget" id="moment<%= moment.id %>">
         <div class="widget-head br-lblue">
-          <% if Geocoder.address("#{moment.latitude},#{moment.longitude}") %>
-            <% coord_arr = Geocoder.address("#{moment.latitude},#{moment.longitude}").split(", ") %>
-            <h3 class="pull-left"><i class="fa fa-map-marker"></i> <%= "#{coord_arr[1]}, #{coord_arr[2].split(" ")[0]} #{coord_arr[3]}" %></h3>
+          <% address = Geocoder.address("#{moment.latitude},#{moment.longitude}")%>
+          <% if address.is_a? String  %>
+            <% address_arr = address.split(',') %>
+            <h3 class="pull-left"><i class="fa fa-map-marker"></i> <%= "#{address_arr[1]}, #{address_arr[2].split(" ")[0]} #{address_arr[3]}" %></h3>
           <% else %>
             <h3 class="pull-left"><i class="fa fa-map-marker"></i> <%= moment.latitude %>, <%= moment.longitude %></h3>
           <% end %>
