@@ -7,7 +7,7 @@ PUBNUB_feed.subscribe({
     channel: 'feed_channel',
     message: function(activity_id){
       $.get("/act/"+activity_id,function(itemHtml){
-        $(".feed-ul").prepend(itemHtml);
+        $(itemHtml).hide().prependTo(".feed-ul").slideDown("slow");
       });
     }
 });
