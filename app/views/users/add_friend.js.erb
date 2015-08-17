@@ -1,4 +1,4 @@
-var html = '<li id= \'<%=@friend.id%>\'><%= image_tag @friend.avatar.url(:thumb), :class => "img-responsive img-circle-frfo"%> <%= link_to @friend.name, user_path(@friend)%> <%= link_to "delete", user_friends_path(current_user, :friend_id => @friend), method: :delete, remote: true %></li>';
+var html = '<li id= \'<%=@friend.id%>\'><%= image_tag @friend.avatar.url(:thumb), :class => "img-responsive img-circle-frfo"%> <%= link_to @friend.name, user_path(@friend)%> <span class= "pull-right"><%= link_to "x", user_friends_path(current_user, :friend_id => @friend), method: :delete, remote: true %></span></li>';
 var count = '<%=current_user.friends.count%>';
 $('#following ul').append(html);
 $('#friend-count').text(count);
