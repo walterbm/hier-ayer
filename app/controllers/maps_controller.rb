@@ -23,8 +23,9 @@ class MapsController < ApplicationController
   end
 
   def send_link_to_friend
-    SendLink.share_link(current_user, params[:friend_email]).deliver_now
-    redirect_to map_path(params[:map_id])
+    @map = current_user.maps.find(params[:map_id])
+    SendLink.share_link(@map, params[:friend_email]).deliver_now
+    redirect_to map_path(@map)
   end
 
   def edit

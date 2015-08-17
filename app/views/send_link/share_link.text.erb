@@ -1,9 +1,9 @@
-<%=@user.name%> has shared a moment with you!
+<%=@map.user.name%> has shared a moment with you!
 ======================================================
-<%=@user.name%> has shared a moment with you!
+<%=@map.user.name%> has shared a moment with you!
 
-Here you go! <%= link_to "see my moment", map_path(@user) %>.
+Here you go! <%= link_to "see my moment", user_path(@map.user) %>.
 
-You can register for your own account at moments_app.com.
+You can register for your own account with http://hier-ayer.herokuapp.com/
 
 Happy viewing.
