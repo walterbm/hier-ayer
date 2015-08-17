@@ -27,10 +27,11 @@
 <% end %>
 
 <%= render partial: "map", locals: {url: map_geojson_path(@map), action: "map#show"} %>
-<%= render partial: "moment_cards", locals: {map: @map} %>
+<%= render partial: "private_cards", locals: {map: @map} %>
+
 
 <script>
-  if ($("#slideThree").is(':checked') == false) {
+  if ($("#slideThree").is(':checked') === false) {
     $("#sendEmail").prop('disabled', true);
   } else {
     $("#sendEmail").prop('disabled', false);
@@ -44,7 +45,7 @@
   });
   
   $("#slideThree").on('click', function(){
-    if ($("#slideThree").is(':checked') == false) {
+    if ($("#slideThree").is(':checked') === false) {
       $("#sendEmail").prop('disabled', true);
     } else {
       $("#sendEmail").prop('disabled', false);
