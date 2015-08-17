@@ -9,7 +9,7 @@ AYER allows you to easily capture moments in your life and visualize them throug
 ![AYER home page](screenshots/ayer-homepage.png "Home page for AYER showing the heat-map of all the moments created by users on the service.")
 Home page for AYER showing the heat-map of all the moments created by users on the service.
 
-![AYER map page](screenshots/ayer-map#show.png "Map page for AYER showing the heat-map of all the moments created by users on the service.")
+![AYER map page](screenshots/ayer-mapshow.png "Map page for AYER showing the heat-map of all the moments created by users on the service.")
 A User's map page showing the moments for this specific trip mapped out with both text memos and images. 
 
 ## Background
